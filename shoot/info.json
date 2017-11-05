@@ -1,0 +1,15 @@
+{
+    "AUTHOR" : "Enova",
+    "DESCRIPTION" : "Will 'shoot' whatever user you specify",
+    "INSTALL_MSG" : "",
+    "NAME" : "shoot",
+    "REQUIREMENTS" : [],
+    "SHORT" : "Shoots a user",
+    "TAGS" : [
+        "shoot",
+        "fun",
+        "funny",
+        "user",
+        "mention"
+    ]
+}

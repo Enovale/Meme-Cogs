@@ -1,0 +1,14 @@
+{
+    "AUTHOR" : "Enova",
+    "DESCRIPTION" : "Will deep fry any image given by overloading it with saturation, contrast, etc.",
+    "INSTALL_MSG" : "",
+    "NAME" : "deepfry",
+    "REQUIREMENTS" : [
+        "Pillow",
+        "PIL"
+    ],
+    "SHORT" : "Deep frys any image link given.",
+    "TAGS" : [
+        "deepfry"
+    ]
+}
