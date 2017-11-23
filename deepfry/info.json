@@ -1,10 +1,9 @@
 {
     "AUTHOR" : "Enova",
     "DESCRIPTION" : "Will deep fry any image given by overloading it with saturation, contrast, etc.",
-    "INSTALL_MSG" : "",
+    "INSTALL_MSG" : "Hey, thanks bud! Hope you enjoy this deepfrying goodness.",
     "NAME" : "deepfry",
     "REQUIREMENTS" : [
-        "Pillow",
         "PIL"
     ],
     "SHORT" : "Deep frys any image link given.",
