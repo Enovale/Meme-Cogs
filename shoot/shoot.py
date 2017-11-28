@@ -8,11 +8,11 @@ class Shoot:
         self.bot = bot
 
     @commands.command(pass_context=True)
-    async def shoot(self, ctx, user : discord.Member = None, school = 'no'):
+    async def shoot(self, ctx, user : discord.Member = 'air'):
         """Will shoot the user specified, (be careful with that gun!)"""
         
         #Your code will go here
-        if '@everyone' in ctx.message.content:
+        if 'everyone' in ctx.message.content:
             if school == 'school':
                 await self.bot.say(ctx.message.author.mention + " shot up the local school, killing hundreds.")
             else if school == 'server':
