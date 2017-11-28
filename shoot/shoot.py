@@ -8,7 +8,7 @@ class Shoot:
         self.bot = bot
 
     @commands.command(pass_context=True)
-    async def shoot(self, ctx, user : discord.Member):
+    async def shoot(self, ctx, message, user : discord.Member, school = 'no'):
         """Will shoot the user specified, (be careful with that gun!)"""
         
         #Your code will go here
