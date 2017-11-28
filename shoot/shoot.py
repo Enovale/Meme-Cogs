@@ -17,6 +17,8 @@ class Shoot:
                 await self.bot.say(ctx.message.author.mention + " shot up the local school, killing hundreds.")
             else if school == 'server':
                 await self.bot.say(ctx.message.author.mention + " shot up the server.")
+            else:
+                await self.bot.say(ctx.message.author.mention + " shot everyone in existence".)
         if ctx.message.author.id != user.id:
             await self.bot.say(ctx.message.author.mention + " gunned down " + user.mention + " !")
         else if ctx.message.author.id == user.id:
