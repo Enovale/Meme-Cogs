@@ -12,13 +12,14 @@ class Shoot:
         """Will shoot the user specified, (be careful with that gun!)"""
         
         #Your code will go here
-        if 'everyone' in ctx.message.content:
-            if school == 'school':
-                await self.bot.say(ctx.message.author.mention + " shot up the local school, killing hundreds.")
-            else if school == 'server':
-                await self.bot.say(ctx.message.author.mention + " shot up the server.")
-            else:
-                await self.bot.say(ctx.message.author.mention + " shot everyone in existence".)
+        if user == None:
+            if 'everyone' in ctx.message.content:
+                if school == 'school':
+                    await self.bot.say(ctx.message.author.mention + " shot up the local school, killing hundreds.")
+                else if school == 'server':
+                    await self.bot.say(ctx.message.author.mention + " shot up the server.")
+                else:
+                    await self.bot.say(ctx.message.author.mention + " shot everyone in existence".)
         if ctx.message.author.id != user.id:
             await self.bot.say(ctx.message.author.mention + " gunned down " + user.mention + " !")
         else if ctx.message.author.id == user.id:
