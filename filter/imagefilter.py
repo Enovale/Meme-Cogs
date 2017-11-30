@@ -14,7 +14,7 @@ from io import BytesIO
 
 WINDOWS_OS = os.name == 'nt'
 
-class filter:
+class imagefilter:
     """Allows for various image filtering"""
 
     def __init__(self, bot):
@@ -45,4 +45,4 @@ class filter:
 			await self.bot.say("Sorry, but this image format is not supported.")
 
 def setup(bot):
-    bot.add_cog(filter(bot))
+    bot.add_cog(imagefilter(bot))
