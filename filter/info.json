@@ -1,0 +1,13 @@
+{
+    "AUTHOR" : "Enova",
+    "DESCRIPTION" : "Can perform various image filtering effects",
+    "INSTALL_MSG" : "Hey, thanks bud! Hope you enjoy this fitlering command",
+    "NAME" : "filter",
+    "REQUIREMENTS" : [
+        "PIL"
+    ],
+    "SHORT" : "filters any image link given, with a few filters to choose from.",
+    "TAGS" : [
+        "filter", "image"
+    ]
+}
