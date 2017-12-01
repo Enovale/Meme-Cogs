@@ -2,7 +2,7 @@ import asyncio, aiohttp, discord
 #import aalib
 import os, sys, linecache, traceback, glob
 import re, json, random, math, html
-import wand, wand.color, wand.drawing
+#import wand, wand.color, wand.drawing
 import PIL, PIL.Image, PIL.ImageFont, PIL.ImageOps, PIL.ImageDraw
 import numpy as np
 import cairosvg, jpglitch, urbandict
