@@ -9,6 +9,7 @@ import glob, os
 from PIL import ImageEnhance
 from PIL import ImageColor
 from PIL import ImageFilter
+from PIL import ImageOps
 import requests
 from io import BytesIO
 
