@@ -1,5 +1,5 @@
 import asyncio, aiohttp, discord
-import aalib
+##import aalib
 import os, sys, linecache, traceback, glob
 import re, json, random, math, html
 import wand, wand.color, wand.drawing
