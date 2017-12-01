@@ -19,9 +19,9 @@ class imagefilter:
 
     def __init__(self, bot):
         self.bot = bot
-        if not os.path.exists("data/deepfry"):
-            os.makedirs("data/deepfry")
-        self.path = os.path.join("data", "deepfry")
+        if not os.path.exists("data/filter"):
+            os.makedirs("data/filter")
+        self.path = os.path.join("data", "filter")
 
         
     @commands.command(pass_context=True)
