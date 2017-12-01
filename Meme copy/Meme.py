@@ -1,5 +1,5 @@
 import asyncio, aiohttp, discord
-import aalib
+##import aalib
 import os, sys, linecache, traceback, glob
 import re, json, random, math, html
 import wand, wand.color, wand.drawing
@@ -21,7 +21,7 @@ from urllib.parse import quote
 from mods.cog import Cog
 from concurrent.futures._base import CancelledError
 
-class Meme:
+class meme:
     """Various Meme Retrieving/Making commands"""
 
     def __init__(self, bot):
@@ -41,4 +41,4 @@ class Meme:
                 await self.bot.send_file(b, filename='badmeme.png')
 
 def setup(bot):
-    bot.add_cog(Meme(bot))
+    bot.add_cog(meme(bot))

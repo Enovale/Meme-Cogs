@@ -2,7 +2,7 @@
     "AUTHOR" : "Enova",
     "DESCRIPTION" : "Can retrieve/create memes",
     "INSTALL_MSG" : "Hey, thanks bud! Hope you enjoy this meme command",
-    "NAME" : "Meme",
+    "NAME" : "meme",
     "REQUIREMENTS" : [
         "PIL"
     ],
