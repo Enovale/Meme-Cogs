@@ -56,7 +56,7 @@ class imagefilter:
             image = Image.open (BytesIO(response.content))
         
             image = image.convert("RGB")
-       	    image = ImageOps.crop(image, pixels)
+       	    image = ImageOps.crop(image, Int(pixels))
             image.save(self.path + "/" + id + ".jpg", quality=8)
        	    await self.bot.send_file(channel, self.path + "/" + id + ".jpg")
             os.remove(self.path + "/" + id + ".jpg")
