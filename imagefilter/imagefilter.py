@@ -38,7 +38,7 @@ class imagefilter:
         
             image = image.convert("RGB")
        	    image = ImageOps.invert(image)
-            image.save(self.path + "/" + id + ".jpg", quality=8)
+            image.save(self.path + "/" + id + ".jpg", quality=100)
        	    await self.bot.send_file(channel, self.path + "/" + id + ".jpg")
             os.remove(self.path + "/" + id + ".jpg")
         ##else:
@@ -57,7 +57,7 @@ class imagefilter:
         
             image = image.convert("RGB")
        	    image = ImageOps.crop(image, int(pixels))
-            image.save(self.path + "/" + id + ".jpg", quality=8)
+            image.save(self.path + "/" + id + ".jpg", quality=100)
        	    await self.bot.send_file(channel, self.path + "/" + id + ".jpg")
             os.remove(self.path + "/" + id + ".jpg")
 
