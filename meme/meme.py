@@ -28,17 +28,17 @@ class Meme:
         self.bot = bot
 
     @commands.command(pass_context=True)
-	  @commands.cooldown(1, 3)
-	  async def badmeme(self, ctx, direct=None):
-	  	"""returns bad meme (shit api)"""
-	  	load = await self.get_json("https://api.imgflip.com/get_memes")
-	  	url = random.choice(load['data']['memes'])
-	  	url = url['url']
-	  	if direct:
-	  		await self.bot.say(url)
-		else:
-			b = await self.bytes_download(url)
-			await self.bot.upload(b, filename='badmeme.png')
+    @commands.cooldown(1, 3)
+    async def badmeme(self, ctx, direct=None):
+        """returns bad meme (shit api)"""
+        load = await self.get_json("https://api.imgflip.com/get_memes")
+        url = random.choice(load['data']['memes'])
+        url = url['url']
+        if direct:
+                await self.bot.say(url)
+        else:
+                b = await self.bytes_download(url)
+                await self.bot.upload(b, filename='badmeme.png')
 
 def setup(bot):
     bot.add_cog(Meme(bot))
