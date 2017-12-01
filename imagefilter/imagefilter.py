@@ -36,9 +36,8 @@ class imagefilter:
             response = requests.get(link)
             image = Image.open (BytesIO(response.content))
         
-
+            image = image.convert("RGB")
        	    image = ImageOps.invert(image)
-       	    image = image.convert("RGB")
             image.save(self.path + "/" + id + ".jpg", quality=8)
        	    await self.bot.send_file(channel, self.path + "/" + id + ".jpg")
             os.remove(self.path + "/" + id + ".jpg")
