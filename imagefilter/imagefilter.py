@@ -56,7 +56,7 @@ class imagefilter:
             image = Image.open (BytesIO(response.content))
         
             image = image.convert("RGB")
-       	    image = image.rotate(int(degrees))
+       	    image = image.rotate(int(degrees), expand=true)
             image.save(self.path + "/" + id + ".jpg", quality=100)
        	    await self.bot.send_file(channel, self.path + "/" + id + ".jpg")
             
