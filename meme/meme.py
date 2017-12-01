@@ -3,7 +3,6 @@ import os, sys, linecache, traceback, glob
 import re, json, random, math, html
 import PIL, PIL.Image, PIL.ImageFont, PIL.ImageOps, PIL.ImageDraw
 import hashlib, base64
-from vw import macintoshplus
 from imgurpython import ImgurClient
 from io import BytesIO, StringIO
 from discord.ext import commands
