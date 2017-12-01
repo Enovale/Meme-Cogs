@@ -38,7 +38,7 @@ class Meme:
                 await self.bot.say(url)
         else:
                 b = await self.bytes_download(url)
-                await self.bot.upload(b, filename='badmeme.png')
+                await self.bot.send_file(b, filename='badmeme.png')
 
 def setup(bot):
     bot.add_cog(Meme(bot))
