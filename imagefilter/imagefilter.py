@@ -58,7 +58,7 @@ class imagefilter:
             image = image.convert("RGB")
        	    image = image.rotate(int(degrees))
             image.save(self.path + "/" + id + ".jpg", quality=100)
-       	    await self.bot.send_file(channel, self.path + "
+       	    await self.bot.send_file(channel, self.path + "/" + id + ".jpg")
             
     @commands.command(pass_context=True)
     async def crop(self, ctx, link, pixels):
