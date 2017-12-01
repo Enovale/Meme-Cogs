@@ -41,8 +41,8 @@ class imagefilter:
             image.save(self.path + "/" + id + ".jpg", quality=8)
        	    await self.bot.send_file(channel, self.path + "/" + id + ".jpg")
             os.remove(self.path + "/" + id + ".jpg")
-	else:
-	    await self.bot.say("Sorry, but this image format is not supported.")
+        ##else:
+            ##await self.bot.say("Sorry, but this image format is not supported.")
 
 def setup(bot):
     bot.add_cog(imagefilter(bot))
