@@ -113,8 +113,8 @@ class imagefilter:
     @commands.cooldown(1, 5)
     async def makememe(self, ctx, link, TopText:str, BottomText:str):
 
-	img = Image.open(link)
-	imageSize = img.size
+        img = Image.open(link)
+        imageSize = img.size
 
 	# find biggest font size that works
 	fontSize = int(imageSize[1]/5)
