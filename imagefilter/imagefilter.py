@@ -41,8 +41,8 @@ class imagefilter:
             image.save(self.path + "/" + id + ".jpg", quality=100)
        	    await self.bot.send_file(channel, self.path + "/" + id + ".jpg")
             os.remove(self.path + "/" + id + ".jpg")
-        ##else:
-            ##await self.bot.say("Sorry, but this image format is not supported.")
+        else:
+            await self.bot.say("Sorry, but this image format is not supported.")
             
     @commands.command(pass_context=True)
     async def rotate(self, ctx, link, degrees):
@@ -98,16 +98,16 @@ class imagefilter:
     @commands.cooldown(1, 5)
     async def ascii(self, ctx, *, text:str):
         """Convert text into ASCII"""
-        if len(text) > 1000:
+        if len(ctx.message.content) > 1000:
             await self.bot.say("2 long asshole")
             return
-        if text == 'donger' or text == 'dong':
-            text = "8====D"
-        if len(txt) >= 1999:
-            await self.gist(ctx, text, txt)
+        if ctx.message.content == 'donger' or ctx.message.content == 'dong':
+            ctx.message.content = "8====D"
+        if len(ctx.message.content) >= 1999:
+            await self.gist(ctx, ctx.message.content, ctx.message.content)
             msg = None
-        elif len(txt) <= 600:
-            msg = "```fix\n{0}```".format(txt)
+        elif len(ctx.message.content) <= 600:
+            msg = "```fix\n{0}```".format(ctx.message.content)
         else:
             msg = None
             await self.bot.send_file(ctx.message.channel, filename='ascii.png', content=msg)
