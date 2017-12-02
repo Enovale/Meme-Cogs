@@ -103,8 +103,7 @@ class imagefilter:
     @commands.cooldown(1, 5)
     async def ascii(self, ctx, *, text:str):
         """Convert text into ASCII"""
-        cprint(figlet_format('missile!', font='starwars'),
-        'yellow', 'on_red', attrs=['bold'])
+        await self.bot.say(figlet_format('missile!', font='starwars'))
 
 def setup(bot):
     bot.add_cog(imagefilter(bot))
