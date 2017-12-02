@@ -46,11 +46,11 @@ class DeepFry:
        	    image = saturation.enhance( 15.0 )
        	    image = image.filter(ImageFilter.GaussianBlur(1))
        	    image = image.convert("RGB")
-            image.save(self.path + "/" + id + ".jpg", quality=8)
-       		await self.bot.send_file(channel, self.path + "/" + id + ".jpg")
-       		os.remove(self.path + "/" + id + ".jpg")
-		else:
-			await self.bot.say("Sorry, but this image format is not supported.")
+       	    image.save(self.path + "/" + id + ".jpg", quality=8)
+       	    await self.bot.send_file(channel, self.path + "/" + id + ".jpg")
+       	    os.remove(self.path + "/" + id + ".jpg")
+        else:
+       	    await self.bot.say("Sorry, but this image format is not supported.")
         
     @commands.command(pass_context=True)
     async def customfry(self, ctx, link, contrast, saturation, sharpness, brightness, blur):
@@ -73,7 +73,7 @@ class DeepFry:
         if "." not in sharpness:
             sharpness = sharpness + ".0"
         if "." not in brightness:
-            brightness = brightness + ".0"
+       	    brightness = brightness + ".0"
         image = sharpnessenhance.enhance(float(sharpness))
         image = brightnessenhance.enhance( float(brightness) )
         image = contrastenhance.enhance( float(contrast) )
