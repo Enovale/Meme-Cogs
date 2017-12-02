@@ -94,7 +94,7 @@ class imagefilter:
        	    await self.bot.send_file(channel, self.path + "/" + id + ".jpg")
             os.remove(self.path + "/" + id + ".jpg")
             
-    @commands.command(pass_context=True, aliases=['expand'])
+    @commands.command(pass_context=True)
     @commands.cooldown(1, 5)
     async def ascii(self, ctx, *, text:str):
         """Convert text into ASCII"""
