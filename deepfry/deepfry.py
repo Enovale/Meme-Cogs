@@ -40,7 +40,7 @@ class DeepFry:
        	    brightness = ImageEnhance.Brightness( image )
        	    saturation = ImageEnhance.Color( image )
        	    image = sharpness.enhance(2.0)
-	    image = image.filter(ImageFilter.SHARPEN(10))
+       	    image = image.filter(ImageFilter.SHARPEN(10))
        	    image = brightness.enhance( 1.5 )
        	    image = contrast.enhance( 8.0 )
        	    image = saturation.enhance( 15.0 )
