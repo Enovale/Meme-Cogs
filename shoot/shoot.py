@@ -12,7 +12,7 @@ class Shoot:
         """Will shoot the user specified, (be careful with that gun!)"""
         
         #Your code will go here
-        if not user:
+        if user == ctx.message.author.id:
             if everyone == 'everyone':
                 ##if school == 'school':
                 ##    await self.bot.say(ctx.message.author.mention + " shot up the local school, killing hundreds.")
