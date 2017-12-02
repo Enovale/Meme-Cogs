@@ -20,9 +20,9 @@ class imagefilter:
 
     def __init__(self, bot):
         self.bot = bot
-        if not os.path.exists("data/filter"):
-            os.makedirs("data/filter")
-        self.path = os.path.join("data", "filter")
+        if not os.path.exists("data/imagefilter"):
+            os.makedirs("data/imagefilter")
+        self.path = os.path.join("data", "imagefilter")
 
         
     @commands.command(pass_context=True)
@@ -103,10 +103,6 @@ class imagefilter:
             return
         if text == 'donger' or text == 'dong':
             text = "8====D"
-            #final, txt = await self.bot.loop.run_in_executor(None, self.do_ascii, text)
-        #if final is False:
-           # await self.bot.say(':no_entry: go away with your invalid characters.')
-           # return
         if len(txt) >= 1999:
             await self.gist(ctx, text, txt)
             msg = None
@@ -114,7 +110,7 @@ class imagefilter:
             msg = "```fix\n{0}```".format(txt)
         else:
             msg = None
-            await self.bot.upload(final, filename='ascii.png', content=msg)
+            await self.bot.send_file(final, filename='ascii.png', content=msg)
 
     def generate_ascii(self, image):
         font = PIL.ImageFont.truetype(self.files_path('FreeMonoBold.ttf'), 15, encoding="unic")
