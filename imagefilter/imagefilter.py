@@ -93,6 +93,47 @@ class imagefilter:
             image.save(self.path + "/" + id + ".jpg", quality=100)
        	    await self.bot.send_file(channel, self.path + "/" + id + ".jpg")
             os.remove(self.path + "/" + id + ".jpg")
+            
+    @commands.command(pass_context=True, aliases=['expand'])
+	@commands.cooldown(1, 5)
+	async def ascii(self, ctx, *, text:str):
+		"""Convert text into ASCII"""
+		if len(text) > 1000:
+			await self.bot.say("2 long asshole")
+			return
+		if text == 'donger' or text == 'dong':
+			text = "8====D"
+		final, txt = await self.bot.loop.run_in_executor(None, self.do_ascii, text)
+		if final is False:
+			await self.bot.say(':no_entry: go away with your invalid characters.')
+			return
+		if len(txt) >= 1999:
+			await self.gist(ctx, text, txt)
+			msg = None
+		elif len(txt) <= 600:
+			msg = "```fix\n{0}```".format(txt)
+		else:
+			msg = None
+		await self.bot.upload(final, filename='ascii.png', content=msg)
+
+	def generate_ascii(self, image):
+		font = PIL.ImageFont.truetype(self.files_path('FreeMonoBold.ttf'), 15, encoding="unic")
+		image_width, image_height = image.size
+		aalib_screen_width= int(image_width/24.9)*10
+		aalib_screen_height= int(image_height/41.39)*10
+		screen = aalib.AsciiScreen(width=aalib_screen_width, height=aalib_screen_height)
+		im = image.convert("L").resize(screen.virtual_size)
+		screen.put_image((0,0), im)
+		y = 0
+		how_many_rows = len(screen.render().splitlines()) 
+		new_img_width, font_size = font.getsize(screen.render().splitlines()[0])
+		img = PIL.Image.new("RGBA", (new_img_width, how_many_rows*15), (255,255,255))
+		draw = PIL.ImageDraw.Draw(img)
+		for lines in screen.render().splitlines():
+			draw.text((0,y), lines, (0,0,0), font=font)
+			y = y + 15
+		imagefit = PIL.ImageOps.fit(img, (image_width, image_height), PIL.Image.ANTIALIAS)
+		return imagefit
 
 def setup(bot):
     bot.add_cog(imagefilter(bot))
