@@ -148,8 +148,8 @@ class imagefilter:
                 draw.text((topTextPosition[0]+x, topTextPosition[1]+y), TopText, (0,0,0), font=font)
                 draw.text((bottomTextPosition[0]+x, bottomTextPosition[1]+y), BottomText, (0,0,0), font=font)
 
-        draw.text(topTextPosition, topString, (255,255,255), font=font)
-        draw.text(bottomTextPosition, bottomString, (255,255,255), font=font)
+        draw.text(topTextPosition, TopText, (255,255,255), font=font)
+        draw.text(bottomTextPosition, BottomText, (255,255,255), font=font)
 
         img.save("temp.png")
 
