@@ -152,7 +152,7 @@ class imagefilter:
         draw.text(bottomTextPosition, BottomText, (255,255,255), font=font)
 
         img.save("temp.png")
-	await self.bot.send_file(ctx.message.channel, "temp.png")
+        await self.bot.send_file(ctx.message.channel, "temp.png")
 
 def setup(bot):
     bot.add_cog(imagefilter(bot))
