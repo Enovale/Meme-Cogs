@@ -103,10 +103,10 @@ class imagefilter:
             return
         if text == 'donger' or text == 'dong':
             text = "8====D"
-            final, txt = await self.bot.loop.run_in_executor(None, self.do_ascii, text)
-        if final is False:
-            await self.bot.say(':no_entry: go away with your invalid characters.')
-            return
+            #final, txt = await self.bot.loop.run_in_executor(None, self.do_ascii, text)
+        #if final is False:
+           # await self.bot.say(':no_entry: go away with your invalid characters.')
+           # return
         if len(txt) >= 1999:
             await self.gist(ctx, text, txt)
             msg = None
