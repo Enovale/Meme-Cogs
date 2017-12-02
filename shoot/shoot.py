@@ -21,7 +21,7 @@ class Shoot:
                 ##else if school == 'server':
                 ##    await self.bot.say(ctx.message.author.mention + " shot up the server.")
                 ##else:
-                await self.bot.say(ctx.message.author.mention + " shot everyone in existence.")
+                await self.bot.say(ctx.message.author.mention + " shot up the server!")
             else:
                 await self.bot.say(ctx.message.author.mention + " couldn't take it and shot themselves.")
 
