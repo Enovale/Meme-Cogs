@@ -110,7 +110,7 @@ class imagefilter:
             msg = "```fix\n{0}```".format(txt)
         else:
             msg = None
-            await self.bot.send_file(final, filename='ascii.png', content=msg)
+            await self.bot.send_file(ctx.message.channel, filename='ascii.png', content=msg)
 
     def generate_ascii(self, image):
         font = PIL.ImageFont.truetype(self.files_path('FreeMonoBold.ttf'), 15, encoding="unic")
