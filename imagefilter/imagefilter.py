@@ -112,7 +112,7 @@ class imagefilter:
     @commands.command(pass_context=True)
     @commands.cooldown(1, 5)
     async def makememe(self, ctx, link, TopText, BottomText):
-        """Makes memes from the image and text you specify"""
+        """Makes memes from the image and text you specify. Make sure to surround the two text areas with quotes for it to work."""
         response = requests.get(link)
         img = Image.open (BytesIO(response.content))
         imageSize = img.size
