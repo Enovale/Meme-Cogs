@@ -22,7 +22,7 @@ class Shoot:
                 ##await self.bot.say(ctx.message.author.mention + " shot everyone in existence".)
         if ctx.message.author.id != user.id:
             await self.bot.say(ctx.message.author.mention + " gunned down " + user.mention + " !")
-        else if ctx.message.author.id == user.id:
+        if ctx.message.author.id == user.id:
             await self.bot.say(ctx.message.author.mention + " couldn't take it and shot themselves.")
 
 def setup(bot):
