@@ -111,8 +111,8 @@ class imagefilter:
      
     @commands.command(pass_context=True)
     @commands.cooldown(1, 5)
-    async def makememe(self, ctx, link, TopText:str, BottomText:str):
-
+    async def makememe(self, ctx, link, TopText, BottomText):
+        """Makes memes from the image and text you specify"""
         response = requests.get(link)
         img = Image.open (BytesIO(response.content))
         imageSize = img.size
@@ -135,7 +135,7 @@ class imagefilter:
 
         # find bottom centered position for bottom text
         bottomTextPositionX = (imageSize[0]/2) - (bottomTextSize[0]/2)
-        bottomTextPositionY = imageSize[1] - bottomTextSize[1] + 10
+        bottomTextPositionY = imageSize[1] - bottomTextSize[1] - 8
         bottomTextPosition = (bottomTextPositionX, bottomTextPositionY)
 
         draw = ImageDraw.Draw(img)
