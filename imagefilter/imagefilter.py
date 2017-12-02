@@ -135,7 +135,7 @@ class imagefilter:
 
         # find bottom centered position for bottom text
         bottomTextPositionX = (imageSize[0]/2) - (bottomTextSize[0]/2)
-        bottomTextPositionY = imageSize[1] - bottomTextSize[1]
+        bottomTextPositionY = imageSize[1] - bottomTextSize[1] + 10
         bottomTextPosition = (bottomTextPositionX, bottomTextPositionY)
 
         draw = ImageDraw.Draw(img)
