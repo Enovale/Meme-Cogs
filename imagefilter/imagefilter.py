@@ -117,40 +117,40 @@ class imagefilter:
         imageSize = img.size
 
 	# find biggest font size that works
-	fontSize = int(imageSize[1]/5)
-	font = ImageFont.truetype("/Library/Fonts/Impact.ttf", fontSize)
-	topTextSize = font.getsize(TopText)
-	bottomTextSize = font.getsize(BottomText)
-	while topTextSize[0] > imageSize[0]-20 or bottomTextSize[0] > imageSize[0]-20:
-		fontSize = fontSize - 1
-		font = ImageFont.truetype("/Library/Fonts/Impact.ttf", fontSize)
-		topTextSize = font.getsize(TopText)
-		bottomTextSize = font.getsize(BottomText)
+        fontSize = int(imageSize[1]/5)
+        font = ImageFont.truetype("/Library/Fonts/Impact.ttf", fontSize)
+        topTextSize = font.getsize(TopText)
+        bottomTextSize = font.getsize(BottomText)
+        while topTextSize[0] > imageSize[0]-20 or bottomTextSize[0] > imageSize[0]-20:
+            fontSize = fontSize - 1
+            font = ImageFont.truetype("/Library/Fonts/Impact.ttf", fontSize)
+            topTextSize = font.getsize(TopText)
+            bottomTextSize = font.getsize(BottomText)
 
-	# find top centered position for top text
-	topTextPositionX = (imageSize[0]/2) - (topTextSize[0]/2)
-	topTextPositionY = 0
-	topTextPosition = (topTextPositionX, topTextPositionY)
+        # find top centered position for top text
+        topTextPositionX = (imageSize[0]/2) - (topTextSize[0]/2)
+        topTextPositionY = 0
+        topTextPosition = (topTextPositionX, topTextPositionY)
 
-	# find bottom centered position for bottom text
-	bottomTextPositionX = (imageSize[0]/2) - (bottomTextSize[0]/2)
-	bottomTextPositionY = imageSize[1] - bottomTextSize[1]
-	bottomTextPosition = (bottomTextPositionX, bottomTextPositionY)
+        # find bottom centered position for bottom text
+        bottomTextPositionX = (imageSize[0]/2) - (bottomTextSize[0]/2)
+        bottomTextPositionY = imageSize[1] - bottomTextSize[1]
+        bottomTextPosition = (bottomTextPositionX, bottomTextPositionY)
 
-	draw = ImageDraw.Draw(img)
+        draw = ImageDraw.Draw(img)
 
 	# draw outlines
 	# there may be a better way
-	outlineRange = int(fontSize/15)
-	for x in range(-outlineRange, outlineRange+1):
-		for y in range(-outlineRange, outlineRange+1):
-			draw.text((topTextPosition[0]+x, topTextPosition[1]+y), TopText, (0,0,0), font=font)
-			draw.text((bottomTextPosition[0]+x, bottomTextPosition[1]+y), BottomText, (0,0,0), font=font)
+        outlineRange = int(fontSize/15)
+        for x in range(-outlineRange, outlineRange+1):
+            for y in range(-outlineRange, outlineRange+1):
+                draw.text((topTextPosition[0]+x, topTextPosition[1]+y), TopText, (0,0,0), font=font)
+                draw.text((bottomTextPosition[0]+x, bottomTextPosition[1]+y), BottomText, (0,0,0), font=font)
 
-	draw.text(topTextPosition, topString, (255,255,255), font=font)
-	draw.text(bottomTextPosition, bottomString, (255,255,255), font=font)
+        draw.text(topTextPosition, topString, (255,255,255), font=font)
+        draw.text(bottomTextPosition, bottomString, (255,255,255), font=font)
 
-	img.save("temp.png")
+        img.save("temp.png")
 
 def setup(bot):
     bot.add_cog(imagefilter(bot))
