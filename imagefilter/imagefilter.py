@@ -119,7 +119,7 @@ class imagefilter:
 
 	# find biggest font size that works
         fontSize = int(imageSize[1]/5)
-        font = ImageFont.truetype("/Library/Fonts/Impact.ttf", fontSize)
+        font = ImageFont.truetype("Impact.ttf", fontSize)
         topTextSize = font.getsize(TopText)
         bottomTextSize = font.getsize(BottomText)
         while topTextSize[0] > imageSize[0]-20 or bottomTextSize[0] > imageSize[0]-20:
