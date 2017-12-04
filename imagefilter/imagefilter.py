@@ -184,7 +184,7 @@ class imagefilter:
         id = ctx.message.author.id
         channel = ctx.message.channel
 	
-        try:
+        if id:
             id = ctx.message.author.id
             image = Image.open("bean2.png")
             draw = ImageDraw.Draw(image)
@@ -207,9 +207,9 @@ class imagefilter:
             bean.save(self.path + "/" + id + "beaned" + ".png")
             await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "beaned" + ".png")
             os.remove(self.path + "/" + id + "beaned" + ".png")
-        except Exception as e:
-            await self.bot.say(e)
-            print(e)
+        #except Exception as e:
+            #await self.bot.say(e)
+            #print(e)
 
 def setup(bot):
     bot.add_cog(imagefilter(bot))
