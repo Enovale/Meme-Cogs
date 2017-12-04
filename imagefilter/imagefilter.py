@@ -155,7 +155,7 @@ class imagefilter:
         await self.bot.send_file(ctx.message.channel, "temp.png")
 	
     @commands.command()
-    async def bean(self, url:str):
+    async def bean(self, url):
         """You got BEANED"""
         try:
             ##check = await self.isimage(url)
