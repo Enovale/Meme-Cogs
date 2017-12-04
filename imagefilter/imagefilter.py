@@ -195,6 +195,7 @@ class imagefilter:
             draw.multiline_text((50, 20),"Uh oh! You friccin\nmoron. You just got",(0,0,0),font=font, align='center')
             draw.multiline_text((50, 700),"Tag your friends to\ntotally BEAN! them!",(0,0,0),font=font, align='center')
             mask=Image.new('L', image.size, color=255)
+            draw2 = ImageDraw.Draw(mask)
             draw.rectangle(transparent_area, fill=0)
             image.putalpha(mask)
             image.save('sample-out.jpg')
