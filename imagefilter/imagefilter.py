@@ -191,7 +191,7 @@ class imagefilter:
             # font = ImageFont.truetype(<font-file>, <font-size>)
             font = ImageFont.truetype("Impact.ttf", 60)
             # draw.text((x, y),"Sample Text",(r,g,b))
-            draw.text((0, 0),"Sample Text",(0,0,0,font=font)
+            draw.text((0, 0),"Sample Text",(0,0,0),font=font)
             image.save('sample-out.jpg')
             bean_path = 'bean.png'
             bean = PIL.Image.open(bean_path)
