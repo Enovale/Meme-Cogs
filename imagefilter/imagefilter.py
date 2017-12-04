@@ -202,9 +202,9 @@ class imagefilter:
             bean.save(self.path + "/" + id + "beaned" + ".png")
             await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "beaned" + ".png")
             os.remove(self.path + "/" + id + "beaned" + ".png")
-        except Exception as e:
-            await self.bot.say(e)
-            print(e)
+        #except Exception as e:
+            #await self.bot.say(e)
+            #print(e)
 
 def setup(bot):
     bot.add_cog(imagefilter(bot))
