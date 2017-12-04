@@ -157,7 +157,7 @@ class imagefilter:
 	
     @commands.command(pass_context=True)
     async def bean(self,ctx, url):
-        """You got BEANED"""
+        """You just got BEANED"""
 	
         id = ctx.message.author.id
         channel = ctx.message.channel
@@ -173,10 +173,9 @@ class imagefilter:
             img = Image.open (BytesIO(response.content))
             width, height = bean.size
             width2, height2 = img.size
-            img.resize((int(width2/10), int(height2/10)))
-            bean.copy()
+            img.resize((int(width/2), int(height/2)))
             img.copy()
-            bean.paste(img, (math.floor(width/10), math.floor(height/10)))
+            bean.paste(img, (math.floor(width/2), math.floor(height/2)))
             bean.show()
             bean.save('beaned.png')
             await self.bot.send_file(ctx.message.channel, "beaned.png")
