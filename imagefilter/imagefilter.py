@@ -164,7 +164,8 @@ class imagefilter:
             ##    return
             bean_path = 'bean.png'
             bean = PIL.Image.open(bean_path)
-            img = Image.open (BytesIO(url))
+            response = requests.get(url)
+            img = Image.open (BytesIO(response.content))
             width, height = bean.size
             bean.resize((int(width/50), int(height/50)))
             img.paste(bean, (math.floor(width/2), math.floor(height/2)))
