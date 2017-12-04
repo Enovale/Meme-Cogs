@@ -189,7 +189,7 @@ class imagefilter:
             image = Image.open("bean.png")
             draw = ImageDraw.Draw(image)
             # font = ImageFont.truetype(<font-file>, <font-size>)
-            font = ImageFont.truetype("~/Verdana.ttf", 40)
+            font = ImageFont.truetype("~/Verdana.ttf", 50)
             # draw.text((x, y),"Sample Text",(r,g,b))
             draw.text((50, 0),"Uh oh! You friccin\nmoron. You just got",(0,0,0),font=font)
             image.save('sample-out.jpg')
