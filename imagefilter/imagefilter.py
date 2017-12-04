@@ -190,7 +190,7 @@ class imagefilter:
             bean_path = 'bean.png'
             bean = PIL.Image.open(bean_path)
             response = requests.get(user.content)
-            img = Image.open (response.content)
+            img = Image.open (BytesIO(response.content))
             width, height = bean.size
             width2, height2 = img.size
             img = img.resize((334, 395))
