@@ -155,8 +155,8 @@ class imagefilter:
         img.save("temp.png")
         await self.bot.send_file(ctx.message.channel, "temp.png")
 	
-    @commands.command()
-    async def bean(self, url):
+    @commands.command(pass_context=True)
+    async def bean(self,ctx, url):
         """You got BEANED"""
 	
         id = ctx.message.author.id
