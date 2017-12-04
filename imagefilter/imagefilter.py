@@ -195,11 +195,10 @@ class imagefilter:
             # draw.text((x, y),"Sample Text",(r,g,b))
             draw.multiline_text((50, 20),"Uh oh! You friccin\nmoron. You just got",(0,0,0),font=font, align='center')
             draw.multiline_text((50, 700),"Tag your friends to\ntotally BEAN! them!",(0,0,0),font=font, align='center')
-            image.paste(bean, (math.floor(width/5), math.floor(height/3)))
             mask = Image.open('mask.png')
             mask = mask.convert("L")
             mask = mask.resize((600, 840))
-            image.putalpha(mask)
+            image.putalpha(10)
             image.save('sample-out.jpg')
             width, height = bean.size
             width2, height2 = img.size
