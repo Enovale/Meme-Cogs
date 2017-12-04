@@ -193,7 +193,7 @@ class imagefilter:
             # draw.text((x, y),"Sample Text",(r,g,b))
             draw.multiline_text((50, 20),"Uh oh! You friccin\nmoron. You just got",(0,0,0),font=font, align='center')
             draw.multiline_text((50, 700),"Tag your friends to\ntotally BEAN! them!",(0,0,0),font=font, align='center')
-            mask=Image.new('L', im.size, color=255)
+            mask=Image.new('L', image.size, color=255)
             image.putmask(mask)
             image.save('sample-out.jpg')
             bean_path = 'bean.png'
