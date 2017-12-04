@@ -191,7 +191,7 @@ class imagefilter:
 
             im = Image.new("RGBA",(W,H),"white")
             draw = ImageDraw.Draw(im)
-            fnt = ImageFont.truetype('arialn.ttf', 80)
+            fnt = ImageFont.truetype('arial.ttf', 60)
             w, h = draw.textsize(msg, font=fnt)
             draw.text(((W-w)/2,(H-h)), msg, fill="black")
 
