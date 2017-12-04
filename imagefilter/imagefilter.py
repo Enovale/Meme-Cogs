@@ -175,7 +175,7 @@ class imagefilter:
             bean.resize((int(width/50), int(height/50)))
             img.paste(bean, (math.floor(width/2), math.floor(height/2)))
             final = BytesIO()
-            img.save(final, 'png')
+            img.save('beaned.png')
             final.seek(0)
             await self.bot.send_file(ctx.message.channel, "beaned.png")
         except Exception as e:
