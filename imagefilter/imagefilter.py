@@ -175,9 +175,9 @@ class imagefilter:
                 avatar = user.default_avatar_url
                 response = requests.get(avatar)
                 img = Image.open (BytesIO(response.content))
-            if url:
-                response = requests.get(url)
-                img = Image.open (BytesIO(response.content))
+        else:
+            response = requests.get(url)
+            img = Image.open (BytesIO(response.content))
 	
         id = ctx.message.author.id
         channel = ctx.message.channel
