@@ -192,6 +192,7 @@ class imagefilter:
             font = ImageFont.truetype("~/Verdana.ttf", 50)
             # draw.text((x, y),"Sample Text",(r,g,b))
             draw.multiline_text((50, 20),"Uh oh! You friccin\nmoron. You just got",(0,0,0),font=font, align='center')
+            draw.multiline_text((50, 20),"Tag your friends to\ntotally BEAN! them!",(0,0,0),font=font, align='center')
             image.save('sample-out.jpg')
             bean_path = 'bean.png'
             bean = PIL.Image.open(bean_path)
