@@ -173,7 +173,7 @@ class imagefilter:
             img = Image.open (BytesIO(response.content))
             width, height = bean.size
             width2, height2 = img.size
-            img = img.resize((int(width/2), int(width/2)))
+            img = img.resize((334, 395))
             bean.paste(img, (math.floor(width/5), math.floor(height/3)))
             bean.show()
             bean.save('beaned.png')
