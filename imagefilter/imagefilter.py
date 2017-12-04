@@ -155,6 +155,7 @@ class imagefilter:
 
         img.save(self.path + "/" + id + "meme" + ".png")
         await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "meme" + ".png")
+	os.remove(self.path + "/" + id + "meme" + ".png")
 	
     @commands.command(pass_context=True)
     async def bean(self,ctx, user=None):
@@ -184,11 +185,16 @@ class imagefilter:
         channel = ctx.message.channel
 	
         try:
-            ##check = await self.isimage(url)
-            ##if check is False:
-            ##    await self.bot.say('Invalid or Non-Image!')
-            ##    return
             id = ctx.message.author.id
+            W, H = (300,200)
+            msg = "Uh oh! You friccin \nmoron. You just got"
+
+            im = Image.new("RGBA",(W,H),"white")
+            draw = ImageDraw.Draw(im)
+            w, h = draw.textsize(msg)
+            draw.text(((W-w)/2,(H-h)/2), msg, fill="black")
+
+            im.save("hello.png", "PNG")
             bean_path = 'bean.png'
             bean = PIL.Image.open(bean_path)
             width, height = bean.size
