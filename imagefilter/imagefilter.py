@@ -186,7 +186,7 @@ class imagefilter:
 	
         try:
             id = ctx.message.author.id
-            image = Image.open("bean.png")
+            image = Image.open("bean2.png")
             draw = ImageDraw.Draw(image)
             # font = ImageFont.truetype(<font-file>, <font-size>)
             font = ImageFont.truetype("~/Verdana.ttf", 50)
