@@ -158,6 +158,11 @@ class imagefilter:
     @commands.command()
     async def bean(self, url):
         """You got BEANED"""
+	
+	id = ctx.message.author.id
+        channel = ctx.message.channel
+		
+		
         try:
             ##check = await self.isimage(url)
             ##if check is False:
@@ -173,7 +178,7 @@ class imagefilter:
             final = BytesIO()
             img.save(final, 'png')
             final.seek(0)
-            await self.bot.send_file(final, filename='beaned.png')
+            await self.bot.send_file(channel, filename='beaned.png')
         except Exception as e:
                 await self.bot.say(e)
 
