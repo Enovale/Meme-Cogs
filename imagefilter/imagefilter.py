@@ -159,10 +159,9 @@ class imagefilter:
     async def bean(self, url):
         """You got BEANED"""
 	
-	id = ctx.message.author.id
+        id = ctx.message.author.id
         channel = ctx.message.channel
-		
-		
+	
         try:
             ##check = await self.isimage(url)
             ##if check is False:
