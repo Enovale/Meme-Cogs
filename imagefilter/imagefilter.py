@@ -155,7 +155,7 @@ class imagefilter:
 
         img.save(self.path + "/" + id + "meme" + ".png")
         await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "meme" + ".png")
-	os.remove(self.path + "/" + id + "meme" + ".png")
+        os.remove(self.path + "/" + id + "meme" + ".png")
 	
     @commands.command(pass_context=True)
     async def bean(self,ctx, user=None):
