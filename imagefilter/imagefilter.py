@@ -196,7 +196,7 @@ class imagefilter:
             draw.multiline_text((50, 700),"Tag your friends to\ntotally BEAN! them!",(0,0,0),font=font, align='center')
             mask=Image.new('L', image.size, color=255)
             txt = Image.new('RGBA', image.size, (255,255,255,0))
-            image = image.alpha_composite(image, txt)
+            image = Image.alpha_composite(image, txt)
             image.save('sample-out.jpg')
             bean_path = 'bean.png'
             bean = PIL.Image.open(bean_path)
