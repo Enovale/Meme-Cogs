@@ -168,9 +168,9 @@ class imagefilter:
             url = user
         if type(user) == discord.User or type(user) == discord.Member:
             if user.avatar:
-                avatar = 'https://discordapp.com/api/users/{0.id}/avatars/{0.avatar}.jpg'.format(user)
+                user = 'https://discordapp.com/api/users/{0.id}/avatars/{0.avatar}.jpg'.format(user)
             else:
-                avatar = user.default_avatar_url
+                user = user.default_avatar_url
             if url:
                 response = requests.get(user)
                 user = BytesIO(response.content)
