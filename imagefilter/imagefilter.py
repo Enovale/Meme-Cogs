@@ -184,7 +184,7 @@ class imagefilter:
         id = ctx.message.author.id
         channel = ctx.message.channel
 	
-        try:
+        if id:
             id = ctx.message.author.id
             image = Image.open("bean.png")
             draw = ImageDraw.Draw(img)
