@@ -186,13 +186,13 @@ class imagefilter:
 	
         try:
             id = ctx.message.author.id
-            W, H = (300,200)
+            W, H = (600,840)
             msg = "Uh oh! You friccin \nmoron. You just got"
 
             im = Image.new("RGBA",(W,H),"white")
             draw = ImageDraw.Draw(im)
-            w, h = draw.textsize(msg)
-            draw.text(((W-w)/2,(H-h)/2), msg, fill="black")
+            w, h = draw.textsize(msg, font=Verdana)
+            draw.text(((W-w)/2,(H-h)), msg, fill="black")
 
             im.save("hello.png", "PNG")
             bean_path = 'bean.png'
