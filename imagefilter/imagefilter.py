@@ -54,7 +54,7 @@ class imagefilter:
             
     @commands.command(pass_context=True)
     async def rotate(self, ctx, link, degrees):
-        """Inverts the given image."""
+        """Rotates the given image."""
 
         if any(word in ".BMP .EPS .GIF .ICNS .IM .JPEG .MSP .PCX .PNG .PPM .SPIDER .TIFF .WebP .XBM .CUR .DCX .DDS .FLI .FLC .FPX .FTEX .GBR .GD .ICO .IMT .IPTC .NAA .MCIDAS .MIC .MPO .PCD .PIXAR .PSD .SGI .TGA .WAL .XPM .PALM .PDF .BUFR .FITS .GRIB .HDF5 .MPEG .WMF .bmp .eps .gif .icns .im .jpeg .msp .pcx .png .ppm .spider .tiff .webp .xbm .cur .dcx .dds .fli .flc .fpx .ftex .gbr .gd .ico .imt .iptc .naa .mcidas .mic .mpo .pcd .pixar .psd .sgi .tga .wal .xpm .palm .pdf .bufr .fits .grib .hdf5 .mpeg .wmf" for word in link):
         
@@ -151,9 +151,10 @@ class imagefilter:
 
         draw.text(topTextPosition, TopText, (255,255,255), font=font)
         draw.text(bottomTextPosition, BottomText, (255,255,255), font=font)
+        id = ctx.message.author.id
 
-        img.save("temp.png")
-        await self.bot.send_file(ctx.message.channel, "temp.png")
+        img.save(self.path + "/" + id + "meme" + ".png")
+        await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "meme" + ".png")
 	
     @commands.command(pass_context=True)
     async def bean(self,ctx, user=None):
@@ -187,14 +188,16 @@ class imagefilter:
             ##if check is False:
             ##    await self.bot.say('Invalid or Non-Image!')
             ##    return
+            id = ctx.message.author.id
             bean_path = 'bean.png'
             bean = PIL.Image.open(bean_path)
             width, height = bean.size
             width2, height2 = img.size
             img = img.resize((334, 395))
             bean.paste(img, (math.floor(width/5), math.floor(height/3)))
-            bean.save('beaned.png')
-            await self.bot.send_file(ctx.message.channel, "beaned.png")
+            bean.save(self.path + "/" + id + "beaned" + ".png")
+            await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "beaned" + ".png")
+            os.remove(self.path + "/" + id + "beaned" + ".png")
         except Exception as e:
             await self.bot.say(e)
 
