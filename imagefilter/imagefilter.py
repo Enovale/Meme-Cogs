@@ -188,12 +188,14 @@ class imagefilter:
             id = ctx.message.author.id
             image = Image.open("bean2.png")
             draw = ImageDraw.Draw(image)
+            transparent_area = (50,80,100,200)
             # font = ImageFont.truetype(<font-file>, <font-size>)
             font = ImageFont.truetype("~/Verdana.ttf", 50)
             # draw.text((x, y),"Sample Text",(r,g,b))
             draw.multiline_text((50, 20),"Uh oh! You friccin\nmoron. You just got",(0,0,0),font=font, align='center')
             draw.multiline_text((50, 700),"Tag your friends to\ntotally BEAN! them!",(0,0,0),font=font, align='center')
             mask=Image.new('L', image.size, color=255)
+            draw.rectangle(transparent_area, fill=0)
             image.putalpha(mask)
             image.save('sample-out.jpg')
             bean_path = 'bean.png'
