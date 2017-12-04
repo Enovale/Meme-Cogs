@@ -191,9 +191,9 @@ class imagefilter:
 
             im = Image.new("RGBA",(W,H),"white")
             draw = ImageDraw.Draw(im)
-            fnt = ImageFont.truetype('arial.ttf', 60)
+            fnt = ImageFont.truetype('arialn.ttf', 60)
             w, h = draw.textsize(msg, font=fnt)
-            draw.text(((W-w)/2,(H-h)), msg, fill="black")
+            draw.text(((W-w)/2,(H-h)/H), msg, fill="black")
 
             im.save("hello.png", "PNG")
             bean_path = 'bean.png'
