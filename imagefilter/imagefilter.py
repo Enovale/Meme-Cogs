@@ -204,6 +204,7 @@ class imagefilter:
             os.remove(self.path + "/" + id + "beaned" + ".png")
         except Exception as e:
             await self.bot.say(e)
+            print(e)
 
 def setup(bot):
     bot.add_cog(imagefilter(bot))
