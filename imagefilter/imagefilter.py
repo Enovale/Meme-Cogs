@@ -177,10 +177,9 @@ class imagefilter:
             final = BytesIO()
             img.save(final, 'png')
             final.seek(0)
-            await self.bot.send_file(channel, filename='beaned.png')
+            await self.bot.send_file(ctx.message.channel, "beaned.png")
         except Exception as e:
-                #await self.bot.say(e)
-	        print(e)
+            await self.bot.say(e)
 
 def setup(bot):
     bot.add_cog(imagefilter(bot))
