@@ -191,7 +191,8 @@ class imagefilter:
 
             im = Image.new("RGBA",(W,H),"white")
             draw = ImageDraw.Draw(im)
-            w, h = draw.textsize(msg, font=Verdana)
+	fnt = ImageFont.truetype('Verdana.ttf', 40)
+            w, h = draw.textsize(msg, font=fnt)
             draw.text(((W-w)/2,(H-h)), msg, fill="black")
 
             im.save("hello.png", "PNG")
