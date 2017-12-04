@@ -158,10 +158,10 @@ class imagefilter:
     async def bean(self, url:str):
         """You got BEANED"""
         try:
-            check = await self.isimage(url)
-            if check is False:
-                await self.bot.say('Invalid or Non-Image!')
-                return
+            ##check = await self.isimage(url)
+            ##if check is False:
+            ##    await self.bot.say('Invalid or Non-Image!')
+            ##    return
             bean_path = 'bean.png'
             bean = PIL.Image.open(bean_path)
             img = Image.open (BytesIO(url))
