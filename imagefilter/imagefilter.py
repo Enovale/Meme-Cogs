@@ -153,6 +153,27 @@ class imagefilter:
 
         img.save("temp.png")
         await self.bot.send_file(ctx.message.channel, "temp.png")
+	
+    @commands.command()
+    async def bean(self, url:str):
+        """You got BEANED"""
+        try:
+            check = await self.isimage(url)
+            if check is False:
+                await self.bot.say('Invalid or Non-Image!')
+                return
+            bean_path = 'bean.png'
+            bean = PIL.Image.open(bean_path)
+            img = Image.open (BytesIO(url))
+            width, height = bean.size
+            bean.resize((int(width/50), int(height/50)))
+            img.paste(bean, (math.floor(width/2), math.floor(height/2)))
+            final = BytesIO()
+            img.save(final, 'png')
+            final.seek(0)
+            await self.bot.send_file(final, filename='beaned.png')
+        except Exception as e:
+                await self.bot.say(e)
 
 def setup(bot):
     bot.add_cog(imagefilter(bot))
