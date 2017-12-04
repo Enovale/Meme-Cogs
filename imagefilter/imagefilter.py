@@ -194,8 +194,8 @@ class imagefilter:
             draw.multiline_text((50, 20),"Uh oh! You friccin\nmoron. You just got",(0,0,0),font=font, align='center')
             draw.multiline_text((50, 700),"Tag your friends to\ntotally BEAN! them!",(0,0,0),font=font, align='center')
             mask = Image.open('mask.png')
-            mask = mask.convert("RGBA")
-            mash = mask.resize((600, 840))
+            mask = mask.convert("L")
+            mask = mask.resize((600, 840))
             image.putalpha(mask)
             image.save('sample-out.jpg')
             bean_path = 'bean.png'
