@@ -156,8 +156,24 @@ class imagefilter:
         await self.bot.send_file(ctx.message.channel, "temp.png")
 	
     @commands.command(pass_context=True)
-    async def bean(self,ctx, url):
+    async def bean(self,ctx, user: str):
         """You just got BEANED"""
+	
+        url = None
+        if user is None:
+            user = ctx.message.author
+        elif len(ctx.message.mentions):
+            user = ctx.message.mentions[0]
+        else:
+            url = user
+        if type(user) == discord.User or type(user) == discord.Member:
+            if user.avatar:
+                avatar = 'https://discordapp.com/api/users/{0.id}/avatars/{0.avatar}.jpg'.format(user)
+            else:
+                avatar = user.default_avatar_url
+            if url:
+                response = requests.get(user)
+                user = BytesIO(response.content)
 	
         id = ctx.message.author.id
         channel = ctx.message.channel
@@ -169,8 +185,8 @@ class imagefilter:
             ##    return
             bean_path = 'bean.png'
             bean = PIL.Image.open(bean_path)
-            response = requests.get(url)
-            img = Image.open (BytesIO(response.content))
+            response = requests.get(user)
+            img = Image.open (user)
             width, height = bean.size
             width2, height2 = img.size
             img = img.resize((334, 395))
