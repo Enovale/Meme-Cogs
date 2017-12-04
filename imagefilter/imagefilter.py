@@ -186,13 +186,13 @@ class imagefilter:
 	
         try:
             id = ctx.message.author.id
-            img = Image.open("bean.png")
+            image = Image.open("bean.png")
             draw = ImageDraw.Draw(img)
             # font = ImageFont.truetype(<font-file>, <font-size>)
             font = ImageFont.truetype("sans-serif.ttf", 16)
             # draw.text((x, y),"Sample Text",(r,g,b))
             draw.text((0, 0),"Sample Text",(255,255,255),font=font)
-            img.save('sample-out.jpg')
+            image.save('sample-out.jpg')
             bean_path = 'bean.png'
             bean = PIL.Image.open(bean_path)
             width, height = bean.size
