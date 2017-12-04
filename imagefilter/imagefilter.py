@@ -184,12 +184,12 @@ class imagefilter:
         id = ctx.message.author.id
         channel = ctx.message.channel
 	
-        if id:
+        try:
             id = ctx.message.author.id
             image = Image.open("bean.png")
             draw = ImageDraw.Draw(img)
             # font = ImageFont.truetype(<font-file>, <font-size>)
-            font = ImageFont.truetype("sans-serif.ttf", 16)
+            font = ImageFont.truetype("Impact.ttf", 60)
             # draw.text((x, y),"Sample Text",(r,g,b))
             draw.text((0, 0),"Sample Text",(255,255,255),font=font)
             image.save('sample-out.jpg')
@@ -202,9 +202,9 @@ class imagefilter:
             bean.save(self.path + "/" + id + "beaned" + ".png")
             await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "beaned" + ".png")
             os.remove(self.path + "/" + id + "beaned" + ".png")
-        #except Exception as e:
-            #await self.bot.say(e)
-            #print(e)
+        except Exception as e:
+            await self.bot.say(e)
+            print(e)
 
 def setup(bot):
     bot.add_cog(imagefilter(bot))
