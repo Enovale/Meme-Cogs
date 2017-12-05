@@ -196,9 +196,21 @@ class imagefilter:
             draw = ImageDraw.Draw(image)
             # font = ImageFont.truetype(<font-file>, <font-size>)
             font = ImageFont.truetype(self.path + "/Verdana.ttf", 50)
+            text = 'BEANED!!!'
             # draw.text((x, y),"Sample Text",(r,g,b))
-            draw.multiline_text((50, 20),"Uh oh! You friccin\nmoron. You just got",(0,0,0),font=font, align='center')
-            draw.multiline_text((50, 700),"Tag your friends to\ntotally BEAN! them!",(0,0,0),font=font, align='center')
+            draw.text((x-1, y), text, font=font, fill='black')
+            draw.text((x+1, y), text, font=font, fill='black')
+            draw.text((x, y-1), text, font=font, fill='black')
+            draw.text((x, y+1), text, font=font, fill='black')
+
+            # thicker border
+            draw.text((x-1, y-1), text, font=font, fill='black')
+            draw.text((x+1, y-1), text, font=font, fill='black')
+            draw.text((x-1, y+1), text, font=font, fill='black')
+            draw.text((x+1, y+1), text, font=font, fill='black')
+
+            # now draw the text over it
+            draw.text((x, y), text, font=font, fill='green')
             width, height = image.size
             mask = mask.resize((600, 840))
             mash = mask.convert("L")
