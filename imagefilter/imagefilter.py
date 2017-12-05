@@ -158,7 +158,7 @@ class imagefilter:
         os.remove(self.path + "/" + id + "meme" + ".png")
 	
     @commands.command(pass_context=True)
-    async def bean(self,ctx, user=None, Text=None):
+    async def bean(self,ctx, user=None, BigText=None, MinorText=None):
         """You just got BEANED"""
 	
         url = None
@@ -188,18 +188,17 @@ class imagefilter:
         channel = ctx.message.channel
 	
         try:
-            id = ctx.message.author.id
-            image = Image.open("bean2.png")
-            bean_path = 'bean.png'
-            bean = PIL.Image.open(bean_path)
-            mask = Image.open('mask.png')
-            draw = ImageDraw.Draw(image)
+            bean = PIL.Image.open(self.path + "/" + "bean.png")
+            draw = ImageDraw.Draw(bean)
             # font = ImageFont.truetype(<font-file>, <font-size>)
-            font = ImageFont.truetype(self.path + "/Verdana.ttf", 70)
-            if Text == None:
+            font = ImageFont.truetype(self.path + "/VerdanaBold.ttf", 70)
+            font2 = ImageFont.truetype(self.path + "/Verdana.ttf", 50)
+            if BigText == None:
                 text = 'BEANED!!!'
             else:
-                text = Text
+                text = BigText
+            if MinorText == None:
+                MinorText = "BEAN!"
             width, height = font.getsize(text)
             image2 = Image.new('RGBA', (600, 100), (0, 0, 0, 0))
             draw2 = ImageDraw.Draw(image2)
@@ -223,16 +222,13 @@ class imagefilter:
 
             px, py = 80, 140
             sx, sy = image2.size
-            image = image.convert("RGBA")
-            image.save('sample-out.jpg')
-            image.paste(mask, (0, 0), mask=mask)
-            image.putalpha(10)
-            image.save('sample-out.jpg', transperency=30)
             width, height = bean.size
             width2, height2 = img.size
             img = img.resize((334, 395))
             bean.paste(img, (math.floor(width/5), math.floor(height/3)))
             bean.paste(image2, (px, py, px + sx, py + sy), image2)
+            draw.multiline_text((50, 20),"Uh oh! You friccin\nmoron. You just got",(0,0,0),font=font2, align='center')
+            draw.multiline_text((50, 700),"Tag your friends to\ntotally " + MinorText + " them!",(0,0,0),font=font2, align='center')
             img2.putalpha(50)
             img2 = img2.resize((400, 700))
             #bean.paste(img2, (math.floor(width-100), 0))
