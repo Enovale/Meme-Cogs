@@ -212,7 +212,7 @@ class imagefilter:
             img = img.resize((334, 395))
             bean.paste(img, (math.floor(width/5), math.floor(height/3)))
             img2.putalpha(50)
-            img2.resize((-40, 790))
+            img2.resize((40, 790))
             bean.paste(img2, (math.floor(0-100), 0))
             bean.save(self.path + "/" + id + "beaned" + ".png")
             await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "beaned" + ".png")
