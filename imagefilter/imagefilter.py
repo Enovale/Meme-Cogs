@@ -197,6 +197,7 @@ class imagefilter:
             draw.multiline_text((50, 700),"Tag your friends to\ntotally BEAN! them!",(0,0,0),font=font, align='center')
             width, height = image.size
             image.paste(img, (math.floor(width/5), math.floor(height/3)))
+            image = image.convert("RGBA")
             image.putalpha(10)
             image.save('sample-out.jpg')
             width, height = bean.size
