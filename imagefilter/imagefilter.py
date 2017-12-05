@@ -189,14 +189,17 @@ class imagefilter:
             image = Image.open("bean2.png")
             bean_path = 'bean.png'
             bean = PIL.Image.open(bean_path)
+            mask = Image.open('mask.png')
             draw = ImageDraw.Draw(image)
             # font = ImageFont.truetype(<font-file>, <font-size>)
-            font = ImageFont.truetype("~/Verdana.ttf", 50)
+            font = ImageFont.truetype(self.path + "/Verdana.ttf", 50)
             # draw.text((x, y),"Sample Text",(r,g,b))
             draw.multiline_text((50, 20),"Uh oh! You friccin\nmoron. You just got",(0,0,0),font=font, align='center')
             draw.multiline_text((50, 700),"Tag your friends to\ntotally BEAN! them!",(0,0,0),font=font, align='center')
             width, height = image.size
+            mask = mask.resize((600, 840))
             image.paste(img, (math.floor(width/5), math.floor(height/3)))
+            image.paste(mask, (0, 0), mask=mask)
             image = image.convert("RGBA")
             image.putalpha(10)
             image.save('sample-out.jpg', transperency=30)
