@@ -197,6 +197,7 @@ class imagefilter:
             # font = ImageFont.truetype(<font-file>, <font-size>)
             font = ImageFont.truetype(self.path + "/Verdana.ttf", 50)
             text = 'BEANED!!!'
+            x, y = 10, 10
             # draw.text((x, y),"Sample Text",(r,g,b))
             draw.text((x-1, y), text, font=font, fill='black')
             draw.text((x+1, y), text, font=font, fill='black')
