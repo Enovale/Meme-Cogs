@@ -158,7 +158,7 @@ class imagefilter:
         os.remove(self.path + "/" + id + "meme" + ".png")
 	
     @commands.command(pass_context=True)
-    async def bean(self,ctx, user=None):
+    async def bean(self,ctx, user=None, Text=None):
         """You just got BEANED"""
 	
         url = None
@@ -187,7 +187,7 @@ class imagefilter:
         id = ctx.message.author.id
         channel = ctx.message.channel
 	
-        if id:
+        try:
             id = ctx.message.author.id
             image = Image.open("bean2.png")
             bean_path = 'bean.png'
@@ -195,28 +195,36 @@ class imagefilter:
             mask = Image.open('mask.png')
             draw = ImageDraw.Draw(image)
             # font = ImageFont.truetype(<font-file>, <font-size>)
-            font = ImageFont.truetype(self.path + "/Verdana.ttf", 50)
-            text = 'BEANED!!!'
+            font = ImageFont.truetype(self.path + "/Verdana.ttf", 70)
+            if Text == None:
+                text = 'BEANED!!!'
+            else:
+                text = Text
+            width, height = font.getsize(text)
+            image2 = Image.new('RGBA', (600, 100), (0, 0, 0, 0))
+            draw2 = ImageDraw.Draw(image2)
             x, y = 10, 10
             # draw.text((x, y),"Sample Text",(r,g,b))
-            draw.text((x-1, y), text, font=font, fill='black')
-            draw.text((x+1, y), text, font=font, fill='black')
-            draw.text((x, y-1), text, font=font, fill='black')
-            draw.text((x, y+1), text, font=font, fill='black')
+            draw2.text((x-4, y), text, font=font, fill='black')
+            draw2.text((x+4, y), text, font=font, fill='black')
+            draw2.text((x, y-4), text, font=font, fill='black')
+            draw2.text((x, y+4), text, font=font, fill='black')
 
             # thicker border
-            draw.text((x-1, y-1), text, font=font, fill='black')
-            draw.text((x+1, y-1), text, font=font, fill='black')
-            draw.text((x-1, y+1), text, font=font, fill='black')
-            draw.text((x+1, y+1), text, font=font, fill='black')
+            draw2.text((x-4, y-4), text, font=font, fill='black')
+            draw2.text((x+4, y-4), text, font=font, fill='black')
+            draw2.text((x-4, y+4), text, font=font, fill='black')
+            draw2.text((x+4, y+4), text, font=font, fill='black')
 
             # now draw the text over it
-            draw.text((x, y), text, font=font, fill='green')
-            width, height = image.size
-            mask = mask.resize((600, 840))
-            mash = mask.convert("L")
-            image.paste(img, (math.floor(width/5), math.floor(height/3)))
+            draw2.text((x, y), text, font=font, fill='#8ff60f')
+
+            image2 = image2.rotate(4, expand=1)
+
+            px, py = 80, 140
+            sx, sy = image2.size
             image = image.convert("RGBA")
+            image.save('sample-out.jpg')
             image.paste(mask, (0, 0), mask=mask)
             image.putalpha(10)
             image.save('sample-out.jpg', transperency=30)
@@ -224,15 +232,16 @@ class imagefilter:
             width2, height2 = img.size
             img = img.resize((334, 395))
             bean.paste(img, (math.floor(width/5), math.floor(height/3)))
+            bean.paste(image2, (px, py, px + sx, py + sy), image2)
             img2.putalpha(50)
             img2 = img2.resize((400, 700))
             #bean.paste(img2, (math.floor(width-100), 0))
             bean.save(self.path + "/" + id + "beaned" + ".png")
             await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "beaned" + ".png")
             os.remove(self.path + "/" + id + "beaned" + ".png")
-        #except Exception as e:
-            #await self.bot.say(e)
-            #print(e)
+        except Exception as e:
+            await self.bot.say(e)
+            print(e)
 
 def setup(bot):
     bot.add_cog(imagefilter(bot))
