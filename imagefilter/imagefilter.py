@@ -173,13 +173,16 @@ class imagefilter:
                 avatar = 'https://discordapp.com/api/users/' + user.id + '/avatars/' + user.avatar + '.jpg'
                 response = requests.get(avatar)
                 img = Image.open (BytesIO(response.content))
+                img2 = Image.open (BytesIO(response.content))
             else:
                 avatar = user.default_avatar_url
                 response = requests.get(avatar)
                 img = Image.open (BytesIO(response.content))
+                img2 = Image.open (BytesIO(response.content))
         else:
             response = requests.get(url)
             img = Image.open (BytesIO(response.content))
+            img2 = Image.open (BytesIO(response.content))
 	
         id = ctx.message.author.id
         channel = ctx.message.channel
@@ -208,6 +211,8 @@ class imagefilter:
             width2, height2 = img.size
             img = img.resize((334, 395))
             bean.paste(img, (math.floor(width/5), math.floor(height/3)))
+            img2.putalpha(50)
+            bean.paste(img2, (math.floor(width/5), math.floor(height/3)))
             bean.save(self.path + "/" + id + "beaned" + ".png")
             await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "beaned" + ".png")
             os.remove(self.path + "/" + id + "beaned" + ".png")
