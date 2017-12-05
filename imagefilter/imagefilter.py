@@ -199,7 +199,7 @@ class imagefilter:
             image.paste(img, (math.floor(width/5), math.floor(height/3)))
             image = image.convert("RGBA")
             image.putalpha(10)
-            image.save('sample-out.jpg')
+            image.save('sample-out.jpg', transperency=30)
             width, height = bean.size
             width2, height2 = img.size
             img = img.resize((334, 395))
