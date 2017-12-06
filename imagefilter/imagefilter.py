@@ -13,6 +13,7 @@ from PIL import ImageFilter
 from PIL import ImageOps
 from PIL import ImageFont
 from PIL import ImageDraw
+import textwrap
 import requests
 from io import BytesIO
 import sys
@@ -103,7 +104,37 @@ class imagefilter:
             os.remove(self.path + "/" + id + ".jpg")
             
     @commands.command(pass_context=True)
-    @commands.cooldown(1, 5)
+    async def makememe2(self, ctx, link, text:str):
+        """Makes a white box above the image and puts text in it to make a meme"""
+        
+        response = requests.get(link)
+        id = ctx.message.author.id
+        channel = ctx.message.channel
+        font = ImageFont.truetype(self.path + "/Arial-Custom.ttf", 40)
+        lines = textwrap.wrap(text, width=50)
+        img = Image.open (BytesIO(response.content))
+        width, height = img.size
+        image = Image.new("RGBA", (width, height), (255,255,255))
+        w,h = image.size
+        y_text = 0
+        for line in lines:
+            width, height = font.getsize(line)
+            y_text += height
+        image = image.resize((w, h+y_text))
+        image.paste(img, (0, y_text))
+        draw = ImageDraw.Draw(image)
+        # font = ImageFont.truetype(<font-file>, <font-size>)
+        #font = ImageFont.truetype(self.path + "/VerdanaBold.ttf", 70)
+        y_text = 0
+        for line in lines:
+            width, height = font.getsize(line)
+            draw.text((5, y_text), line, font=font, fill='black')
+            y_text += height
+        image.save(self.path + "/" + id + "meme2" + ".png")
+        await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "meme2" + ".png")
+        os.remove(self.path + "/" + id + "meme2" + ".png")
+            
+    @commands.command(pass_context=True)
     async def ascii(self, ctx, *, text:str):
         """Convert text into ASCII"""
         asciitext = figlet_format(text, font='starwars')
@@ -125,7 +156,7 @@ class imagefilter:
         bottomTextSize = font.getsize(BottomText)
         while topTextSize[0] > imageSize[0]-20 or bottomTextSize[0] > imageSize[0]-20:
             fontSize = fontSize - 1
-            font = ImageFont.truetype("Impact.ttf", fontSize)
+            font = ImageFont.truetype(self.path + "/Impact-Custom.ttf", fontSize)
             topTextSize = font.getsize(TopText)
             bottomTextSize = font.getsize(BottomText)
 
