@@ -103,6 +103,7 @@ class imagefilter:
             os.remove(self.path + "/" + id + ".jpg")
             
     @commands.command(pass_context=True)
+    @commands.cooldown(1, 5)
     async def ascii(self, ctx, *, text:str):
         """Convert text into ASCII"""
         asciitext = figlet_format(text, font='starwars')
@@ -110,6 +111,7 @@ class imagefilter:
         
      
     @commands.command(pass_context=True)
+    @commands.cooldown(1, 5)
     async def makememe(self, ctx, link, TopText, BottomText):
         """Makes memes from the image and text you specify. Make sure to surround the two text areas with quotes for it to work."""
         response = requests.get(link)
@@ -189,8 +191,9 @@ class imagefilter:
             bean = PIL.Image.open(self.path + "/" + "bean.png")
             draw = ImageDraw.Draw(bean)
             # font = ImageFont.truetype(<font-file>, <font-size>)
-            font = ImageFont.truetype(self.path + "/VerdanaBold.ttf", 70)
-            font2 = ImageFont.truetype(self.path + "/Verdana.ttf", 50)
+            #font = ImageFont.truetype(self.path + "/VerdanaBold.ttf", 70)
+            font = ImageFont.truetype(self.path + "/Verdana-Bold-Custom.ttf", 70)
+            font2 = ImageFont.truetype(self.path + "/Verdana-Custom.ttf", 50)
             if BigText == None:
                 text = 'BEANED!!!'
             else:
