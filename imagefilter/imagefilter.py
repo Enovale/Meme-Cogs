@@ -110,22 +110,24 @@ class imagefilter:
         response = requests.get(link)
         id = ctx.message.author.id
         channel = ctx.message.channel
-        font = ImageFont.truetype(self.path + "/Arial-Custom.ttf", 40)
-        lines = textwrap.wrap(text, width=50)
         img = Image.open (BytesIO(response.content))
         width, height = img.size
         image = Image.new("RGBA", (width, height), (255,255,255))
+        imageSize = image.size
+        fontSize = int(imageSize[1]/15)
+        font = ImageFont.truetype(self.path + "/Arial-Custom.ttf", fontSize)
+        lines = textwrap.wrap(text, width=int(imageSize[1]/15))
         w,h = image.size
-        y_text = 0
+        y_text = 10
         for line in lines:
             width, height = font.getsize(line)
             y_text += height
-        image = image.resize((w, h+y_text))
-        image.paste(img, (0, y_text))
+        image = image.resize((w, h+y_text+15))
+        image.paste(img, (0, y_text+15))
         draw = ImageDraw.Draw(image)
         # font = ImageFont.truetype(<font-file>, <font-size>)
         #font = ImageFont.truetype(self.path + "/VerdanaBold.ttf", 70)
-        y_text = 0
+        y_text = 10
         for line in lines:
             width, height = font.getsize(line)
             draw.text((5, y_text), line, font=font, fill='black')
@@ -140,6 +142,42 @@ class imagefilter:
         asciitext = figlet_format(text, font='starwars')
         await self.bot.say("```" + asciitext + "```")
         
+    @commands.command(pass_context=True)
+    async def red(self, ctx, user=None):
+        """Adds a red filter to image/user"""
+        
+        url = None
+        id = ctx.message.author.id
+        channel = ctx.message.channel
+        if user is None:
+            user = ctx.message.author
+        elif len(ctx.message.mentions):
+            user = ctx.message.mentions[0]
+        else:
+            url = user
+        if type(user) == discord.User or type(user) == discord.Member:
+            if user.avatar:
+                avatar = 'https://discordapp.com/api/users/' + user.id + '/avatars/' + user.avatar + '.jpg'
+                response = requests.get(avatar)
+                image = Image.open (BytesIO(response.content))
+            else:
+                avatar = user.default_avatar_url
+                response = requests.get(avatar)
+                image = Image.open (BytesIO(response.content))
+        else:
+            response = requests.get(url)
+            image = Image.open (BytesIO(response.content))
+        
+        width, height = image.size
+        mask = Image.open('red.png')
+        mask = mask.convert("RGBA")
+        mask = mask.resize ((width, height))
+        image = image.convert("RGBA")
+        image = Image.alpha_composite(image, mask)
+        image.save(self.path + "/" + id + "red" + ".png")
+        await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "red" + ".png")
+        os.remove(self.path + "/" + id + "red" + ".png")
+        
      
     @commands.command(pass_context=True)
     @commands.cooldown(1, 5)
@@ -151,7 +189,7 @@ class imagefilter:
 
 	# find biggest font size that works
         fontSize = int(imageSize[1]/5)
-        font = ImageFont.truetype("Impact.ttf", fontSize)
+        font = ImageFont.truetype(self.path + "/Impact-Custom.ttf", fontSize)
         topTextSize = font.getsize(TopText)
         bottomTextSize = font.getsize(BottomText)
         while topTextSize[0] > imageSize[0]-20 or bottomTextSize[0] > imageSize[0]-20:
@@ -266,7 +304,7 @@ class imagefilter:
             #bean.paste(img2, (math.floor(width-100), 0))
             bean.save(self.path + "/" + id + "beaned" + ".png")
             await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "beaned" + ".png")
-            #os.remove(self.path + "/" + id + "beaned" + ".png")
+            os.remove(self.path + "/" + id + "beaned" + ".png")
         except Exception as e:
             await self.bot.say(e)
             print(e)
