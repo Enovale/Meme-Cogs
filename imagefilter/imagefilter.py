@@ -169,7 +169,7 @@ class imagefilter:
             image = Image.open (BytesIO(response.content))
         
         width, height = image.size
-        mask = Image.open('red.png')
+        mask = Image.open(self.path + "/" + 'red.png')
         mask = mask.convert("RGBA")
         mask = mask.resize ((width, height))
         image = image.convert("RGBA")
