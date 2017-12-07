@@ -27,15 +27,17 @@ class Shoot:
                 await self.bot.say(ctx.message.author.mention + " couldn't take it and shot themselves.")
                 
     @commands.command(pass_context=True)
-    async def dabon(self, ctx, user : discord.Member = None):
+    async def dab(self, ctx, user : discord.Member=None):
         """Will create a scenario where the user is dabbed on"""
         
         #Your code will go here
-        otherscenarios = [' was ambushed by dab ninjas and dabbed to death.', ' attempted to dab on someone, but dabbed on themselves instead.', ' got dabbed on real hard by a bully.']
-        selfscenarios = ["'s dab backfired and hit themselves!", ' was called fat by two people online, so they dabbed on themselves.', ' dabbed off a bridge']
-        if ctx.message.author.id != user.id:
+        otherscenarios = [' was ambushed by dab ninjas and dabbed to death.', ' attempted to dab on someone, but dabbed on themselves instead.', ' got dabbed on real hard by a bully.', ' was dabbed on in their nightmares!', ' insulted a fandom so was inevitabally dabbed on.', ' was jump-dabbed on by Noah!', ' got dabbed on by Bill Gates.', ' fell down a flight of stairs due to a stern dabbing-on.', ' meme-d too hard and dabbed out of existence.', ' commited a meme-crime and was dabbed on by the dab-police.', ' dabbed at a mirror.', ' does the d se dab.', ' friccin dabs. Aw hecc', ' was hypnotized into dabbing']
+        selfscenarios = ["'s dab backfired and hit themselves!", ' was called fat by two people online, so they dabbed on themselves.', ' dabbed off a bridge', ' summoned a dab-man to dab on themselves', ' was dabbed on in their sleep by Freddy Dabber!', ' took instant ~~suicide~~ dab pills.', ' was too meme-ish and died of dab-o-nitus.', ' did the wrong dab, fool']
+        if user == None:
+            await self.bot.say(ctx.message.author.mention + random.choice(selfscenarios))
+        elif ctx.message.author.id != user.id:
             await self.bot.say(user.mention + random.choice(otherscenarios))
-        if ctx.message.author.id == user.id:
+        elif ctx.message.author.id == user.id:
             await self.bot.say(ctx.message.author.mention + random.choice(selfscenarios))
 
 def setup(bot):
