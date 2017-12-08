@@ -195,7 +195,7 @@ class imagefilter:
         byemom = byemom.convert("RGBA")
         byemom.paste(image, (540, 25))
         byemom.paste(image2, (90, 360))
-        byemom.paste(image3, (330, 355), image3)
+        byemom.paste(image3, (340, 365), image3)
         byemom.save(self.path + id + "byemom" + ".png")
         await self.bot.send_file(channel, self.path + id + "byemom" + ".png")
         os.remove (self.path + id + "byemom" + ".png")
