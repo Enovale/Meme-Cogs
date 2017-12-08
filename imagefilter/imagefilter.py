@@ -102,7 +102,7 @@ class imagefilter:
             image.save(self.path + "/" + id + ".jpg", quality=100)
        	    await self.bot.send_file(channel, self.path + "/" + id + ".jpg")
             os.remove(self.path + "/" + id + ".jpg")
-            
+    
     @commands.command(pass_context=True)
     async def makememe2(self, ctx, link, text:str):
         """Makes a white box above the image and puts text in it to make a meme"""
@@ -116,7 +116,7 @@ class imagefilter:
         imageSize = image.size
         fontSize = int(imageSize[1]/15)
         font = ImageFont.truetype(self.path + "/Arial-Custom.ttf", fontSize)
-        lines = textwrap.wrap(text, width=int(imageSize[1]/15))
+        lines = textwrap.wrap(text, width=int(imageSize[1]/5))
         w,h = image.size
         y_text = 10
         for line in lines:
@@ -135,6 +135,156 @@ class imagefilter:
         image.save(self.path + "/" + id + "meme2" + ".png")
         await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "meme2" + ".png")
         os.remove(self.path + "/" + id + "meme2" + ".png")
+        
+    @commands.command(pass_context=True)
+    async def carl(self, ctx, word):
+        """Makes Carl Azuz puns about the word you give it"""
+        
+        if word in ("train", "trolly"):
+            await self.bot.say("Well, you know what they say, *train*ing makes perfect,\nbeing the best can go off the rails,\nbut sometimes you gotta be the caboose.\nThats it for CNN 10.")
+        if word in ("santa", "elf", "saint"):
+            await self.bot.say("One nice thing about Santa`s workshop, it`s got great elf insurance. That`s a benefit of working for a saint and the nick of time, nurses are able to North Pole off exc-elf-tional treatment and saw things up round the clock for a magical delivery back home even if it was the night before Christmas.\nI`m Carl Azuz, wishing all a good night.")
+        else:
+            await self.bot.say("If you don't have something punny to say, don't say it at all.")
+            await self.bot.say("When your out of ideas, just pun around.")
+            await self.bot.say("Thats it for CNN-10.")
+        
+        await self.bot.say("This is still in development. I applaud your love of Carl Azus though")
+        
+    @commands.command(pass_context=True)
+    async def byemom(self, ctx, user=None, text=None):
+        """Puts the user and text into a byemom meme"""
+        
+        if text == None:
+            text = "Sample Text"
+        url = None
+        id = ctx.message.author.id
+        channel = ctx.message.channel
+        if user is None:
+            user = ctx.message.author
+        elif len(ctx.message.mentions):
+            user = ctx.message.mentions[0]
+        else:
+            url = user
+        if type(user) == discord.User or type(user) == discord.Member:
+            if user.avatar:
+                avatar = 'https://discordapp.com/api/users/' + user.id + '/avatars/' + user.avatar + '.jpg'
+                response = requests.get(avatar)
+                image = Image.open (BytesIO(response.content))
+            else:
+                avatar = user.default_avatar_url
+                response = requests.get(avatar)
+                image = Image.open (BytesIO(response.content))
+        else:
+            response = requests.get(url)
+            image = Image.open (BytesIO(response.content))
+        image2 = image.copy()
+        image2 = image2.resize((105,105))
+        image = image.resize((60,60))
+        # font = ImageFont.truetype(<font-file>, <font-size>)
+        #font = ImageFont.truetype(self.path + "/VerdanaBold.ttf", 70)
+        font = ImageFont.truetype(self.path + "/Arial-Custom.ttf", 20)
+        width, height = font.getsize(text)
+        image3 = Image.new('RGBA', (500, 100), (0, 0, 0, 0))
+        draw2 = ImageDraw.Draw(image3)
+        x, y = 10, 10
+        draw2.text((x, y), text, font=font, fill='black')
+
+        image3 = image3.rotate(25, expand=1)
+        byemom = Image.open(self.path + "/" + "byemom.png")
+        byemom = byemom.convert("RGBA")
+        byemom.paste(image, (540, 25))
+        byemom.paste(image2, (90, 360))
+        byemom.paste(image3, (330, 345), image3)
+        byemom.save(self.path + id + "byemom" + ".png")
+        await self.bot.send_file(channel, self.path + id + "byemom" + ".png")
+        os.remove (self.path + id + "byemom" + ".png")
+        
+    @commands.command(pass_context=True)
+    async def nut(self, ctx, user=None, text="When you nut"):
+        """Makes a white box above the image and puts text in it to make a meme"""
+        
+        url = None
+        id = ctx.message.author.id
+        channel = ctx.message.channel
+        if user is None:
+            user = ctx.message.author
+        elif len(ctx.message.mentions):
+            user = ctx.message.mentions[0]
+        else:
+            url = user
+        if type(user) == discord.User or type(user) == discord.Member:
+            if user.avatar:
+                avatar = 'https://discordapp.com/api/users/' + user.id + '/avatars/' + user.avatar + '.jpg'
+                response = requests.get(avatar)
+                nut = Image.open (BytesIO(response.content))
+            else:
+                avatar = user.default_avatar_url
+                response = requests.get(avatar)
+                nut = Image.open (BytesIO(response.content))
+        else:
+            response = requests.get(url)
+            nut = Image.open (BytesIO(response.content))
+            
+        img = Image.open (self.path + '/' + 'nut.png')
+        width, height = img.size
+        image = Image.new("RGBA", (width, height), (255,255,255))
+        imageSize = image.size
+        fontSize = int(imageSize[1]/15)
+        font = ImageFont.truetype(self.path + "/Arial-Custom.ttf", 60)
+        lines = textwrap.wrap(text, width=45)
+        w,h = image.size
+        y_text = 10
+        for line in lines:
+            width, height = font.getsize(line)
+            y_text += height
+        image = image.resize((w, h+y_text+15))
+        image.paste(img, (0, y_text+15))
+        draw = ImageDraw.Draw(image)
+        # font = ImageFont.truetype(<font-file>, <font-size>)
+        #font = ImageFont.truetype(self.path + "/VerdanaBold.ttf", 70)
+        y_text = 10
+        for line in lines:
+            width, height = font.getsize(line)
+            draw.text((5, y_text), line, font=font, fill='black')
+            y_text += height
+        nut = nut.resize((450,450))
+        image.paste(nut, (100, y_text+420))
+        image.save(self.path + "/" + id + "nut" + ".png")
+        await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "nut" + ".png")
+        os.remove(self.path + "/" + id + "nut" + ".png")
+    
+    @commands.command(pass_context=True)
+    async def callmeme(self, ctx, text:str):
+        """Puts your text on the Tom call meme"""
+        
+        id = ctx.message.author.id
+        channel = ctx.message.channel
+        img = Image.open (self.path + '/' + 'call.png')
+        width, height = img.size
+        image = Image.new("RGBA", (width, height), (255,255,255))
+        imageSize = image.size
+        fontSize = int(imageSize[1]/15)
+        font = ImageFont.truetype(self.path + "/Arial-Custom.ttf", 20)
+        lines = textwrap.wrap(text, width=28)
+        w,h = image.size
+        y_text = 10
+        for line in lines:
+            width, height = font.getsize(line)
+            y_text += height
+        image = image.resize((w, h+y_text+15))
+        image.paste(img, (0, y_text+15))
+        draw = ImageDraw.Draw(image)
+        # font = ImageFont.truetype(<font-file>, <font-size>)
+        #font = ImageFont.truetype(self.path + "/VerdanaBold.ttf", 70)
+        y_text = 10
+        for line in lines:
+            width, height = font.getsize(line)
+            draw.text((5, y_text), line, font=font, fill='black')
+            y_text += height
+        image.save(self.path + "/" + id + "callmeme" + ".png")
+        await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "callmeme" + ".png")
+        os.remove(self.path + "/" + id + "callmeme" + ".png")
             
     @commands.command(pass_context=True)
     async def ascii(self, ctx, *, text:str):
@@ -143,8 +293,97 @@ class imagefilter:
         await self.bot.say("```" + asciitext + "```")
         
     @commands.command(pass_context=True)
-    async def red(self, ctx, user=None):
-        """Adds a red filter to image/user"""
+    async def jackoff(self, ctx, user=None):
+        
+        url = None
+        id = ctx.message.author.id
+        channel = ctx.message.channel
+        if user is None:
+            user = ctx.message.author
+        elif len(ctx.message.mentions):
+            user = ctx.message.mentions[0]
+        else:
+            url = user
+        if type(user) == discord.User or type(user) == discord.Member:
+            if user.avatar:
+                avatar = 'https://discordapp.com/api/users/' + user.id + '/avatars/' + user.avatar + '.jpg'
+                response = requests.get(avatar)
+                image = Image.open (BytesIO(response.content))
+            else:
+                avatar = user.default_avatar_url
+                response = requests.get(avatar)
+                image = Image.open (BytesIO(response.content))
+        else:
+            response = requests.get(url)
+            image = Image.open (BytesIO(response.content))
+            
+        size = 230, 230
+        id = ctx.message.author.id
+        channel = ctx.message.channel
+        image.thumbnail(size, Image.ANTIALIAS)
+        jackoff = Image.open(self.path + "/" + "jackoff.png")
+        jackoff.paste(image, (120, 197))
+        jackoff.save(self.path + "/" + id + "jackoff" + ".png")
+        await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "jackoff" + ".png")
+        os.remove(self.path + "/" + id + "jackoff" + ".png")
+        
+    @commands.command(pass_context=True)
+    async def news(self, ctx, text, user=None):
+        """Puts a user/image into a breaking news image."""
+        
+        url = None
+        id = ctx.message.author.id
+        channel = ctx.message.channel
+        if user is None:
+            user = ctx.message.author
+        elif len(ctx.message.mentions):
+            user = ctx.message.mentions[0]
+        else:
+            url = user
+        if type(user) == discord.User or type(user) == discord.Member:
+            if user.avatar:
+                avatar = 'https://discordapp.com/api/users/' + user.id + '/avatars/' + user.avatar + '.jpg'
+                response = requests.get(avatar)
+                image2 = Image.open (BytesIO(response.content))
+            else:
+                avatar = user.default_avatar_url
+                response = requests.get(avatar)
+                image2 = Image.open (BytesIO(response.content))
+        else:
+            response = requests.get(url)
+            image2 = Image.open (BytesIO(response.content))
+            
+        news = Image.open(self.path + '/' + 'news.png')
+        width, height = news.size
+        image = Image.new("RGBA", (width, height), (71,111,243))
+        imageSize = image.size
+        fontSize = 58
+        font = ImageFont.truetype(self.path + "/EUROSTIB.ttf", fontSize)
+        lines = textwrap.wrap(text, width=19)
+        w,h = image.size
+        y_text = 410
+        for line in lines:
+            width, height = font.getsize(line)
+            y_text += height
+        image = image.resize((w, y_text+height-50))
+        image.paste(news, (0, 0))
+        draw = ImageDraw.Draw(image)
+        # font = ImageFont.truetype(<font-file>, <font-size>)
+        #font = ImageFont.truetype(self.path + "/VerdanaBold.ttf", 70)
+        y_text = 390
+        for line in lines:
+            width, height = font.getsize(line)
+            draw.text((5, y_text), line, font=font, fill='yellow')
+            y_text += height
+        image2 = image2.resize((242, 192))
+        image.paste(image2, (340, 15))
+        image.save(self.path + "/" + id + "news" + ".png")
+        await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "news" + ".png")
+        os.remove(self.path + "/" + id + "news" + ".png")
+        
+    @commands.command(pass_context=True)
+    async def color(self, ctx, color, user=None):
+        """Adds a red filter to image/user Colors are: red, blue, yellow, green, purple, or orange'"""
         
         url = None
         id = ctx.message.author.id
@@ -169,18 +408,54 @@ class imagefilter:
             image = Image.open (BytesIO(response.content))
         
         width, height = image.size
-        mask = Image.open(self.path + "/" + 'red.png')
+        if color not in ('red', 'blue', 'green', 'yellow', 'purple', 'orange'):
+            await self.bot.say("My dude, thats not a color I can do. try red, blue, yellow, green, purple, or orange")
+            return
+        mask = Image.open(self.path + "/" + color + '.png')
         mask = mask.convert("RGBA")
         mask = mask.resize ((width, height))
         image = image.convert("RGBA")
         image = Image.alpha_composite(image, mask)
-        image.save(self.path + "/" + id + "red" + ".png")
-        await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "red" + ".png")
-        os.remove(self.path + "/" + id + "red" + ".png")
+        image.save(self.path + "/" + id + "color" + ".png")
+        await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "color" + ".png")
+        os.remove(self.path + "/" + id + "color" + ".png")
+        
+    @commands.command(pass_context=True)
+    async def facts(self, ctx, text:str):
+        """Puts your text on the good ol' facts meme"""
+        
+        id = ctx.message.author.id
+        channel = ctx.message.channel
+	
+        try:
+            facts = PIL.Image.open(self.path + "/" + "facts.png")
+            draw = ImageDraw.Draw(facts)
+            font2 = ImageFont.truetype(self.path + "/Arial-Custom.ttf", 20)
+            width, height = font2.getsize(text)
+            image2 = Image.new('RGBA', (500, 400), (0, 0, 0, 0))
+            draw2 = ImageDraw.Draw(image2)
+            lines = textwrap.wrap(text, width=20)
+            y_text = 0
+            for line in lines:
+                width, height = font2.getsize(line)
+                draw2.text((0, y_text), line, font=font2, fill='black')
+                y_text += height
+
+            image2 = image2.rotate(-13, expand=1)
+
+            px, py = -40, 320
+            sx, sy = image2.size
+            facts.paste(image2, (px, py, px + sx, py + sy), image2)
+            #bean.paste(img2, (math.floor(width-100), 0))
+            facts.save(self.path + "/" + id + "facts" + ".png")
+            await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "facts" + ".png")
+            os.remove(self.path + "/" + id + "facts" + ".png")
+        except Exception as e:
+            await self.bot.say(e)
+            print(e)
         
      
     @commands.command(pass_context=True)
-    @commands.cooldown(1, 5)
     async def makememe(self, ctx, link, TopText, BottomText):
         """Makes memes from the image and text you specify. Make sure to surround the two text areas with quotes for it to work."""
         response = requests.get(link)

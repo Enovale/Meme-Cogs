@@ -25,41 +25,73 @@ class DeepFry:
 
         
     @commands.command(pass_context=True)
-    async def deepfry(self, ctx, link):
+    async def deepfry(self, ctx, user=None):
         """Will deep fry any image link given. (Adds absurd saturation, etc)"""
-
-        if any(word in ".BMP .EPS .GIF .ICNS .IM .JPEG .MSP .PCX .PNG .PPM .SPIDER .TIFF .WebP .XBM .CUR .DCX .DDS .FLI .FLC .FPX .FTEX .GBR .GD .ICO .IMT .IPTC .NAA .MCIDAS .MIC .MPO .PCD .PIXAR .PSD .SGI .TGA .WAL .XPM .PALM .PDF .BUFR .FITS .GRIB .HDF5 .MPEG .WMF .bmp .eps .gif .icns .im .jpeg .msp .pcx .png .ppm .spider .tiff .webp .xbm .cur .dcx .dds .fli .flc .fpx .ftex .gbr .gd .ico .imt .iptc .naa .mcidas .mic .mpo .pcd .pixar .psd .sgi .tga .wal .xpm .palm .pdf .bufr .fits .grib .hdf5 .mpeg .wmf" for word in link):
         
-            id = ctx.message.author.id
-            channel = ctx.message.channel
-            response = requests.get(link)
-            image = Image.open (BytesIO(response.content))
-        
-
-       	    contrast = ImageEnhance.Contrast( image )
-       	    brightness = ImageEnhance.Brightness( image )
-       	    saturation = ImageEnhance.Color( image )
-       	    image = sharpness.enhance(2.0)
-       	    image = image.filter(ImageFilter.SHARPEN(10))
-       	    image = brightness.enhance( 1.5 )
-       	    image = contrast.enhance( 8.0 )
-       	    image = saturation.enhance( 15.0 )
-       	    image = image.filter(ImageFilter.GaussianBlur(1))
-       	    image = image.convert("RGB")
-       	    image.save(self.path + "/" + id + ".jpg", quality=8)
-       	    await self.bot.send_file(channel, self.path + "/" + id + ".jpg")
-       	    os.remove(self.path + "/" + id + ".jpg")
+        url = None
+        if user is None:
+            user = ctx.message.author
+        elif len(ctx.message.mentions):
+            user = ctx.message.mentions[0]
         else:
-       	    await self.bot.say("Sorry, but this image format is not supported.")
-        
-    @commands.command(pass_context=True)
-    async def customfry(self, ctx, link, contrast, saturation, sharpness, brightness, blur):
-        """Will deep fry any image link given. with custom filters"""
+            url = user
+        if type(user) == discord.User or type(user) == discord.Member:
+            if user.avatar:
+                avatar = 'https://discordapp.com/api/users/' + user.id + '/avatars/' + user.avatar + '.jpg'
+                response = requests.get(avatar)
+                image = Image.open (BytesIO(response.content))
+            else:
+                avatar = user.default_avatar_url
+                response = requests.get(avatar)
+                image = Image.open (BytesIO(response.content))
+        else:
+            response = requests.get(url)
+            image = Image.open (BytesIO(response.content))
 
         id = ctx.message.author.id
         channel = ctx.message.channel
-        response = requests.get(link)
-        image = Image.open (BytesIO(response.content))
+        
+
+        contrast = ImageEnhance.Contrast( image )
+        brightness = ImageEnhance.Brightness( image )
+        sharpness = ImageEnhance.Sharpness( image )
+        saturation = ImageEnhance.Color( image )
+        image = sharpness.enhance(5.0)
+        image = brightness.enhance( 1.5 )
+        image = contrast.enhance( 5.0 )
+        image = saturation.enhance( 7.0 )
+        image = image.filter(ImageFilter.GaussianBlur(1))
+        image = image.convert("RGB")
+        image.save(self.path + "/" + id + ".jpg", quality=8)
+        await self.bot.send_file(channel, self.path + "/" + id + ".jpg")
+        os.remove(self.path + "/" + id + ".jpg")
+        
+    @commands.command(pass_context=True)
+    async def customfry(self, ctx, user, contrast, saturation, sharpness, brightness, blur):
+        """Will deep fry any image link given. with custom filters"""
+        
+        url = None
+        if user is None:
+            user = ctx.message.author
+        elif len(ctx.message.mentions):
+            user = ctx.message.mentions[0]
+        else:
+            url = user
+        if type(user) == discord.User or type(user) == discord.Member:
+            if user.avatar:
+                avatar = 'https://discordapp.com/api/users/' + user.id + '/avatars/' + user.avatar + '.jpg'
+                response = requests.get(avatar)
+                image = Image.open (BytesIO(response.content))
+            else:
+                avatar = user.default_avatar_url
+                response = requests.get(avatar)
+                image = Image.open (BytesIO(response.content))
+        else:
+            response = requests.get(url)
+            image = Image.open (BytesIO(response.content))
+
+        id = ctx.message.author.id
+        channel = ctx.message.channel
         
 
         contrastenhance = ImageEnhance.Contrast( image )
@@ -73,7 +105,7 @@ class DeepFry:
         if "." not in sharpness:
             sharpness = sharpness + ".0"
         if "." not in brightness:
-       	    brightness = brightness + ".0"
+            brightness = brightness + ".0"
         image = sharpnessenhance.enhance(float(sharpness))
         image = brightnessenhance.enhance( float(brightness) )
         image = contrastenhance.enhance( float(contrast) )
@@ -85,13 +117,31 @@ class DeepFry:
         os.remove(self.path + "/" + id + ".jpg")
         
     @commands.command(pass_context=True)
-    async def destroy(self, ctx, link):
+    async def destroy(self, ctx, user=None):
         """Will deep fry any image link given, but to such an extreme degree that its no longer recognizable"""
+        
+        url = None
+        if user is None:
+            user = ctx.message.author
+        elif len(ctx.message.mentions):
+            user = ctx.message.mentions[0]
+        else:
+            url = user
+        if type(user) == discord.User or type(user) == discord.Member:
+            if user.avatar:
+                avatar = 'https://discordapp.com/api/users/' + user.id + '/avatars/' + user.avatar + '.jpg'
+                response = requests.get(avatar)
+                image = Image.open (BytesIO(response.content))
+            else:
+                avatar = user.default_avatar_url
+                response = requests.get(avatar)
+                image = Image.open (BytesIO(response.content))
+        else:
+            response = requests.get(url)
+            image = Image.open (BytesIO(response.content))
     
         id = ctx.message.author.id
         channel = ctx.message.channel
-        response = requests.get(link)
-        image = Image.open (BytesIO(response.content))
             
         contrast = ImageEnhance.Contrast( image )
         brightness = ImageEnhance.Brightness( image )
