@@ -4,7 +4,7 @@
     "INSTALL_MSG" : "Hey, thanks bud! Hope you enjoy this fitlering command",
     "NAME" : "imagefilter",
     "REQUIREMENTS" : [
-        "Pillow"
+        "Pillow", "colorama", "figlet"
     ],
     "SHORT" : "filters any image link given, with a few filters to choose from.",
     "TAGS" : [
