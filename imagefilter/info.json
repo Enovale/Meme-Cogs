@@ -4,7 +4,7 @@
     "INSTALL_MSG" : "Hey, thanks bud! Hope you enjoy this fitlering command",
     "NAME" : "imagefilter",
     "REQUIREMENTS" : [
-        "Pillow", "colorama", "pyfiglet", "termcolor"
+        "Pillow", "colorama", "pyfiglet", "termcolor", "cprint"
     ],
     "SHORT" : "filters any image link given, with a few filters to choose from.",
     "TAGS" : [
