@@ -4,7 +4,7 @@
     "INSTALL_MSG" : "Hey, thanks bud! Hope you enjoy this fitlering command",
     "NAME" : "imagefilter",
     "REQUIREMENTS" : [
-        "PIL"
+        "Pillow==4.3.0"
     ],
     "SHORT" : "filters any image link given, with a few filters to choose from.",
     "TAGS" : [
