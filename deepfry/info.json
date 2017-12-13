@@ -4,7 +4,7 @@
     "INSTALL_MSG" : "Hey, thanks bud! Hope you enjoy this deepfrying goodness.",
     "NAME" : "deepfry",
     "REQUIREMENTS" : [
-        "PIL"
+        "Pillow"
     ],
     "SHORT" : "Deep frys any image link given.",
     "TAGS" : [
