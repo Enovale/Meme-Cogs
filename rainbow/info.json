@@ -1,0 +1,10 @@
+{
+    "AUTHOR" : "MasterKnight/Enova",
+    "INSTALL_MSG" : "Thank you for installing Rainbow Role!",
+    "NAME" : "rainbow",
+    "SHORT" : "Rainbow Role",
+    "DESCRIPTION" : "Make a Role Change Colour after an interval set by you. (sorry wizard cogs i didnt like the 120s interval limit :^)",
+    "TAGS" : ["color", "rainbow", "roles"],
+    "REQUIREMENTS" : [],
+    "HIDDEN" : false
+}
