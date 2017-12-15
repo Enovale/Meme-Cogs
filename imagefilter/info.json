@@ -1,10 +1,10 @@
 {
     "AUTHOR" : "Enova",
     "DESCRIPTION" : "Can perform various image filtering effects",
-    "INSTALL_MSG" : "Hey, thanks bud! Hope you enjoy this fitlering command",
+    "INSTALL_MSG" : "Hey, thanks bud! Hope you enjoy this fitlering command \n if this install failed use pip install Pillow",
     "NAME" : "imagefilter",
     "REQUIREMENTS" : [
-        "Pillow", "colorama", "pyfiglet", "termcolor", "cprint"
+        "colorama", "pyfiglet", "termcolor", "cprint"
     ],
     "SHORT" : "filters any image link given, with a few filters to choose from.",
     "TAGS" : [
