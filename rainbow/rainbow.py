@@ -24,8 +24,8 @@ class rainbow:
             no = discord.Embed(title="{} is not a valid role".format(role))
             await self.bot.say(embed=no)
             return
-        #if interval < 120:
-        #    interval = 120
+        else:
+            await self.bot.say("Enabled Rainbow-age for that role")
         while True:
             try:
                 colour = ''.join([choice('0123456789ABCDEF') for x in range(6)])
@@ -40,6 +40,13 @@ class rainbow:
     @checks.admin_or_permissions(manage_roles=True)
     @commands.command(pass_context = True, no_pm=True)
     async def rainbow(self, ctx, *, role: discord.Role):
+        roleObj = discord.utils.find(lambda r: r.name == role, ctx.message.server.roles)
+        if not roleObj:
+            no = discord.Embed(title="{} is not a valid role".format(role))
+            await self.bot.say(embed=no)
+            return
+        else:
+            await self.bot.say("Enabled Rainbow-age for that role")
         
         while True:
             try:
