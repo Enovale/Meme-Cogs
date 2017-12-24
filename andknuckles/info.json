@@ -3,9 +3,7 @@
     "DESCRIPTION" : "Makes a & Knuckles with you given length of words",
     "INSTALL_MSG" : "Hey, thanks bud! Hope you enjoy this knuckley goodness.",
     "NAME" : "andknuckles",
-    "REQUIREMENTS" : [
-        ""
-    ],
+    "REQUIREMENTS" : [],
     "SHORT" : "& Knuckles for a given length",
     "TAGS" : [
         "knuckles"
