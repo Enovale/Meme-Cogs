@@ -24,7 +24,7 @@ class andknuckles:
         random.shuffle(suffixes)
         prefstr = ''.join(prefixes)
         suffstr = ''.join(suffixes)
-        await self.bot.say("" + prefstr[:int(length)] + suffstr[:int(length)])
+        await self.bot.say("" + prefixes[:int(length)] + suffixes[:int(length)])
 
 def setup(bot):
     bot.add_cog(andknuckles(bot))
