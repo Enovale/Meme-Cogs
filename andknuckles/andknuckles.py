@@ -17,14 +17,14 @@ class andknuckles:
         """Makes an & Knuckles meme of a given length."""
         
         prefixes = ["New ", "Super ", "Deluxe "]
-        suffixes = ["DLC", "Zombie flavoured", "DD", "HD"]
+        suffixes = ["DLC", "Zombie flavoured", "DD ", "HD "]
 
         #Your code will go here
         random.shuffle(prefixes)
         random.shuffle(suffixes)
         prefstr = ''.join(prefixes)
         suffstr = ''.join(suffixes)
-        await self.bot.say("" + prefstr + suffstr)
+        await self.bot.say("" + prefstr[:length] + suffstr[:length])
 
 def setup(bot):
     bot.add_cog(andknuckles(bot))
