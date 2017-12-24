@@ -22,12 +22,12 @@ class andknuckles:
         #Your code will go here
         random.shuffle(prefixes)
         random.shuffle(suffixes)
-        prefstr = ''.join(prefixes)
-        suffstr = ''.join(suffixes)
         length = int(length)
         del prefixes[length:]
         del suffixes[length:]
-        await self.bot.say("" + prefixes + suffixes)
+        prefstr = ''.join(prefixes)
+        suffstr = ''.join(suffixes)
+        await self.bot.say("" + prefstr + suffstr)
 
 def setup(bot):
     bot.add_cog(andknuckles(bot))
