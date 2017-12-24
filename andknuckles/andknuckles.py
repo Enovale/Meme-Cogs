@@ -13,7 +13,7 @@ class andknuckles:
         self.bot = bot
 
     @commands.command(pass_context=True)
-    async def andknuckles(self, ctx, length=int):
+    async def andknuckles(self, ctx, length=str):
         """Makes an & Knuckles meme of a given length."""
         
         prefixes = ["New ", "Super ", "Deluxe "]
@@ -24,7 +24,7 @@ class andknuckles:
         random.shuffle(suffixes)
         prefstr = ''.join(prefixes)
         suffstr = ''.join(suffixes)
-        await self.bot.say("" + prefstr[:length] + suffstr[:length])
+        await self.bot.say("" + prefstr[:int(length)] + suffstr[:int(length)])
 
 def setup(bot):
     bot.add_cog(andknuckles(bot))
