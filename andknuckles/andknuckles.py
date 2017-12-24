@@ -24,8 +24,8 @@ class andknuckles:
         random.shuffle(suffixes)
         prefstr = ''.join(prefixes)
         suffstr = ''.join(suffixes)
-        del prefixes[int(length):]
-        del suffixes[int(length):]
+        del prefixes[length:]
+        del suffixes[length:]
         await self.bot.say("" + prefixes + suffixes)
 
 def setup(bot):
