@@ -13,7 +13,7 @@ class andknuckles:
         self.bot = bot
 
     @commands.command(pass_context=True)
-    async def andknuckles(self, ctx, length=str):
+    async def andknuckles(self, ctx, length):
         """Makes an & Knuckles meme of a given length."""
         
         prefixes = ["New ", "Super ", "Deluxe "]
