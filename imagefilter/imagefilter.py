@@ -287,6 +287,7 @@ class imagefilter:
         os.remove(self.path + "/" + id + "callmeme" + ".png")
             
     @commands.command(pass_context=True)
+    @commands.command(cooldown=10)
     async def ascii(self, ctx, *, text:str):
         """Convert text into ASCII"""
         asciitext = figlet_format(text, font='starwars')
