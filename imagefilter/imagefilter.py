@@ -103,8 +103,36 @@ class imagefilter:
        	    await self.bot.send_file(channel, self.path + "/" + id + ".jpg")
             os.remove(self.path + "/" + id + ".jpg")
 		
-    #@commands.command(pass_context=True)
-    #async def drake(self, ctx, 
+    @commands.command(pass_context=True)
+    async def drake(self, ctx, TopText, BottomText):
+        """Makes a drake meme out of your text."""
+        
+        id = ctx.message.author.id
+        channel = ctx.message.channel
+	
+        try:
+            drake = PIL.Image.open(self.path + "/" + "drake.png")
+            draw = ImageDraw.Draw(drake)
+            font2 = ImageFont.truetype(self.path + "/Arial-Custom.ttf", 20)
+            width, height = font2.getsize(text)
+            image2 = Image.new('RGBA', (500, 400), (0, 0, 0, 0))
+            draw2 = ImageDraw.Draw(image2)
+            lines = textwrap.wrap(text, width=20)
+            y_text = 0
+            for line in lines:
+                width, height = font2.getsize(line)
+                draw2.text((0, y_text), line, font=font2, fill='black')
+                y_text += height
+
+            px, py = -40, 320
+            sx, sy = image2.size
+            drake.paste(image2, (px, py, px + sx, py + sy), image2)
+            drake.save(self.path + "/" + id + "drake" + ".png")
+            await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "drake" + ".png")
+            os.remove(self.path + "/" + id + "drake" + ".png")
+        except Exception as e:
+            await self.bot.say(e)
+            print(e)
     
     @commands.command(pass_context=True)
     async def makememe2(self, ctx, link, text:str):
@@ -438,7 +466,7 @@ class imagefilter:
             width, height = font2.getsize(text)
             image2 = Image.new('RGBA', (500, 400), (0, 0, 0, 0))
             draw2 = ImageDraw.Draw(image2)
-            lines = textwrap.wrap(text, width=20)
+            lines = textwrap.wrap(text, width=17)
             y_text = 0
             for line in lines:
                 width, height = font2.getsize(line)
