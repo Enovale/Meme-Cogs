@@ -117,7 +117,7 @@ class imagefilter:
             width, height = font2.getsize(text)
             image2 = Image.new('RGBA', (500, 400), (0, 0, 0, 0))
             draw2 = ImageDraw.Draw(image2)
-            lines = textwrap.wrap(text, width=20)
+            lines = textwrap.wrap(TopText, width=20)
             y_text = 0
             for line in lines:
                 width, height = font2.getsize(line)
