@@ -103,8 +103,8 @@ class imagefilter:
        	    await self.bot.send_file(channel, self.path + "/" + id + ".jpg")
             os.remove(self.path + "/" + id + ".jpg")
 		
-    @commands.command(pass_context=True)
-    async def drake(self, ctx, 
+    #@commands.command(pass_context=True)
+    #async def drake(self, ctx, 
     
     @commands.command(pass_context=True)
     async def makememe2(self, ctx, link, text:str):
