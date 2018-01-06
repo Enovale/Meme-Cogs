@@ -171,7 +171,7 @@ class imagefilter:
             url = user
         if type(user) == discord.User or type(user) == discord.Member:
             if user.avatar:
-                avatar = 'https://discordapp.com/api/users/' + user.id + '/avatars/' + user.avatar + '.jpg'
+                avatar = 'https://discordapp.com/api/users/' + user.id + '/avatars/' + user.avatar + '.png'
                 response = requests.get(avatar)
                 image = Image.open (BytesIO(response.content))
             else:
@@ -218,7 +218,7 @@ class imagefilter:
             url = user
         if type(user) == discord.User or type(user) == discord.Member:
             if user.avatar:
-                avatar = 'https://discordapp.com/api/users/' + user.id + '/avatars/' + user.avatar + '.jpg'
+                avatar = 'https://discordapp.com/api/users/' + user.id + '/avatars/' + user.avatar + '.png'
                 response = requests.get(avatar)
                 nut = Image.open (BytesIO(response.content))
             else:
@@ -310,7 +310,7 @@ class imagefilter:
             url = user
         if type(user) == discord.User or type(user) == discord.Member:
             if user.avatar:
-                avatar = 'https://discordapp.com/api/users/' + user.id + '/avatars/' + user.avatar + '.jpg'
+                avatar = 'https://discordapp.com/api/users/' + user.id + '/avatars/' + user.avatar + '.png'
                 response = requests.get(avatar)
                 image = Image.open (BytesIO(response.content))
             else:
@@ -346,7 +346,7 @@ class imagefilter:
             url = user
         if type(user) == discord.User or type(user) == discord.Member:
             if user.avatar:
-                avatar = 'https://discordapp.com/api/users/' + user.id + '/avatars/' + user.avatar + '.jpg'
+                avatar = 'https://discordapp.com/api/users/' + user.id + '/avatars/' + user.avatar + '.png'
                 response = requests.get(avatar)
                 image2 = Image.open (BytesIO(response.content))
             else:
@@ -515,7 +515,7 @@ class imagefilter:
             user = ctx.message.mentions[0]
         if type(user) == discord.User or type(user) == discord.Member:
             if user.avatar:
-                avatar = 'https://discordapp.com/api/users/' + user.id + '/avatars/' + user.avatar + '.jpg'
+                avatar = 'https://discordapp.com/api/users/' + user.id + '/avatars/' + user.avatar + '.png'
                 await self.bot.say(avatar)
             else:
                 avatar = user.default_avatar_url
@@ -536,7 +536,7 @@ class imagefilter:
             url = user
         if type(user) == discord.User or type(user) == discord.Member:
             if user.avatar:
-                avatar = 'https://discordapp.com/api/users/' + user.id + '/avatars/' + user.avatar + '.jpg'
+                avatar = 'https://discordapp.com/api/users/' + user.id + '/avatars/' + user.avatar + '.png'
                 response = requests.get(avatar)
                 img = Image.open (BytesIO(response.content))
                 img2 = Image.open (BytesIO(response.content))
