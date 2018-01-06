@@ -30,7 +30,7 @@ class rainbow:
                 colour = int(colour, 16)
                 await self.bot.edit_role(ctx.message.server, roleObj, colour=discord.Colour(value=colour))
                 await asyncio.sleep(interval)
-		loop.run_forever()
+                loop.run_forever()
             except Exception as e:
                 await self.bot.say(e)
                 await self.bot.say("This error may be caused by insufficient permissions. Make sure the role your trying to rainbow is ***below*** the role im in and the role im in has manage role permissions.")
