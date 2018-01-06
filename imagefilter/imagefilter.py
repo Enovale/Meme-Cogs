@@ -114,7 +114,7 @@ class imagefilter:
             drake = PIL.Image.open(self.path + "/" + "drake.png")
             draw = ImageDraw.Draw(drake)
             font2 = ImageFont.truetype(self.path + "/Arial-Custom.ttf", 20)
-            width, height = font2.getsize(text)
+            width, height = font2.getsize(TopText)
             image2 = Image.new('RGBA', (500, 400), (0, 0, 0, 0))
             draw2 = ImageDraw.Draw(image2)
             lines = textwrap.wrap(TopText, width=20)
