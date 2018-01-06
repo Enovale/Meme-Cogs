@@ -102,6 +102,9 @@ class imagefilter:
             image.save(self.path + "/" + id + ".jpg", quality=100)
        	    await self.bot.send_file(channel, self.path + "/" + id + ".jpg")
             os.remove(self.path + "/" + id + ".jpg")
+		
+    @commands.command(pass_context=True)
+    async def drake(self, ctx, 
     
     @commands.command(pass_context=True)
     async def makememe2(self, ctx, link, text:str):
@@ -501,7 +504,25 @@ class imagefilter:
         img.save(self.path + "/" + id + "meme" + ".png")
         await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "meme" + ".png")
         os.remove(self.path + "/" + id + "meme" + ".png")
+    
+    @commands.command(pass_context=True)
+    async def avatar(self,ctx, user=None):
+        """Grabs you or someone elses avatar"""
 	
+        if user is None:
+            user = ctx.message.author
+        elif len(ctx.message.mentions):
+            user = ctx.message.mentions[0]
+        if type(user) == discord.User or type(user) == discord.Member:
+            if user.avatar:
+                avatar = 'https://discordapp.com/api/users/' + user.id + '/avatars/' + user.avatar + '.jpg'
+                await self.bot.say(avatar)
+            else:
+                avatar = user.default_avatar_url
+                await self.bot.say(avatar)
+        else:
+            await self.bot.say("Yeah thats not a person kek")
+                    
     @commands.command(pass_context=True)
     async def bean(self,ctx, user=None, BigText=None, MinorText=None):
         """You just got BEANED"""
