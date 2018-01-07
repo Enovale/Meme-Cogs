@@ -360,7 +360,7 @@ class imagefilter:
         os.remove(self.path + "/" + id + "jackoff" + ".png")
         
     @commands.command(pass_context=True)
-    async def news(self, ctx, text, user=None):
+    async def news(self, ctx, user=None, text=None):
         """Puts a user/image into a breaking news image."""
         
         url = None
@@ -372,6 +372,9 @@ class imagefilter:
             user = ctx.message.mentions[0]
         else:
             url = user
+        if text == None:
+            await self.bot.say("Yeah you didnt provide text fam")
+            return
         if type(user) == discord.User or type(user) == discord.Member:
             if user.avatar:
                 avatar = 'https://cdn.discordapp.com/avatars/' + user.id + '/' + user.avatar + '.png'
