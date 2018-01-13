@@ -14,8 +14,8 @@ class Spam:
 			user = ctx.message.mentions[0]
 		if type(user) == discord.User or type(user) == discord.Member:
 			notneeded = True
-		elif user == "@everyone":
-			user = "@everyone"
+		#elif user == "@everyone":
+		#	user = "@everyone"
 		if spam_text == None:
 			await self.bot.say('Wait What Dude Want To Spam Sombody Nothing Wew')
 			return
