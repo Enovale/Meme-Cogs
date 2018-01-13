@@ -10,7 +10,7 @@ class Spam:
 	async def spam(self, ctx, user=None, number: int=None, spam_text: str=None):
 		"""Spam The User hehe"""
 		
-		elif len(ctx.message.mentions):
+		if len(ctx.message.mentions):
 			user = ctx.message.mentions[0]
 		if type(user) == discord.User or type(user) == discord.Member:
 			notneeded = True
