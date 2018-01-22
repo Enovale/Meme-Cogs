@@ -147,7 +147,7 @@ class imagefilter:
         imageSize = image.size
         fontSize = int(imageSize[1]/15)
         font = ImageFont.truetype(self.path + "/Arial-Custom.ttf", fontSize)
-        lines = textwrap.wrap(text, width=int(imageSize[1]/20))
+        lines = textwrap.wrap(text, width=int(imageSize[1]/19))
         w,h = image.size
         y_text = 10
         for line in lines:
