@@ -557,20 +557,20 @@ class imagefilter:
     @commands.command(pass_context=True)
     async def funccify(self,ctx, link):
         """Adds a NEW FUNKY MODE to your image."""
-        
-        response = requests.get(link)
-        response2 = requests.get("http://ejb.x10host.com/funk.png")
-        base = Image.open (BytesIO(response.content))
-        funk = Image.open (BytesIO(response2.content))
-            
-        id = ctx.message.author.id
-        channel = ctx.message.channel
-        
-        funkx = funk.width
-        funky = funk.height
-        basex = base.width
-        basey = base.height
+	
         try:
+            response = requests.get(link)
+            response2 = requests.get("http://ejb.x10host.com/funk.png")
+            base = Image.open (BytesIO(response.content))
+            funk = Image.open (BytesIO(response2.content))
+            
+            id = ctx.message.author.id
+            channel = ctx.message.channel
+        
+            funkx = funk.width
+            funky = funk.height
+            basex = base.width
+            basey = base.height
             newfunkx = int(round(funkx * 0.4))
             newfunky = int(round(funky * 0.4))
             funk = funk.resize((newfunkx, newfunky))
