@@ -553,8 +553,8 @@ class imagefilter:
                 await self.bot.say(avatar)
         else:
             await self.bot.say("Yeah thats not a person kek")
-	
-	@commands.command(pass_context=True)
+            
+    @commands.command(pass_context=True)
     async def funky(self,ctx, link):
         """Adds a NEW FUNKY MODE to your image."""
         
