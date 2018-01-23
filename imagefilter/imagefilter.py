@@ -555,7 +555,7 @@ class imagefilter:
             await self.bot.say("Yeah thats not a person kek")
             
     @commands.command(pass_context=True)
-    async def funky(self,ctx, link):
+    async def funccify(self,ctx, link):
         """Adds a NEW FUNKY MODE to your image."""
         
         response = requests.get(link)
