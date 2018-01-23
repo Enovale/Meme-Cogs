@@ -559,7 +559,7 @@ class imagefilter:
         """Adds a NEW FUNKY MODE to your image."""
         
         response = requests.get(link)
-	response2 = requests.get("http://ejb.x10host.com/funk.png")
+        response2 = requests.get("http://ejb.x10host.com/funk.png")
         base = Image.open (BytesIO(response.content))
         funk = Image.open (BytesIO(response2.content))
             
