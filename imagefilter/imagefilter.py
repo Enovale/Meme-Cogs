@@ -574,7 +574,7 @@ class imagefilter:
             newfunkx = int(round(funkx * 0.3))
             newfunky = int(round(funky * 0.3))
             funk = funk.resize((newfunkx, newfunky))
-            base.paste(funk, (basex - funk.width, basey - funk.height))
+            base.paste(funk, (basex - funk.width, 0))
             base.save(self.path + "/" + id + "funky" + ".png")
             await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "funky" + ".png")
             os.remove(self.path + "/" + id + "funky" + ".png")
