@@ -571,7 +571,7 @@ class imagefilter:
         basex = base.width
         basey = base.height
         try:
-            funk.resize((funkx * 0.3, funky * 0.3))
+            funk.resize((int(round(funkx * 0.3)), int(round(funky * 0.3)))
             base.paste(funk, (basex - funk.width, basey - funk.height))
             base.save(self.path + "/" + id + "funky" + ".png")
             await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "funky" + ".png")
