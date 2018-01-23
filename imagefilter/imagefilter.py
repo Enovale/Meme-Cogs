@@ -559,8 +559,9 @@ class imagefilter:
         """Adds a NEW FUNKY MODE to your image."""
         
         response = requests.get(link)
+	response2 = requests.get("http://ejb.x10host.com/funk.png")
         base = Image.open (BytesIO(response.content))
-        funk = Image.open (BytesIO("http://ejb.x10host.com/funk.png"))
+        funk = Image.open (BytesIO(response2.content))
             
         id = ctx.message.author.id
         channel = ctx.message.channel
