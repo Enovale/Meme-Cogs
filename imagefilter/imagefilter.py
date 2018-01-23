@@ -573,7 +573,7 @@ class imagefilter:
             basey = base.height
             newfunkx = int(round(funkx * 0.4))
             newfunky = int(round(funky * 0.4))
-            await self.bot.say("De:b:ug information: funkx is: " + funkx + " funky is: " + funky + "basex is: " + basex + "basey is " + basey + "newfunkx is: " + newfunkx + "newfunky is: " + newfunky)
+            await self.bot.say("De:b:ug information: funkx is: " + str(funkx) + " funky is: " + str(funky) + "basex is: " + str(basex) + "basey is " + str(basey) + "newfunkx is: " + str(newfunkx) + "newfunky is: " + str(newfunky))
             funk = funk.resize((newfunkx, newfunky))
             base.paste(funk, (basex - funk.width, 0), funk)
             base.save(self.path + "/" + id + "funky" + ".png")
