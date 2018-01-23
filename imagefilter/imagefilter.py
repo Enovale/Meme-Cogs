@@ -569,11 +569,14 @@ class imagefilter:
         funky = funk.height
         basex = base.width
         basey = base.height
-        funk.resize((funkx * 0.3, funky * 0.3))
-        base.paste(funk, (basex - funk.width, basey - funk.height))
-        base.save(self.path + "/" + id + "funky" + ".png")
-        await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "funky" + ".png")
-        os.remove(self.path + "/" + id + "funky" + ".png")
+        try:
+            funk.resize((funkx * 0.3, funky * 0.3))
+            base.paste(funk, (basex - funk.width, basey - funk.height))
+            base.save(self.path + "/" + id + "funky" + ".png")
+            await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "funky" + ".png")
+            os.remove(self.path + "/" + id + "funky" + ".png")
+        except Exception as e:
+            await self.bot.say(e)
         
 		
     @commands.command(pass_context=True)
