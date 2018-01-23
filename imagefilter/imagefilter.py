@@ -553,7 +553,29 @@ class imagefilter:
                 await self.bot.say(avatar)
         else:
             await self.bot.say("Yeah thats not a person kek")
-                    
+	
+	@commands.command(pass_context=True)
+    async def funky(self,ctx, link):
+        """Adds a NEW FUNKY MODE to your image."""
+        
+        response = requests.get(link)
+        base = Image.open (BytesIO(response.content))
+        funk = Image.open (BytesIO("http://ejb.x10host.com/funk.png"))
+            
+        id = ctx.message.author.id
+        channel = ctx.message.channel
+        
+        funkx = funk.width
+        funky = funk.height
+        basex = base.width
+        basey = base.height
+        funk.resize((funkx * 0.3, funky * 0.3))
+        base.paste(funk, (basex - funk.width, basey - funk.height))
+        base.save(self.path + "/" + id + "funky" + ".png")
+        await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "funky" + ".png")
+        os.remove(self.path + "/" + id + "funky" + ".png")
+        
+		
     @commands.command(pass_context=True)
     async def bean(self,ctx, user=None, BigText=None, MinorText=None):
         """You just got BEANED"""
