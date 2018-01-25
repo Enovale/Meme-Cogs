@@ -26,6 +26,8 @@ class Star:
     async def on_reaction_add(self, reaction, user):
         server = reaction.message.server
         msg = reaction.message
+        if user.member.roles[1].name != "Administrator":
+            return
         if server.id not in self.settings or user.id == msg.author.id:
             return
         react = self.settings[server.id]["emoji"]
@@ -106,5 +108,5 @@ def setup(bot):
     check_folder()
     check_files()
     n = Star(bot)
-    bot.add_listener(n.on_reaction_add, 'on_emoji_reaction')
+    bot.add_listener(n.on_reaction_add6, 'on_emoji_reaction')
     bot.add_cog(n)
