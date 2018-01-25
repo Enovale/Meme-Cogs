@@ -106,5 +106,5 @@ def setup(bot):
     check_folder()
     check_files()
     n = Star(bot)
-    bot.add_listener(n.listener, 'on_emoji_reaction')
+    bot.add_listener(n.addstarboard, 'on_emoji_reaction')
     bot.add_cog(n)
