@@ -26,8 +26,9 @@ class Star:
     async def on_reaction_add(self, reaction, user):
         server = reaction.message.server
         msg = reaction.message
-        for role in user.member.roles:
-            await self.bot.say(role.name)
+        for role in user.roles:
+            if role.name != "Administrator":
+                return
         if server.id not in self.settings or user.id == msg.author.id:
             return
         react = self.settings[server.id]["emoji"]
