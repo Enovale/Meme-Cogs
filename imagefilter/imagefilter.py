@@ -560,9 +560,8 @@ class imagefilter:
 	
         try:
             response = requests.get(link)
-            response2 = requests.get("http://ejb.x10host.com/funk.png")
             base = Image.open (BytesIO(response.content))
-            funk = Image.open (BytesIO(response2.content))
+            funk = Image.open (self.path + "funk.png")
             
             id = ctx.message.author.id
             channel = ctx.message.channel
