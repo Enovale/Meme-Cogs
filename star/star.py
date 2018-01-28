@@ -31,8 +31,6 @@ class Star:
                 return
         react = self.settings[server.id]["emoji"]
         if react in str(reaction.emoji):
-            if reaction.count > 1:
-                return
             author = reaction.message.author
             channel = reaction.message.channel
             channel2 = discord.Object(id=self.settings[server.id]["channel"])
