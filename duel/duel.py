@@ -595,6 +595,10 @@ class Duel:
         p1 = Player(self, author)
         p2 = Player(self, user)
         self.underway.add(channel.id)
+        if author.id == "314124904737931275":
+            p1.hp = 999
+        if user.id == "314124904737931275":
+            p2.hp = 999
 
         try:
             self.bot.dispatch('duel', channel=channel, players=(p1, p2))
@@ -626,10 +630,6 @@ class Duel:
 
                     msg_object = await self.bot.say(move_msg)
                     msg = [move_msg]
-                    if author.id == "314124904737931275":
-                        p1.hp == 999
-                    if user.id == "314124904737931275":
-                        p2.hp == 999
                     await asyncio.sleep(1)
 
             if p1.hp != p2.hp:
