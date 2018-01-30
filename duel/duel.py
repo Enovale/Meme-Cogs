@@ -246,7 +246,7 @@ FUMBLE = {"{a} closes in on {d}, but suddenly remembers a funny joke and laughs 
           }
 
 BOT = {"{a} charges its laser aaaaaaaand... BZZZZZZT! {d} is now a smoking crater for daring to challenge the bot.": INITIAL_HP}
-ELI = {"{a} charges his N U T blaster and obliterates {d} and the rest of the surrounding area.": INITIAL_HP}
+ELI = {"{a} charges his N U T blaster and obliterates {d} and the rest of the country.": INITIAL_HP}
 
 
 HITS = ['deals', 'hits for']
@@ -259,7 +259,8 @@ MOVES = {'CRITICAL': (CRITICAL, TARGET_OTHER, -2),
          'ATTACK': (ATTACK, TARGET_OTHER, -1),
          'FUMBLE': (FUMBLE, TARGET_SELF, -1),
          'HEAL': (HEAL, TARGET_SELF, 1),
-         'BOT': (BOT, TARGET_OTHER, -64)}
+         'BOT': (BOT, TARGET_OTHER, -64),
+         'ELI': (ELI, TARGET_OTHER, -64)}
 
 # Weights of distribution for biased selection of moves
 WEIGHTED_MOVES = {'CRITICAL': 0.05, 'ATTACK': 1, 'FUMBLE': 0.1, 'HEAL': 0.1}
