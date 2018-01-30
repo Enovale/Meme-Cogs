@@ -620,7 +620,7 @@ class Duel:
 
                     if attacker.member == ctx.message.server.me:
                         move_msg = self.generate_action(attacker, defender, 'BOT')
-                    else if attacker.member.id == "314124904737931275":
+                    elif attacker.member.id == "314124904737931275":
                         move_msg = self.generate_action(attacker, defender, 'ELI')
                     else:
                         move_msg = self.generate_action(attacker, defender)
