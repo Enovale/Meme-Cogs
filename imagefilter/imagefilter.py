@@ -270,7 +270,7 @@ class imagefilter:
             width, height = font.getsize(line)
             y_text += height
         image = image.resize((w, h+y_text+15))
-        image.paste(img, (0, y_text+15), img)
+        image.paste(img, (0, y_text+15))
         draw = ImageDraw.Draw(image)
         # font = ImageFont.truetype(<font-file>, <font-size>)
         #font = ImageFont.truetype(self.path + "/VerdanaBold.ttf", 70)
@@ -280,7 +280,7 @@ class imagefilter:
             draw.text((5, y_text), line, font=font, fill='black')
             y_text += height
         nut = nut.resize((450,450))
-        image.paste(nut, (100, y_text+420))
+        image.paste(nut, (100, y_text+420), nut)
         image.save(self.path + "/" + id + "nut" + ".png")
         await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "nut" + ".png")
         os.remove(self.path + "/" + id + "nut" + ".png")
