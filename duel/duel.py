@@ -246,6 +246,8 @@ FUMBLE = {"{a} closes in on {d}, but suddenly remembers a funny joke and laughs 
           }
 
 BOT = {"{a} charges its laser aaaaaaaand... BZZZZZZT! {d} is now a smoking crater for daring to challenge the bot.": INITIAL_HP}
+ELI = {"{a} charges his N U T blaster and obliterates {d} and the rest of the surrounding area.": INITIAL_HP}
+
 
 HITS = ['deals', 'hits for']
 RECOVERS = ['recovers', 'gains', 'heals']
@@ -616,6 +618,8 @@ class Duel:
                         break
 
                     if attacker.member == ctx.message.server.me:
+                        move_msg = self.generate_action(attacker, defender, 'BOT')
+                    else if attacker.member.id == "314124904737931275":
                         move_msg = self.generate_action(attacker, defender, 'BOT')
                     else:
                         move_msg = self.generate_action(attacker, defender)
