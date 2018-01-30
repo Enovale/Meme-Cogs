@@ -336,8 +336,8 @@ class imagefilter:
         nut = nut.resize((450,450))
         image.paste(nut, (100, y_text+420), nut)
         image.save(self.path + "/" + id + "nitronut" + ".gif")
-        await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "nitronut" + ".png")
-        os.remove(self.path + "/" + id + "nitronut" + ".png")
+        await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "nitronut" + ".gif")
+        os.remove(self.path + "/" + id + "nitronut" + ".gif")
     
     @commands.command(pass_context=True)
     async def callmeme(self, ctx, text:str):
