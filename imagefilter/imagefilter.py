@@ -284,6 +284,60 @@ class imagefilter:
         image.save(self.path + "/" + id + "nut" + ".png")
         await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "nut" + ".png")
         os.remove(self.path + "/" + id + "nut" + ".png")
+
+    @commands.command(pass_context=True)
+    async def nitronut(self, ctx, user=None, text="When you nut"):
+        """Makes a white box above the image and puts text in it to make a meme"""
+        
+        url = None
+        id = ctx.message.author.id
+        channel = ctx.message.channel
+        if user is None:
+            user = ctx.message.author
+        elif len(ctx.message.mentions):
+            user = ctx.message.mentions[0]
+        else:
+            url = user
+        if type(user) == discord.User or type(user) == discord.Member:
+            if user.avatar:
+                avatar = 'https://cdn.discordapp.com/avatars/' + user.id + '/' + user.avatar + '.gif'
+                response = requests.get(avatar)
+                nut = Image.open (BytesIO(response.content))
+            else:
+                avatar = user.default_avatar_url
+                response = requests.get(avatar)
+                nut = Image.open (BytesIO(response.content))
+        else:
+            response = requests.get(url)
+            nut = Image.open (BytesIO(response.content))
+            
+        img = Image.open (self.path + '/' + 'nut.png')
+        width, height = img.size
+        image = Image.new("RGBA", (width, height), (255,255,255))
+        imageSize = image.size
+        fontSize = int(imageSize[1]/15)
+        font = ImageFont.truetype(self.path + "/Arial-Custom.ttf", 60)
+        lines = textwrap.wrap(text, width=45)
+        w,h = image.size
+        y_text = 10
+        for line in lines:
+            width, height = font.getsize(line)
+            y_text += height
+        image = image.resize((w, h+y_text+15))
+        image.paste(img, (0, y_text+15))
+        draw = ImageDraw.Draw(image)
+        # font = ImageFont.truetype(<font-file>, <font-size>)
+        #font = ImageFont.truetype(self.path + "/VerdanaBold.ttf", 70)
+        y_text = 10
+        for line in lines:
+            width, height = font.getsize(line)
+            draw.text((5, y_text), line, font=font, fill='black')
+            y_text += height
+        nut = nut.resize((450,450))
+        image.paste(nut, (100, y_text+420), nut)
+        image.save(self.path + "/" + id + "nitronut" + ".gif")
+        await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "nitronut" + ".png")
+        os.remove(self.path + "/" + id + "nitronut" + ".png")
     
     @commands.command(pass_context=True)
     async def callmeme(self, ctx, text:str):
