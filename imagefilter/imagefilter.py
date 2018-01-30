@@ -154,7 +154,7 @@ class imagefilter:
             width, height = font.getsize(line)
             y_text += height
         image = image.resize((w, h+y_text+15))
-        image.paste(img, (0, y_text+15))
+        image.paste(img, (0, y_text+15), img)
         draw = ImageDraw.Draw(image)
         # font = ImageFont.truetype(<font-file>, <font-size>)
         #font = ImageFont.truetype(self.path + "/VerdanaBold.ttf", 70)
@@ -224,8 +224,8 @@ class imagefilter:
         image3 = image3.rotate(25, expand=1)
         byemom = Image.open(self.path + "/" + "byemom.png")
         byemom = byemom.convert("RGBA")
-        byemom.paste(image, (540, 25))
-        byemom.paste(image2, (90, 360))
+        byemom.paste(image, (540, 25), image)
+        byemom.paste(image2, (90, 360), image2)
         byemom.paste(image3, (356, 365), image3)
         byemom.save(self.path + id + "byemom" + ".png")
         await self.bot.send_file(channel, self.path + id + "byemom" + ".png")
@@ -270,7 +270,7 @@ class imagefilter:
             width, height = font.getsize(line)
             y_text += height
         image = image.resize((w, h+y_text+15))
-        image.paste(img, (0, y_text+15))
+        image.paste(img, (0, y_text+15), img)
         draw = ImageDraw.Draw(image)
         # font = ImageFont.truetype(<font-file>, <font-size>)
         #font = ImageFont.truetype(self.path + "/VerdanaBold.ttf", 70)
@@ -280,7 +280,7 @@ class imagefilter:
             draw.text((5, y_text), line, font=font, fill='black')
             y_text += height
         nut = nut.resize((450,450))
-        image.paste(nut, (100, y_text+420))
+        image.paste(nut, (100, y_text+420), nut)
         image.save(self.path + "/" + id + "nut" + ".png")
         await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "nut" + ".png")
         os.remove(self.path + "/" + id + "nut" + ".png")
@@ -304,7 +304,7 @@ class imagefilter:
             width, height = font.getsize(line)
             y_text += height
         image = image.resize((w, h+y_text+15))
-        image.paste(img, (0, y_text+15))
+        image.paste(img, (0, y_text+15), img)
         draw = ImageDraw.Draw(image)
         # font = ImageFont.truetype(<font-file>, <font-size>)
         #font = ImageFont.truetype(self.path + "/VerdanaBold.ttf", 70)
@@ -354,7 +354,7 @@ class imagefilter:
         channel = ctx.message.channel
         image.thumbnail(size, Image.ANTIALIAS)
         jackoff = Image.open(self.path + "/" + "jackoff.png")
-        jackoff.paste(image, (120, 197))
+        jackoff.paste(image, (120, 197), image)
         jackoff.save(self.path + "/" + id + "jackoff" + ".png")
         await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "jackoff" + ".png")
         os.remove(self.path + "/" + id + "jackoff" + ".png")
@@ -651,7 +651,7 @@ class imagefilter:
             width, height = bean.size
             width2, height2 = img.size
             img = img.resize((1320, 1500))
-            bean.paste(img, (math.floor(width/5), math.floor(height/3)))
+            bean.paste(img, (math.floor(width/5), math.floor(height/3)), img)
             bean.paste(image2, (px, py, px + sx, py + sy), image2)
             draw.multiline_text((80, 20),"Uh oh! You friccin\nmoron. You just got",(0,0,0),font=font2, align='center')
             draw.multiline_text((80, 2520),"Tag your friends to\ntotally " + MinorText + " them!",(0,0,0),font=font2, align='center')
