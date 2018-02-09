@@ -7,7 +7,7 @@ class Spam:
 		self.bot = bot
 		
 	@commands.command(pass_context=True)
-	async def spam(self, ctx, user=None, number: int=None, spam_text):
+	async def spam(self, ctx, user, number: int, spam_text):
 		"""Spam The User hehe"""
 		
 		if len(ctx.message.mentions):
