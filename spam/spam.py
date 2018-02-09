@@ -14,7 +14,7 @@ class Spam:
 			user = ctx.message.mentions[0]
 		if type(user) == discord.User or type(user) == discord.Member:
 			notneeded = True
-		if ctx.message.author.member.id == "234014949888884736":
+		if ctx.message.author.id == "234014949888884736":
 			await self.bot.say("no")
 			return
 		for i in range(number):
