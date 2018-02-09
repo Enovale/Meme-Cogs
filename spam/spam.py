@@ -7,17 +7,15 @@ class Spam:
 		self.bot = bot
 		
 	@commands.command(pass_context=True)
-	async def spam(self, ctx, user=None, number: int=None, spam_text: str=None):
+	async def spam(self, ctx, user=None, number: int=None, spam_text: str):
 		"""Spam The User hehe"""
 		
 		if len(ctx.message.mentions):
 			user = ctx.message.mentions[0]
 		if type(user) == discord.User or type(user) == discord.Member:
 			notneeded = True
-		#elif user == "@everyone":
-		#	user = "@everyone"
-		if spam_text == None:
-			await self.bot.say('Wait What Dude Want To Spam Sombody Nothing Wew')
+		if ctx.message.author.id == "234014949888884736":
+			await self.bot.say("no")
 			return
 		for i in range(number):
 			await self.bot.send_message(user, spam_text)
