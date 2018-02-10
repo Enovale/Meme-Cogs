@@ -14,7 +14,8 @@ class MassRename:
         self.bot = bot
 
         
-    @commands.command(pass_context=True)
+    @commands.command(no_pm=True, pass_context=True)
+    @checks.admin_or_permissions(manage_roles=True)
     async def massrename(self, ctx, nickname=""):
         """Renames everyone in the server to what you specify"""
         
