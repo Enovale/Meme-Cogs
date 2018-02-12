@@ -28,5 +28,13 @@ class MassRename:
                 await self.bot.say("I cannot do that, I lack the "
                                    "\"Manage Nicknames\" permission, or the user " + member.name + " has a higher role placement than I do.")
 
+    @commands.command(no_pm=True, pass_context=True)
+    async def botrename(self, ctx, nickname=""):
+        """Renames the bot to what you specify"""
+        
+        nickname = nickname.strip();
+            try:
+                await self.bot.change_nickname(self.bot.user, nickname)
+            
 def setup(bot):
     bot.add_cog(MassRename(bot))
