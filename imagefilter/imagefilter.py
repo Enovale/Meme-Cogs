@@ -287,7 +287,7 @@ class imagefilter:
 
     @commands.command(pass_context=True)
     async def nitronut(self, ctx, user=None, text="When you nut"):
-        """Makes a white box above the image and puts text in it to make a meme"""
+        """This is for testing lul dont use this"""
         
         url = None
         id = ctx.message.author.id
