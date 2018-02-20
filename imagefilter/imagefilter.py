@@ -124,7 +124,7 @@ class imagefilter:
                 draw2.text((0, y_text), line, font=font2, fill='black')
                 y_text += height
 
-            px, py = -40, 320
+            px, py = -5, 500
             sx, sy = image2.size
             drake.paste(image2, (px, py, px + sx, py + sy), image2)
             drake.save(self.path + "/" + id + "drake" + ".png")
@@ -615,7 +615,7 @@ class imagefilter:
         try:
             response = requests.get(link)
             base = Image.open (BytesIO(response.content))
-            funk = Image.open (self.path + "funk.png")
+            funk = Image.open (self.path + "/funk.png")
             
             id = ctx.message.author.id
             channel = ctx.message.channel
