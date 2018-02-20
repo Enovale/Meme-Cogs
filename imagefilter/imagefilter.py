@@ -124,7 +124,7 @@ class imagefilter:
                 draw2.text((0, y_text), line, font=font2, fill='black')
                 y_text += height
 
-            px, py = -5, 500
+            px, py = -100, 1000
             sx, sy = image2.size
             drake.paste(image2, (px, py, px + sx, py + sy), image2)
             drake.save(self.path + "/" + id + "drake" + ".png")
