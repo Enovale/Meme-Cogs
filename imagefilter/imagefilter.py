@@ -112,6 +112,7 @@ class imagefilter:
 	
         try:
             drake = PIL.Image.open(self.path + "/" + "drake.png")
+            drake = Image.convert("RGBA")
             draw = ImageDraw.Draw(drake)
             font2 = ImageFont.truetype(self.path + "/Arial-Custom.ttf", 20)
             width, height = font2.getsize(TopText)
