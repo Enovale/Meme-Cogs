@@ -134,10 +134,10 @@ class imagefilter:
                 width, height = font3.getsize(line)
                 draw3.text((0, y_text), line, font=font2, fill='black')
                 y_text += height
-            px, py = 350, 5
+            px, py = 360, 5
             sx, sy = image2.size
             drake.paste(image2, (px, py, px + sx, py + sy), image2)
-            px, py = 350, 350
+            px, py = 360, 360
             sx, sy = image3.size
             drake.paste(image3, (px, py, px + sx, py + sy), image3)
             drake.save(self.path + "/" + id + "drake" + ".png")
