@@ -124,8 +124,8 @@ class imagefilter:
                 draw2.text((0, y_text), line, font=font2, fill='black')
                 y_text += height
 
-            px, py = -100, 1000
-            sx, sy = image2.size
+            px, py = 0, 0
+            sx, sy = 0, 0
             drake.paste(image2, (px, py, px + sx, py + sy), image2)
             drake.save(self.path + "/" + id + "drake" + ".png")
             await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "drake" + ".png")
