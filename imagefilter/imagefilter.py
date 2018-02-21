@@ -114,7 +114,7 @@ class imagefilter:
             drake = PIL.Image.open(self.path + "/" + "drake.png")
             drake = drake.convert("RGBA")
             draw = ImageDraw.Draw(drake)
-            font2 = ImageFont.truetype(self.path + "/Arial-Custom.ttf", 25)
+            font2 = ImageFont.truetype(self.path + "/Arial-Custom.ttf", 30)
             width, height = font2.getsize(TopText)
             image2 = Image.new('RGBA', (500, 400), (0, 0, 0, 0))
             draw2 = ImageDraw.Draw(image2)
@@ -124,7 +124,7 @@ class imagefilter:
                 width, height = font2.getsize(line)
                 draw2.text((0, y_text), line, font=font2, fill='black')
                 y_text += height
-            font3 = ImageFont.truetype(self.path + "/Arial-Custom.ttf", 25)
+            font3 = ImageFont.truetype(self.path + "/Arial-Custom.ttf", 30)
             width, height = font3.getsize(BottomText)
             image3 = Image.new('RGBA', (500, 400), (0, 0, 0, 0))
             draw3 = ImageDraw.Draw(image3)
@@ -134,10 +134,10 @@ class imagefilter:
                 width, height = font3.getsize(line)
                 draw3.text((0, y_text), line, font=font2, fill='black')
                 y_text += height
-            px, py = 200, 5
+            px, py = 300, 5
             sx, sy = image2.size
             drake.paste(image2, (px, py, px + sx, py + sy), image2)
-            px, py = 200, 300
+            px, py = 300, 400
             sx, sy = image3.size
             drake.paste(image3, (px, py, px + sx, py + sy), image3)
             drake.save(self.path + "/" + id + "drake" + ".png")
