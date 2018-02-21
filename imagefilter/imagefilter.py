@@ -118,7 +118,7 @@ class imagefilter:
             width, height = font2.getsize(TopText)
             image2 = Image.new('RGBA', (500, 400), (0, 0, 0, 0))
             draw2 = ImageDraw.Draw(image2)
-            lines = textwrap.wrap(TopText, width=20)
+            lines = textwrap.wrap(TopText, width=22)
             y_text = 0
             for line in lines:
                 width, height = font2.getsize(line)
@@ -128,7 +128,7 @@ class imagefilter:
             width, height = font3.getsize(BottomText)
             image3 = Image.new('RGBA', (500, 400), (0, 0, 0, 0))
             draw3 = ImageDraw.Draw(image3)
-            lines = textwrap.wrap(BottomText, width=20)
+            lines = textwrap.wrap(BottomText, width=22)
             y_text = 0
             for line in lines:
                 width, height = font3.getsize(line)
@@ -137,7 +137,7 @@ class imagefilter:
             px, py = 360, 5
             sx, sy = image2.size
             drake.paste(image2, (px, py, px + sx, py + sy), image2)
-            px, py = 360, 360
+            px, py = 360, 370
             sx, sy = image3.size
             drake.paste(image3, (px, py, px + sx, py + sy), image3)
             drake.save(self.path + "/" + id + "drake" + ".png")
