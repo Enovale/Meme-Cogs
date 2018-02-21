@@ -124,10 +124,22 @@ class imagefilter:
                 width, height = font2.getsize(line)
                 draw2.text((0, y_text), line, font=font2, fill='black')
                 y_text += height
-
-            px, py = 0, 0
+            font3 = ImageFont.truetype(self.path + "/Arial-Custom.ttf", 20)
+            width, height = font3.getsize(BottomText)
+            image3 = Image.new('RGBA', (500, 400), (0, 0, 0, 0))
+            draw3 = ImageDraw.Draw(image3)
+            lines = textwrap.wrap(TopText, width=20)
+            y_text = 0
+            for line in lines:
+                width, height = font3.getsize(line)
+                draw3.text((0, y_text), line, font=font2, fill='black')
+                y_text += height
+            px, py = 50, 5
             sx, sy = image2.size
             drake.paste(image2, (px, py, px + sx, py + sy), image2)
+            px, py = 50, 50
+            sx, sy = image3.size
+            drake.paste(image3, (px, py, px + sx, py + sy), image3)
             drake.save(self.path + "/" + id + "drake" + ".png")
             await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "drake" + ".png")
             os.remove(self.path + "/" + id + "drake" + ".png")
