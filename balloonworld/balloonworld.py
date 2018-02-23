@@ -5,6 +5,7 @@ from .utils.dataIO import fileIO
 from discord.ext import commands
 import os
 import re
+import time
 
 class BalloonWorld:
 
@@ -13,22 +14,26 @@ class BalloonWorld:
         emoji = "🎈"
     
     @commands.command(pass_context=True)
-    async def start(self, ctx):
+    async def start(self, ctx, hider=discord.Member, seeker=discord.Member):
         if channel is None:
             channel = ctx.message.channel
         if "<" in emoji and ">" in emoji:
             emoji = emoji.strip("<>")
         server = ctx.message.server
-        self.settings[server.id] = {"emoji": emoji, "channel" :channel.id}
-        dataIO.save_json("data/star/settings.json", self.settings)
-        await self.bot.say("Starboard set to {}".format(channel.mention))
+        await self.bot.say("Hey Bro! Wanna play some Balloon World?")
+        msg = await client.wait_for_message(author=message.author, content='yes')
+        await self.bot.say("Nice! Game starting in 3")
+        time.sleep(1)
+        await self.bot.say("2")
+        time.sleep(1)
+        await self.bot.say("1")
+        time.sleep(1)
+        await self.bot.say("GO")
   
     async def on_reaction_add(self, reaction, user):
         server = reaction.message.server
         msg = reaction.message
         TopRole = user.roles[1].name
-        if TopRole != "Administrator":
-                return
         react = self.settings[server.id]["emoji"]
         if react in str(reaction.emoji):
             author = reaction.message.author
