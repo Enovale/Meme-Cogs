@@ -371,7 +371,7 @@ class imagefilter:
             width, height = font.getsize(line)
             y_text += height
         image = image.resize((w, h+y_text+15))
-        image.paste(img, (0, y_text+15), img)
+        image.paste(img, (0, y_text+15))
         draw = ImageDraw.Draw(image)
         # font = ImageFont.truetype(<font-file>, <font-size>)
         #font = ImageFont.truetype(self.path + "/VerdanaBold.ttf", 70)
