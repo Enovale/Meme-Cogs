@@ -11,17 +11,62 @@ class BalloonWorld:
 
     def __init__(self, bot):
         self.bot = bot
-        emoji = "🎈"
+        self.gameStarted = False
+        self.balloonHid = False
+        self.timedOut = False
+        self.balloonText = ""
+        
+    async def shouldStop(self, mode):
+        if mode == "hide":
+            timeout = time.time() + 30
+        if mode == "seek":
+            timeout = time.time() + 40
+        while True:
+            if self.balloonHid == True:
+                self.timedOut = False
+                return True
+            if time.time() > timeout:
+                return True
+                self.timedOut = True
+                
+    async def startHideSequence(self):
+        if self.gameStarted == False:
+            return
+        await self.shouldStop("hide")
+        if self.timedOut == True:
+            await self.bot.send_message(self.gameChannel, "You ran out of time, Bro! I'll stop the game for you.")
+        if self.timedOut == False:
+            await self.bot.send_message(self.gameChannel, "Balloon hid.")
+            
+    async def startSeekSequence(self, seeker):
+        await self.bot.send_message(self.gameChannel, "Alright " + seeker + "! Ready to seek?")
+        msg = await self.bot.wait_for_message(author=ctx.message.author, content='yes')
+        await self.bot.send_message(self.gameChannel, "Nice on! A'ight, seeking in: 3")
+        time.sleep(1)
+        await self.bot.send_message(self.gameChannel, "2")
+        time.sleep(1)
+        await self.bot.send_message(self.gameChannel, "1")
+        time.sleep(1)
+        await self.shouldStop("seek")
+        msg = await self.bot.wait_for_message(timeout=40, author=seeker)
+        if msg == None:
+            await self.bot.send_message(self.gameChannel, "You ran out of time, Bro! Ill stop the game.")
+            return
+        if msg == self.balloonText:
+            await self.bot.send_message(self.gameChannel, "WOAH YOU DID IT XD")
+        if msg != self.balloonText:
+            await self.bot.send_message(self.gameChannel, "Wrong.")
     
     @commands.command(pass_context=True)
     async def start(self, ctx, hider=discord.Member, seeker=discord.Member):
-        if channel is None:
-            channel = ctx.message.channel
+        emoji = "🎈"
+        channel = ctx.message.channel
+        self.gameChannel = ctx.message.channel
         if "<" in emoji and ">" in emoji:
             emoji = emoji.strip("<>")
         server = ctx.message.server
         await self.bot.say("Hey Bro! Wanna play some Balloon World?")
-        msg = await client.wait_for_message(author=message.author, content='yes')
+        msg = await self.bot.wait_for_message(author=ctx.message.author, content='yes')
         await self.bot.say("Nice! Game starting in 3")
         time.sleep(1)
         await self.bot.say("2")
@@ -29,69 +74,25 @@ class BalloonWorld:
         await self.bot.say("1")
         time.sleep(1)
         await self.bot.say("GO")
+        self.gameStarted = True
+        await self.startHideSequence()
+        await self.startSeekSequence(seeker)
   
     async def on_reaction_add(self, reaction, user):
         server = reaction.message.server
         msg = reaction.message
-        TopRole = user.roles[1].name
-        react = self.settings[server.id]["emoji"]
-        if react in str(reaction.emoji):
+        if gameStarted == False:
+            return
+        if "🎈" in str(reaction.emoji):
+            await self.bot.send_message(self.gameChannel, "You ballooned. Yay.")
+            self.balloonHid = True
+            self.balloonText = reaction.message.content
             author = reaction.message.author
             channel = reaction.message.channel
-            channel2 = discord.Object(id=self.settings[server.id]["channel"])
             if reaction.message.embeds != []:
-                embed = reaction.message.embeds[0]
-                em = discord.Embed(timestamp=reaction.message.timestamp)
-                if "title" in embed:
-                    em.title = embed["title"]
-                if "thumbnail" in embed:
-                    em.set_thumbnail(url=embed["thumbnail"]["url"])
-                if "description" in embed:
-                    if embed["description"] is None:
-                        em.description = msg.clean_content
-                    else:
-                        em.description = embed["description"]
-                if "url" in embed:
-                    em.url = embed["url"]
-                if "footer" in embed:
-                    em.set_footer(text=embed["footer"]["text"])
-                if "author" in embed:
-                    postauthor = embed["author"]
-                    if "icon_url" in postauthor:
-                        em.set_author(name=postauthor["name"], icon_url=postauthor["icon_url"])
-                    else:
-                        em.set_author(name=postauthor["name"])
-                if "color" in embed:
-                    em.color = embed["color"]
-                if "image" in embed:
-                    em.set_image(url=embed["image"]["url"])
-                if embed["type"] == "image":
-                    em.type = "image"
-                    em.set_thumbnail(url=embed["url"])
-                    em.set_image(url=embed["url"]+"."+embed["thumbnail"]["url"].rsplit(".")[-1])
-                if embed["type"] == "gifv":
-                    em.type = "gifv"
-                    em.set_thumbnail(url=embed["url"])
-                    em.set_image(url=embed["url"]+".gif")
-                
+                print()
             else:
-                em = discord.Embed(timestamp=reaction.message.timestamp)
-                em.color = author.top_role.color
-                if "<:" in msg.content and ">" in msg.content:
-                    if msg.content.count("<:") == 1:
-                        emoji = re.findall(r'<(.*?)>', msg.content)[0]
-                        emoji_id= emoji.split(":")[-1]
-                        newmsg = re.sub('<[^>]+>', '', msg.content)
-                        em.description = newmsg
-                        em.set_image(url="https://cdn.discordapp.com/emojis/{}.png".format(emoji_id))
-                else:
-                    em.description = msg.clean_content
-                em.set_author(name=author.name, icon_url=author.avatar_url)
-                em.set_footer(text='{} | {}'.format(channel.server.name, channel.name))
-                if reaction.message.attachments != []:
-                    em.set_image(url=reaction.message.attachments[0]["url"])
-            post_msg = await self.bot.send_message(channel2, embed=em)
-            await self.bot.add_reaction(post_msg, emoji=react)
+                print()
         else:
             return
 
