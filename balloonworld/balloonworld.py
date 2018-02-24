@@ -36,11 +36,12 @@ class BalloonWorld:
         if self.timedOut == True:
             await self.bot.send_message(self.gameChannel, "You ran out of time, Bro! I'll stop the game for you.")
         if self.timedOut == False:
-            await self.bot.send_message(self.gameChannel, "Balloon hid.")
+            self.bot.send_message(self.gameChannel, "Balloon hid.")
             
-    async def startSeekSequence(self, seeker):
+    @commands.command(pass_context=True)
+    async def seek(self):
         await self.bot.send_message(self.gameChannel, "Alright " + "seeker" + "! Ready to seek?")
-        msg = await self.bot.wait_for_message(author=seeker, content='yes')
+        msg = await self.bot.wait_for_message(content='yes')
         await self.bot.send_message(self.gameChannel, "Nice on! A'ight, seeking in: 3")
         time.sleep(1)
         await self.bot.send_message(self.gameChannel, "2")
@@ -58,7 +59,7 @@ class BalloonWorld:
             await self.bot.send_message(self.gameChannel, "Wrong.")
     
     @commands.command(pass_context=True)
-    async def start(self, ctx, hider=discord.Member, seeker=discord.Member):
+    async def hide(self, ctx):
         emoji = "🎈"
         channel = ctx.message.channel
         self.gameChannel = ctx.message.channel
@@ -76,7 +77,6 @@ class BalloonWorld:
         await self.bot.say("GO")
         self.gameStarted = True
         await self.startHideSequence()
-        await self.startSeekSequence(seeker)
   
     async def on_reaction_add(self, reaction, user):
         server = reaction.message.server
