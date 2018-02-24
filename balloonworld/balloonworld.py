@@ -39,8 +39,8 @@ class BalloonWorld:
             await self.bot.send_message(self.gameChannel, "Balloon hid.")
             
     async def startSeekSequence(self, seeker):
-        await self.bot.send_message(self.gameChannel, "Alright " + seeker + "! Ready to seek?")
-        msg = await self.bot.wait_for_message(author=ctx.message.author, content='yes')
+        await self.bot.send_message(self.gameChannel, "Alright " + "seeker" + "! Ready to seek?")
+        msg = await self.bot.wait_for_message(author=seeker, content='yes')
         await self.bot.send_message(self.gameChannel, "Nice on! A'ight, seeking in: 3")
         time.sleep(1)
         await self.bot.send_message(self.gameChannel, "2")
@@ -81,7 +81,7 @@ class BalloonWorld:
     async def on_reaction_add(self, reaction, user):
         server = reaction.message.server
         msg = reaction.message
-        if gameStarted == False:
+        if self.gameStarted == False:
             return
         if "🎈" in str(reaction.emoji):
             await self.bot.send_message(self.gameChannel, "You ballooned. Yay.")
@@ -97,8 +97,8 @@ class BalloonWorld:
             return
 
 def check_folder():
-    if not os.path.exists('data/star'):
-        os.mkdir('data/star')
+    if not os.path.exists('data/balloonworld'):
+        os.mkdir('data/balloonworld')
 
 
 def setup(bot):
