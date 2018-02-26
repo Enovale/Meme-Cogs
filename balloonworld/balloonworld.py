@@ -145,7 +145,7 @@ class BalloonWorld:
         
     @commands.command()
     async def testsave(self):
-        await self.bot.say(str(loadObj()))
+        await self.bot.say(str(self.loadObj()))
         testdict = {"test": "test"}
         self.saveObj(testdict)
   
