@@ -9,12 +9,13 @@ import time
 
 class BalloonWorld:
 
+    gameStarted = False
+    balloonHid = False
+    timedOut = False
+    balloonText = ""
+
     def __init__(self, bot):
         self.bot = bot
-        self.gameStarted = False
-        self.balloonHid = False
-        self.timedOut = False
-        self.balloonText = ""
         
     async def shouldStop(self, mode):
         if mode == "hide":
@@ -22,47 +23,53 @@ class BalloonWorld:
         if mode == "seek":
             timeout = time.time() + 40
         while True:
-            if self.balloonHid == True:
-                self.timedOut = False
+            if balloonHid == True:
+                timedOut = False
                 return True
             if time.time() > timeout:
                 return True
-                self.timedOut = True
+                timedOut = True
                 
     async def startHideSequence(self):
-        if self.gameStarted == False:
+        global gameStarted
+        global timedOut
+        if gameStarted == False:
             return
-        await self.shouldStop("hide")
-        if self.timedOut == True:
-            await self.bot.send_message(self.gameChannel, "You ran out of time, Bro! I'll stop the game for you.")
-        if self.timedOut == False:
-            self.bot.send_message(self.gameChannel, "Balloon hid.")
+        await shouldStop("hide")
+        if timedOut == True:
+            await self.bot.send_message(gameChannel, "You ran out of time, Bro! I'll stop the game for you.")
+        if timedOut == False:
+            await self.bot.send_message(gameChannel, "Balloon hid.")
             
     @commands.command(pass_context=True)
-    async def seek(self):
-        await self.bot.send_message(self.gameChannel, "Alright " + "seeker" + "! Ready to seek?")
+    async def findit(self, ctx):
+        if balloonHid == None or balloonText == None:
+            await self.bot.say("Sorry Bro! Noone's hid any balloons!")
+        gameChannel = ctx.message.channel
+        await self.bot.send_message(gameChannel, "Hey Bro! Wanna play some Balloon World?")
         msg = await self.bot.wait_for_message(content='yes')
-        await self.bot.send_message(self.gameChannel, "Nice on! A'ight, seeking in: 3")
+        await self.bot.send_message(gameChannel, "Nice on! A'ight, seeking in: 3")
         time.sleep(1)
-        await self.bot.send_message(self.gameChannel, "2")
+        await self.bot.send_message(gameChannel, "2")
         time.sleep(1)
-        await self.bot.send_message(self.gameChannel, "1")
+        await self.bot.send_message(gameChannel, "1")
         time.sleep(1)
-        await self.shouldStop("seek")
-        msg = await self.bot.wait_for_message(timeout=40, author=seeker)
+        await self.bot.send_message(gameChannel, "GO")
+        msg = await self.bot.wait_for_message(timeout=40, author=ctx.message.author)
         if msg == None:
-            await self.bot.send_message(self.gameChannel, "You ran out of time, Bro! Ill stop the game.")
+            await self.bot.send_message(gameChannel, "You ran out of time, Bro! Ill stop the game.")
             return
-        if msg == self.balloonText:
-            await self.bot.send_message(self.gameChannel, "WOAH YOU DID IT XD")
-        if msg != self.balloonText:
-            await self.bot.send_message(self.gameChannel, "Wrong.")
+        if msg == balloonText:
+            await self.bot.send_message(gameChannel, "WOAH YOU DID IT XD")
+        if msg != balloonText:
+            await self.bot.send_message(gameChannel, "Wrong.")
     
     @commands.command(pass_context=True)
-    async def hide(self, ctx):
+    async def hideit(self, ctx):
         emoji = "🎈"
         channel = ctx.message.channel
-        self.gameChannel = ctx.message.channel
+        global gameChannel
+        gameChannel = ctx.message.channel
         if "<" in emoji and ">" in emoji:
             emoji = emoji.strip("<>")
         server = ctx.message.server
@@ -75,18 +82,21 @@ class BalloonWorld:
         await self.bot.say("1")
         time.sleep(1)
         await self.bot.say("GO")
-        self.gameStarted = True
+        gameStarted = True
         await self.startHideSequence()
   
     async def on_reaction_add(self, reaction, user):
         server = reaction.message.server
         msg = reaction.message
-        if self.gameStarted == False:
+        if gameStarted == False:
             return
         if "🎈" in str(reaction.emoji):
-            await self.bot.send_message(self.gameChannel, "You ballooned. Yay.")
-            self.balloonHid = True
-            self.balloonText = reaction.message.content
+            await self.bot.send_message(gameChannel, "You ballooned. Yay.")
+            global balloonHid
+            balloonHid = True
+            global balloonText
+            balloonText = reaction.message.content
+            await self.bot.send_message(gameChannel, 'message is "' + balloonText + '" and balloonHid is ' + str(balloonHid))
             author = reaction.message.author
             channel = reaction.message.channel
             if reaction.message.embeds != []:
