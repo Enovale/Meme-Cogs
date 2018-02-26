@@ -7,6 +7,7 @@ import os
 import re
 import time
 
+gameChannel = None
 gameStarted = False
 balloonHid = False
 timedOut = False
@@ -17,9 +18,17 @@ class BalloonWorld:
     def __init__(self, bot):
         self.bot = bot
         
+    async def check(self, message):
+        if message == "yes" or message == "Yes" or message == "Yeah":
+            return True
+        if message == "no" or message == "No" or message == "Nah" or message == "nah":
+            await self.bot.send_message(gameChannel, "Play again some time!")
+            return False
+        
     async def shouldStop(self, mode):
         if mode == "hide":
             timeout = time.time() + 30
+            print("Currently hiding")
         if mode == "seek":
             timeout = time.time() + 40
         global timedOut
@@ -31,7 +40,7 @@ class BalloonWorld:
             if time.time() > timeout:
                 return True
                 timedOut = True
-            time.sleep(0.1)
+            time.sleep(0.2)
                 
     async def startHideSequence(self):
         global gameStarted
@@ -47,7 +56,8 @@ class BalloonWorld:
         global balloonText
         if balloonText == "":
             await self.bot.say("Sorry Bro! Noone's hid any balloons!")
-            return
+            return True
+        global gameChannel
         gameChannel = ctx.message.channel
         await self.bot.send_message(gameChannel, "Hey Bro! Wanna play some Balloon World?")
         msg = await self.bot.wait_for_message(content='yes')
@@ -81,7 +91,7 @@ class BalloonWorld:
             emoji = emoji.strip("<>")
         server = ctx.message.server
         await self.bot.say("Hey Bro! Wanna play some Balloon World?")
-        msg = await self.bot.wait_for_message(author=ctx.message.author, content='yes')
+        msg = await self.bot.wait_for_message(author=ctx.message.author, check=check)
         await self.bot.say("Nice! Game starting in 3")
         time.sleep(0.5)
         await self.bot.say("2")
