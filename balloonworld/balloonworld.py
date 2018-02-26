@@ -7,12 +7,12 @@ import os
 import re
 import time
 
+gameStarted = False
+balloonHid = False
+timedOut = False
+balloonText = ""
+    
 class BalloonWorld:
-
-    gameStarted = False
-    balloonHid = False
-    timedOut = False
-    balloonText = ""
 
     def __init__(self, bot):
         self.bot = bot
