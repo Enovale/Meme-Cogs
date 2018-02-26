@@ -146,7 +146,7 @@ class BalloonWorld:
     @commands.command()
     async def testsave(self):
         testdict = {"test": "test"}
-        saveObj(testdict)
+        self.saveObj(testdict)
   
     async def on_reaction_add(self, reaction, user):
         server = reaction.message.server
@@ -162,8 +162,9 @@ class BalloonWorld:
             author = reaction.message.author
             channel = reaction.message.channel
             server = channel.server.id
-            loadObj(testdict)
+            self.loadObj(testdict)
             testdict = testdict + {author.id: {'server': server, 'channel': channel.name, 'text': balloonText}}
+            self.saveObj(testdict)
             await self.bot.send_message(channel, "Testdict is " + str(testdict))
             if reaction.message.embeds != []:
                 print()
