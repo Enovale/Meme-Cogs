@@ -19,6 +19,17 @@ class BalloonWorld:
 
     def __init__(self, bot):
         self.bot = bot
+        
+    async def saveObj(self, obj):
+        f = open('data/balloonworld/database.txt', 'wb')
+        pickle.dump(obj, f)
+        f.close()
+        
+    async def loadObj(self, obj):
+        f = open('data/balloonworld/database.txt', 'rb')
+        obj = pickle.load(f)
+        f.close()
+        return obj
     
     @commands.command()
     async def howto(self):
@@ -131,6 +142,11 @@ class BalloonWorld:
         global balloonText
         global balloonHid
         await self.bot.say(balloonText + " " + str(balloonHid))
+        
+    @commands.command()
+    async def testsave(self):
+        testdict = {"test": "test"}
+        saveObj(testdict)
   
     async def on_reaction_add(self, reaction, user):
         server = reaction.message.server
@@ -145,7 +161,9 @@ class BalloonWorld:
             balloonText = reaction.message.content
             author = reaction.message.author
             channel = reaction.message.channel
-            testdict = {author.id: {'channel': channel, 'text': balloonText}}
+            server = channel.server.id
+            loadObj(testdict)
+            testdict = testdict + {author.id: {'server': server, 'channel': channel.name, 'text': balloonText}}
             await self.bot.send_message(channel, "Testdict is " + str(testdict))
             if reaction.message.embeds != []:
                 print()
