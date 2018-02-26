@@ -35,7 +35,7 @@ class BalloonWorld:
         global timedOut
         if gameStarted == False:
             return
-        await shouldStop("hide")
+        await self.shouldStop("hide")
         if timedOut == True:
             await self.bot.send_message(gameChannel, "You ran out of time, Bro! I'll stop the game for you.")
         if timedOut == False:
