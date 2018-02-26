@@ -18,6 +18,20 @@ class BalloonWorld:
 
     def __init__(self, bot):
         self.bot = bot
+    
+    @commands.command()
+    async def howto(self):
+        await self.bot.say("How to play Luigi's Balloon World in Discord:"
+                           ""
+                           "=====Hiding====="
+                           "1. Type ``b!hideit`` and say yes"
+                           "2. Once the game starts, react to any message you please with a balloon emoji, or ``🎈``."
+                           "3. Your message will be recorded."
+                           ""
+                           "=====Finding====="
+                           "1. Type ``b!findit`` and say yes"
+                           "2. Once the game starts, find the message with the balloon (or ``🎈``) reaction, and say whatever the content of the message is"
+                           "3. If you are correct, Luigi will congratulate you")
         
     async def check(self, message):
         global rejected
