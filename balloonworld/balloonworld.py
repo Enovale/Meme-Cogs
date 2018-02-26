@@ -12,6 +12,7 @@ gameStarted = False
 balloonHid = False
 timedOut = False
 balloonText = None
+rejected = False
     
 class BalloonWorld:
 
@@ -19,10 +20,12 @@ class BalloonWorld:
         self.bot = bot
         
     async def check(self, message):
+        global rejected
         if message == "yes" or message == "Yes" or message == "Yeah":
             return True
         if message == "no" or message == "No" or message == "Nah" or message == "nah":
             await self.bot.send_message(gameChannel, "Play again some time!")
+            rejected = True
             return False
         
     async def shouldStop(self, mode):
@@ -60,7 +63,10 @@ class BalloonWorld:
         global gameChannel
         gameChannel = ctx.message.channel
         await self.bot.send_message(gameChannel, "Hey Bro! Wanna play some Balloon World?")
-        msg = await self.bot.wait_for_message(content='yes')
+        msg = await self.bot.wait_for_message(check=check)
+        global rejected
+        if rejected == True:
+            return False
         await self.bot.send_message(gameChannel, "Nice on! A'ight, seeking in: 3")
         time.sleep(1)
         await self.bot.send_message(gameChannel, "2")
@@ -92,6 +98,9 @@ class BalloonWorld:
         server = ctx.message.server
         await self.bot.say("Hey Bro! Wanna play some Balloon World?")
         msg = await self.bot.wait_for_message(author=ctx.message.author, check=self.check)
+        global rejected
+        if rejected == True:
+            return False
         await self.bot.say("Nice! Game starting in 3")
         time.sleep(0.5)
         await self.bot.say("2")
