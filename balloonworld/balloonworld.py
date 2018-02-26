@@ -10,7 +10,7 @@ import time
 gameStarted = False
 balloonHid = False
 timedOut = False
-balloonText = ""
+balloonText = None
     
 class BalloonWorld:
 
