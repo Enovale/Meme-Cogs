@@ -25,7 +25,7 @@ class BalloonWorld:
         pickle.dump(obj, f)
         f.close()
         
-    async def loadObj(self, obj):
+    async def loadObj(self):
         f = open('data/balloonworld/database.txt', 'rb')
         obj = pickle.load(f)
         f.close()
@@ -145,6 +145,7 @@ class BalloonWorld:
         
     @commands.command()
     async def testsave(self):
+        await self.bot.say(str(loadObj()))
         testdict = {"test": "test"}
         self.saveObj(testdict)
   
@@ -162,7 +163,7 @@ class BalloonWorld:
             author = reaction.message.author
             channel = reaction.message.channel
             server = channel.server.id
-            self.loadObj(testdict)
+            self.loadObj()
             testdict = testdict + {author.id: {'server': server, 'channel': channel.name, 'text': balloonText}}
             self.saveObj(testdict)
             await self.bot.send_message(channel, "Testdict is " + str(testdict))
