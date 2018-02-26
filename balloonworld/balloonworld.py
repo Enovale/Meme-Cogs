@@ -95,7 +95,7 @@ class BalloonWorld:
     async def cheat(self):
         global balloonText
         global balloonHid
-        await self.bot.say(balloonText + " " + balloonHid)
+        await self.bot.say(balloonText + " " + str(balloonHid))
   
     async def on_reaction_add(self, reaction, user):
         server = reaction.message.server
