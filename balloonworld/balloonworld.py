@@ -43,10 +43,12 @@ class BalloonWorld:
             
     @commands.command(pass_context=True)
     async def findit(self, ctx):
+        global balloonText
         if balloonHid == None or balloonText == None:
             await self.bot.say("Sorry Bro! Noone's hid any balloons!")
+            return
         gameChannel = ctx.message.channel
-        await self.bot.send_message(gameChannel, "Hey Bro! Wanna play some Balloon World?")
+        await self.bot.send_message(gameChannel, "Hey Bro! Wanna play some Balloon World?" + " (Spoiler, balloon text is " + balloonText + ")")
         msg = await self.bot.wait_for_message(content='yes')
         await self.bot.send_message(gameChannel, "Nice on! A'ight, seeking in: 3")
         time.sleep(1)
