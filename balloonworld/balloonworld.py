@@ -10,7 +10,7 @@ import time
 gameStarted = False
 balloonHid = False
 timedOut = False
-balloonText = ""
+balloonText = None
     
 class BalloonWorld:
 
@@ -22,10 +22,12 @@ class BalloonWorld:
             timeout = time.time() + 30
         if mode == "seek":
             timeout = time.time() + 40
+        global timedOut
+        global balloonHid
         while True:
             if balloonHid == True:
                 timedOut = False
-                return True
+                return
             if time.time() > timeout:
                 return True
                 timedOut = True
@@ -33,8 +35,6 @@ class BalloonWorld:
     async def startHideSequence(self):
         global gameStarted
         global timedOut
-        if gameStarted == False:
-            return
         await self.shouldStop("hide")
         if timedOut == True:
             await self.bot.send_message(gameChannel, "You ran out of time, Bro! I'll stop the game for you.")
@@ -82,11 +82,11 @@ class BalloonWorld:
         await self.bot.say("Hey Bro! Wanna play some Balloon World?")
         msg = await self.bot.wait_for_message(author=ctx.message.author, content='yes')
         await self.bot.say("Nice! Game starting in 3")
-        time.sleep(1)
+        time.sleep(0.5)
         await self.bot.say("2")
-        time.sleep(1)
+        time.sleep(0.5)
         await self.bot.say("1")
-        time.sleep(1)
+        time.sleep(0.5)
         await self.bot.say("GO")
         gameStarted = True
         await self.startHideSequence()
