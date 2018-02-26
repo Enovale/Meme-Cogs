@@ -85,7 +85,7 @@ class BalloonWorld:
         time.sleep(1)
         await self.bot.edit_message(message, new_content=message.content + ", 2")
         time.sleep(1)
-        await self.bot.edit_message(message, new_content=message.content + ", 1")
+        await self.bot.edit_message(message, new_content=message.content + ", 2, 1")
         time.sleep(1)
         await self.bot.send_message(gameChannel, "GO")
         msg = await self.bot.wait_for_message(timeout=40, author=ctx.message.author)
@@ -119,7 +119,7 @@ class BalloonWorld:
         time.sleep(0.5)
         await self.bot.edit_message(message, new_content=message.content + ", 2")
         time.sleep(0.5)
-        await self.bot.edit_message(message, new_content=message.content + ", 3")
+        await self.bot.edit_message(message, new_content=message.content + ", 2, 1")
         time.sleep(0.5)
         await self.bot.say("GO")
         gameStarted = True
