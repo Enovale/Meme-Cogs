@@ -48,7 +48,7 @@ class BalloonWorld:
             await self.bot.say("Sorry Bro! Noone's hid any balloons!")
             return
         gameChannel = ctx.message.channel
-        await self.bot.send_message(gameChannel, "Hey Bro! Wanna play some Balloon World?" + " (Spoiler, balloon text is " + balloonText + ")")
+        await self.bot.send_message(gameChannel, "Hey Bro! Wanna play some Balloon World?")
         msg = await self.bot.wait_for_message(content='yes')
         await self.bot.send_message(gameChannel, "Nice on! A'ight, seeking in: 3")
         time.sleep(1)
@@ -58,11 +58,10 @@ class BalloonWorld:
         time.sleep(1)
         await self.bot.send_message(gameChannel, "GO")
         msg = await self.bot.wait_for_message(timeout=40, author=ctx.message.author)
-        await self.bot.send_message(gameChannel, msg)
         if msg == None:
             await self.bot.send_message(gameChannel, "You ran out of time, Bro! Ill stop the game.")
             return
-        if msg == balloonText:
+        if msg.content == balloonText:
             await self.bot.send_message(gameChannel, "WOAH YOU DID IT XD")
         else:
             await self.bot.send_message(gameChannel, "Wrong.")
@@ -96,12 +95,10 @@ class BalloonWorld:
         if gameStarted == False:
             return
         if "🎈" in str(reaction.emoji):
-            await self.bot.send_message(gameChannel, "You ballooned. Yay.")
             global balloonHid
             balloonHid = True
             global balloonText
             balloonText = reaction.message.content
-            await self.bot.send_message(gameChannel, 'message is "' + balloonText + '" and balloonHid is ' + str(balloonHid))
             author = reaction.message.author
             channel = reaction.message.channel
             if reaction.message.embeds != []:
