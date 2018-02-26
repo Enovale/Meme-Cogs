@@ -58,12 +58,13 @@ class BalloonWorld:
         time.sleep(1)
         await self.bot.send_message(gameChannel, "GO")
         msg = await self.bot.wait_for_message(timeout=40, author=ctx.message.author)
+        await self.bot.send_message(gameChannel, msg)
         if msg == None:
             await self.bot.send_message(gameChannel, "You ran out of time, Bro! Ill stop the game.")
             return
         if msg == balloonText:
             await self.bot.send_message(gameChannel, "WOAH YOU DID IT XD")
-        if msg != balloonText:
+        else:
             await self.bot.send_message(gameChannel, "Wrong.")
     
     @commands.command(pass_context=True)
