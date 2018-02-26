@@ -81,11 +81,11 @@ class BalloonWorld:
         global rejected
         if rejected == True:
             return False
-        await self.bot.send_message(gameChannel, "Nice on! A'ight, seeking in: 3")
+        message = await self.bot.send_message(gameChannel, "Nice on! A'ight, seeking in: 3")
         time.sleep(1)
-        await self.bot.send_message(gameChannel, "2")
+        await self.bot.edit_message(message, new_content=message.content + ", 2")
         time.sleep(1)
-        await self.bot.send_message(gameChannel, "1")
+        await self.bot.edit_message(message, new_content=message.content + ", 1")
         time.sleep(1)
         await self.bot.send_message(gameChannel, "GO")
         msg = await self.bot.wait_for_message(timeout=40, author=ctx.message.author)
@@ -115,11 +115,11 @@ class BalloonWorld:
         global rejected
         if rejected == True:
             return False
-        await self.bot.say("Nice! Game starting in 3")
+        message = await self.bot.say("Nice! Game starting in 3")
         time.sleep(0.5)
-        await self.bot.say("2")
+        await self.bot.edit_message(message, new_content=message.content + ", 2")
         time.sleep(0.5)
-        await self.bot.say("1")
+        await self.bot.edit_message(message, new_content=message.content + ", 3")
         time.sleep(0.5)
         await self.bot.say("GO")
         gameStarted = True
