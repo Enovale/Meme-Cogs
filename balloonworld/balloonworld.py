@@ -10,7 +10,7 @@ import time
 gameStarted = False
 balloonHid = False
 timedOut = False
-balloonText = None
+balloonText = ""
     
 class BalloonWorld:
 
@@ -44,7 +44,7 @@ class BalloonWorld:
     @commands.command(pass_context=True)
     async def findit(self, ctx):
         global balloonText
-        if balloonHid == None or balloonText == None:
+        if balloonText == "":
             await self.bot.say("Sorry Bro! Noone's hid any balloons!")
             return
         gameChannel = ctx.message.channel
@@ -91,9 +91,11 @@ class BalloonWorld:
         gameStarted = True
         await self.startHideSequence()
         
+    @commands.command()    
     async def cheat(self):
         global balloonText
-        await self.bot.say(baloonText)
+        global balloonHid
+        await self.bot.say(balloonText + " " + balloonHid)
   
     async def on_reaction_add(self, reaction, user):
         server = reaction.message.server
