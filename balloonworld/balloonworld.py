@@ -31,6 +31,7 @@ class BalloonWorld:
             if time.time() > timeout:
                 return True
                 timedOut = True
+            time.sleep(0.1)
                 
     async def startHideSequence(self):
         global gameStarted
