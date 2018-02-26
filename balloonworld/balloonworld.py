@@ -6,6 +6,7 @@ from discord.ext import commands
 import os
 import re
 import time
+import pickle
 
 gameChannel = None
 gameStarted = False
@@ -144,12 +145,19 @@ class BalloonWorld:
             balloonText = reaction.message.content
             author = reaction.message.author
             channel = reaction.message.channel
+            testdict = {author.id: {'channel': channel, 'text': balloonText}}
+            await self.bot.send_message(channel, "Testdict is " + str(testdict))
             if reaction.message.embeds != []:
                 print()
             else:
                 print()
         else:
             return
+        
+def check_files():
+    f = 'data/balloonworld/database.txt'
+    if not os.path.exists(f):
+        fileIO(f, 'save', {})
 
 def check_folder():
     if not os.path.exists('data/balloonworld'):
@@ -158,6 +166,7 @@ def check_folder():
 
 def setup(bot):
     check_folder()
+    check_files()
     n = BalloonWorld(bot)
     bot.add_listener(n.on_reaction_add, 'on_emoji_reaction')
     bot.add_cog(n)
