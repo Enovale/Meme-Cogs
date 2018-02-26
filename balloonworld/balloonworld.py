@@ -71,6 +71,7 @@ class BalloonWorld:
         emoji = "🎈"
         channel = ctx.message.channel
         global gameChannel
+        global gameStarted
         gameChannel = ctx.message.channel
         if "<" in emoji and ">" in emoji:
             emoji = emoji.strip("<>")
@@ -90,6 +91,7 @@ class BalloonWorld:
     async def on_reaction_add(self, reaction, user):
         server = reaction.message.server
         msg = reaction.message
+        global gameStarted
         if gameStarted == False:
             return
         if "🎈" in str(reaction.emoji):
