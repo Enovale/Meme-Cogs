@@ -16,7 +16,7 @@ class blankhelp:
     async def help(self, ctx):
         """Shows This Command"""
         destination = author if self.bot.pm_help else ctx.message.channel
-        await self.bot.send_message(destination, "Thank's for using Luigi's Balloon Bot! Simply use ```b!findit or b!hideit``` to play!")
+        await self.bot.send_message(destination, "Thank's for using Luigi's Balloon Bot! Simply use ```b!findit or b!hideit``` to play! Type ``b!howto`` to learn how to play!")
 
 def setup(bot):
     bot.remove_command('help')
