@@ -68,10 +68,13 @@ class BalloonWorld:
     
     @commands.command(pass_context=True)
     async def hideit(self, ctx):
+        global balloonHid
+        balloonHid = False
         emoji = "🎈"
         channel = ctx.message.channel
         global gameChannel
         global gameStarted
+        gameStarted = False
         gameChannel = ctx.message.channel
         if "<" in emoji and ">" in emoji:
             emoji = emoji.strip("<>")
@@ -87,6 +90,10 @@ class BalloonWorld:
         await self.bot.say("GO")
         gameStarted = True
         await self.startHideSequence()
+        
+    async def cheat(self):
+        global balloonText
+        await self.bot.say(baloonText)
   
     async def on_reaction_add(self, reaction, user):
         server = reaction.message.server
