@@ -21,16 +21,16 @@ class BalloonWorld:
     
     @commands.command()
     async def howto(self):
-        await self.bot.say("How to play Luigi's Balloon World in Discord:"
+        await self.bot.say("How to play Luigi's Balloon World in Discord:\n\n"
                            ""
-                           "=====Hiding====="
-                           "1. Type ``b!hideit`` and say yes"
-                           "2. Once the game starts, react to any message you please with a balloon emoji, or ``🎈``."
-                           "3. Your message will be recorded."
+                           "=====Hiding=====\n"
+                           "1. Type ``b!hideit`` and say yes\n"
+                           "2. Once the game starts, react to any message you please with a balloon emoji, or ``🎈``\n"
+                           "3. Your message will be recorded\n\n"
                            ""
-                           "=====Finding====="
-                           "1. Type ``b!findit`` and say yes"
-                           "2. Once the game starts, find the message with the balloon (or ``🎈``) reaction, and say whatever the content of the message is"
+                           "=====Finding=====\n"
+                           "1. Type ``b!findit`` and say yes\n"
+                           "2. Once the game starts, find the message with the balloon (or ``🎈``) reaction, and say whatever the content of the message is\n"
                            "3. If you are correct, Luigi will congratulate you")
         
     async def check(self, message):
