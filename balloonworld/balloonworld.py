@@ -105,9 +105,9 @@ class BalloonWorld:
             await self.bot.send_message(gameChannel, "You ran out of time, Bro! Ill stop the game.")
             return
         if msg.content == balloonText:
-            await self.bot.send_message(gameChannel, "WOAH YOU DID IT XD")
+            await self.bot.send_message(gameChannel, "You got it right, Bro! Play again sometime.")
         else:
-            await self.bot.send_message(gameChannel, "Wrong.")
+            await self.bot.send_message(gameChannel, "Tough luck Bro. Play again sometime.")
     
     @commands.command(pass_context=True)
     async def hideit(self, ctx):
