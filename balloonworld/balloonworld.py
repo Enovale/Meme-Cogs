@@ -54,7 +54,7 @@ class BalloonWorld:
             rejected = True
             return False
         
-    await def shouldStop(self, mode):
+    async def shouldStop(self, mode):
         if mode == "hide":
             timeout = time.time() + 30
             print("Currently hiding")
