@@ -145,13 +145,13 @@ class BalloonWorld:
         
     @commands.command()
     async def viewsave(self):
-        testdict = self.loadObj()
+        testdict = await self.loadObj()
         await self.bot.say(str(testdict))
         
     @commands.command()
     async def testsave(self):
         testdict = {"test": "test"}
-        self.saveObj(testdict)
+        await self.saveObj(testdict)
   
     async def on_reaction_add(self, reaction, user):
         server = reaction.message.server
@@ -167,9 +167,9 @@ class BalloonWorld:
             author = reaction.message.author
             channel = reaction.message.channel
             server = channel.server.id
-            self.loadObj()
+            await self.loadObj()
             testdict = testdict + {author.id: {'server': server, 'channel': channel.name, 'text': balloonText}}
-            self.saveObj(testdict)
+            await self.saveObj(testdict)
             await self.bot.send_message(channel, "Testdict is " + str(testdict))
             if reaction.message.embeds != []:
                 print()
