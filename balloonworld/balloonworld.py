@@ -54,7 +54,7 @@ class BalloonWorld:
             rejected = True
             return False
         
-    async def shouldStop(self, mode):
+    def shouldStop(self, mode):
         if mode == "hide":
             timeout = time.time() + 30
             print("Currently hiding")
@@ -69,12 +69,12 @@ class BalloonWorld:
             if time.time() > timeout:
                 return True
                 timedOut = True
-            time.sleep(0.2)
+            time.sleep(0.5)
                 
     async def startHideSequence(self):
         global gameStarted
         global timedOut
-        await self.shouldStop("hide")
+        self.shouldStop("hide")
         if timedOut == True:
             await self.bot.send_message(gameChannel, "You ran out of time, Bro! I'll stop the game for you.")
         if timedOut == False:
