@@ -45,7 +45,7 @@ class BalloonWorld:
                            "2. Once the game starts, find the message with the balloon (or ``🎈``) reaction, and say whatever the content of the message is\n"
                            "3. If you are correct, Luigi will congratulate you")
         
-    async def check(self, message):
+    def check(self, message):
         global rejected
         if message == "yes" or message == "Yes" or message == "Yeah" or message == "yeah":
             return True
@@ -90,7 +90,7 @@ class BalloonWorld:
         global gameChannel
         gameChannel = ctx.message.channel
         await self.bot.send_message(gameChannel, "Hey Bro! Wanna play some Balloon World?")
-        msg = await self.bot.wait_for_message(author=ctx.message.author, check=await self.check)
+        msg = await self.bot.wait_for_message(author=ctx.message.author, check=self.check)
         global rejected
         if rejected == True:
             return False
@@ -124,7 +124,7 @@ class BalloonWorld:
             emoji = emoji.strip("<>")
         server = ctx.message.server
         await self.bot.say("Hey Bro! Wanna play some Balloon World?")
-        msg = await self.bot.wait_for_message(author=ctx.message.author, check=await self.check)
+        msg = await self.bot.wait_for_message(author=ctx.message.author, check=self.check)
         global rejected
         if rejected == True:
             return False
