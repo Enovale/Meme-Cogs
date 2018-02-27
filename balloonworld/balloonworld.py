@@ -81,11 +81,12 @@ class BalloonWorld:
             await self.bot.send_message(gameChannel, "Balloon hid.")
             
     @commands.command(pass_context=True)
-    async def findit(self, ctx):
+    async def findit(self, ctx, user: discord.Mention):
+        database = await loadObj()
+        if database[user.id['server']] != ctx.message.server.id:
+            await self.bot.say("Sorry Bro! That user hasn't hidden a balloon in this server!")
+            return
         global balloonText
-        if balloonText == "":
-            await self.bot.say("Sorry Bro! Noone's hid any balloons!")
-            return True
         global gameChannel
         gameChannel = ctx.message.channel
         await self.bot.send_message(gameChannel, "Hey Bro! Wanna play some Balloon World?")
@@ -151,6 +152,11 @@ class BalloonWorld:
     @commands.command()
     async def testsave(self):
         testdict = {"test": "test"}
+        await self.saveObj(testdict)
+        
+    @commands.command()
+    async def clearsave(self):
+        testdict = {}
         await self.saveObj(testdict)
   
     async def on_reaction_add(self, reaction, user):
