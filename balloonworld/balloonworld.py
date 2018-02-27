@@ -82,7 +82,7 @@ class BalloonWorld:
     @commands.command(pass_context=True)
     async def findit(self, ctx, user: discord.Member):
         database = await self.loadObj()
-        if database[user.id['server']] != ctx.message.server.id:
+        if database[user.id]['server'] != ctx.message.server.id:
             await self.bot.say("Sorry Bro! That user hasn't hidden a balloon in this server!")
             return
         global balloonText
