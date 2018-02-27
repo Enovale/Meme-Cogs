@@ -81,7 +81,7 @@ class BalloonWorld:
             
     @commands.command(pass_context=True)
     async def findit(self, ctx, user: discord.Member):
-        database = await loadObj()
+        database = await self.loadObj()
         if database[user.id['server']] != ctx.message.server.id:
             await self.bot.say("Sorry Bro! That user hasn't hidden a balloon in this server!")
             return
@@ -173,8 +173,8 @@ class BalloonWorld:
             author = reaction.message.author
             channel = reaction.message.channel
             server = channel.server.id
-            testdict = await self.loadObj()
-            testdict.update({user.id: {'server': server, 'channel': channel.name, 'text': balloonText}})
+            database = await self.loadObj()
+            database.update({user.id: {'server': server, 'channel': channel.name, 'text': balloonText}})
             await self.saveObj(testdict)
             if reaction.message.embeds != []:
                 print()
