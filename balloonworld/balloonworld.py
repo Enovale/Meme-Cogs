@@ -168,7 +168,7 @@ class BalloonWorld:
             channel = reaction.message.channel
             server = channel.server.id
             testdict = await self.loadObj()
-            testdict = testdict + {user.id: {'server': server, 'channel': channel.name, 'text': balloonText}}
+            testdict.update({user.id: {'server': server, 'channel': channel.name, 'text': balloonText}})
             await self.saveObj(testdict)
             await self.bot.send_message(channel, "Testdict is " + str(testdict))
             if reaction.message.embeds != []:
