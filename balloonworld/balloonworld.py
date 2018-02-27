@@ -50,7 +50,7 @@ class BalloonWorld:
         if message == "yes" or message == "Yes" or message == "Yeah" or message == "yeah":
             return True
         if message == "no" or message == "No" or message == "Nah" or message == "nah":
-            await self.bot.send_message(gameChannel, "Play again some time!")
+            self.bot.send_message(gameChannel, "Play again some time!")
             rejected = True
             return False
         
