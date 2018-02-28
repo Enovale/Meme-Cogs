@@ -151,7 +151,7 @@ class imagefilter:
         px, py = 85, 570
         sx, sy = sub.size
         base.paste(sub, (px, py, px + sx, py + sy), sub)
-        base.paste(lights, (0, 0, 0, 0), lights)
+        base.paste(lights, (0, 0), lights)
         base.save(self.path + "/" + id + "smashtest" + ".png")
         await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "smashtest" + ".png")
         os.remove(self.path + "/" + id + "smashtest" + ".png")
