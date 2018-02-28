@@ -106,9 +106,9 @@ class imagefilter:
         response = requests.get(ctx.message.attachments[0]['url'])
         char = Image.open (BytesIO(response.content))
         charx, chary = char.size
-        newcharx = 768
-        newchary = int(round(chary * (768 / charx)))
-        char = char.resize((768, newchary))
+        newcharx = int(round(chary * (newchary / charx)))
+        newchary = 1080
+        char = char.resize((newcharx, 1080))
         px, py = 900, 180
         sx, sy = char.size
         base.paste(char, (1920 - char.width, 20), char)
