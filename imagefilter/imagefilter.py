@@ -105,7 +105,7 @@ class imagefilter:
         sub = Image.new('RGBA', (1920, 1080), (0, 0, 0, 0))
         response = requests.get(ctx.message.attachments[0]['url'])
         char = Image.open (BytesIO(response.content))
-        px, py = 700, 200
+        px, py = 900, 180
         sx, sy = char.size
         base.paste(char, (px, py, px + sx, py + sy), char)
         draw2 = ImageDraw.Draw(img)
