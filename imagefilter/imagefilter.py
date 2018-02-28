@@ -91,7 +91,7 @@ class imagefilter:
         """Creates a Super Smash Bros character intro card"""
         id = ctx.message.author.id
         base = Image.open(self.path + "/smash/" + color + ".png")
-        base = base.convert("RGBA")
+        base = base.convert("RGB")
         lights = Image.open(self.path + "/smash/Lights.png")
         lights = lights.convert("RGBA")
         sumi1 = Image.open(self.path + "/smash/sumi-stroke-3" + ".png")
