@@ -91,7 +91,7 @@ class imagefilter:
         """Dont use this yet"""
         id = ctx.message.author.id
         response = requests.get(link)
-        base = Image.open(self.path + "/smash/ + color + ".png")
+        base = Image.open(self.path + "/smash/" + color + ".png")
         sumi1 = Image.open(self.path + "/smash/" + "sumi-stroke-3" + ".png")
         sumi2 = Image.open(self.path + "/smash/" + "sumi-stroke-2" + ".png")
         px, py = 30, 220
