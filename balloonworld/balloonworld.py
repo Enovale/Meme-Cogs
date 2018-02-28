@@ -48,9 +48,12 @@ class BalloonWorld:
     def check(self, message):
         global rejected
         if message == "yes" or message == "Yes" or message == "Yeah" or message == "yeah":
+            print("Test Yes")
             return True
         if message == "no" or message == "No" or message == "Nah" or message == "nah":
             rejected = True
+            return False
+        else:
             return False
         
     async def shouldStop(self, mode):
