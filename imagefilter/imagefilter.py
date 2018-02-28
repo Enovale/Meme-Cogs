@@ -89,7 +89,6 @@ class imagefilter:
     @commands.command(pass_context=True)
     async def smashtest(self, ctx, color, text, subtext):
         """Dont use this yet"""
-        await self.bot.say(str(ctx.message.attachments))
         id = ctx.message.author.id
         base = Image.open(self.path + "/smash/" + color + ".png")
         sumi1 = Image.open(self.path + "/smash/" + "sumi-stroke-3" + ".png")
@@ -104,6 +103,11 @@ class imagefilter:
         font2 = ImageFont.truetype(self.path + "/Smash.ttc", 110)
         img = Image.new('RGBA', (1920, 1080), (0, 0, 0, 0))
         sub = Image.new('RGBA', (1920, 1080), (0, 0, 0, 0))
+        response = requests.get(ctx.message.attachments[0]['url'])
+        char = Image.open (BytesIO(response.content))
+        px, py = 700, 200
+        sx, sy = char.size
+        base.paste(char, (px, py, px + sx, py + sy), char)
         draw2 = ImageDraw.Draw(img)
         draw3 = ImageDraw.Draw(sub)
         x, y = 10, 10
