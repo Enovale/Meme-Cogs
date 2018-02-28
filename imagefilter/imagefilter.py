@@ -91,8 +91,9 @@ class imagefilter:
         """Dont use this yet"""
         id = ctx.message.author.id
         base = Image.open(self.path + "/smash/" + color + ".png")
-        sumi1 = Image.open(self.path + "/smash/" + "sumi-stroke-3" + ".png")
-        sumi2 = Image.open(self.path + "/smash/" + "sumi-stroke-2" + ".png")
+        lights = Image.open(self.path + "/smash/Lights.png")
+        sumi1 = Image.open(self.path + "/smash/sumi-stroke-3" + ".png")
+        sumi2 = Image.open(self.path + "/smash/sumi-stroke-2" + ".png")
         px, py = 30, 220
         sx, sy = sumi1.size
         base.paste(sumi1, (px, py, px + sx, py + sy), sumi1)
@@ -148,6 +149,7 @@ class imagefilter:
         px, py = 85, 570
         sx, sy = sub.size
         base.paste(sub, (px, py, px + sx, py + sy), sub)
+        base.paste(lights, (0, 0, 0, 0), lights)
         base.save(self.path + "/" + id + "smashtest" + ".png")
         await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "smashtest" + ".png")
         os.remove(self.path + "/" + id + "smashtest" + ".png")
