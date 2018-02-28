@@ -85,6 +85,20 @@ class imagefilter:
             image.save(self.path + "/" + id + ".jpg", quality=100)
        	    await self.bot.send_file(channel, self.path + "/" + id + ".jpg")
             os.remove(self.path + "/" + id + ".jpg")
+
+    @commands.command(pass_context=True)
+    async def smashtest(self, ctx):
+        """Dont use this yet"""
+        img = Image.open(self.path + "/" + "drake.png")
+        width, height = img.size
+        m = -0.5
+        xshift = abs(m) * width
+        new_width = width + int(round(xshift))
+        img = img.transform((new_width, height), Image.AFFINE,
+        (1, m, -xshift if m > 0 else 0, 0, 1, 0), Image.BICUBIC)
+        img.save(self.path + "/" + id + "smashtest" + ".png")
+        await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "smashtest" + ".png")
+        os.remove(self.path + "/" + id + "smashtest" + ".png")
             
     @commands.command(pass_context=True)
     async def expand(self, ctx, link, pixels, color):
