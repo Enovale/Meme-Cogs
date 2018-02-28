@@ -107,7 +107,7 @@ class imagefilter:
         char = Image.open (BytesIO(response.content))
         charx, chary = char.size
         newchary = 1080
-        newcharx = int(round(chary * (newchary / charx)))
+        newcharx = int(round(charx * (newchary / chary)))
         char = char.resize((newcharx, 1080))
         px, py = 900, 180
         sx, sy = char.size
