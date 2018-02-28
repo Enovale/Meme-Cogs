@@ -87,11 +87,19 @@ class imagefilter:
             os.remove(self.path + "/" + id + ".jpg")
 
     @commands.command(pass_context=True)
-    async def smashtest(self, ctx, link, text):
+    async def smashtest(self, ctx, color, text):
         """Dont use this yet"""
         id = ctx.message.author.id
         response = requests.get(link)
-        test = Image.open (BytesIO(response.content))
+        base = Image.open(self.path + "/smash/ + color + ".png")
+        sumi1 = Image.open(self.path + "/smash/" + "sumi-stroke-3" + ".png")
+        sumi2 = Image.open(self.path + "/smash/" + "sumi-stroke-2" + ".png")
+        px, py = 30, 220
+        sx, sy = sumi1.size
+        base.paste(sumi1, (px, py, px + sx, py + sy), sumi1)
+        px, py = 35, 320
+        sx, sy = sumi2.size
+        base.paste(sumi2, (px, py, px + sx, py + sy), sumi2)
         font = ImageFont.truetype(self.path + "/Smash.ttc", 200)
         img = Image.new('RGBA', (1920, 1080), (0, 0, 0, 0))
         draw2 = ImageDraw.Draw(img)
@@ -118,8 +126,8 @@ class imagefilter:
         (1, m, -xshift if m > 0 else 0, 0, 1, 0), Image.BICUBIC)
         px, py = 40, 250
         sx, sy = img.size
-        test.paste(img, (px, py, px + sx, py + sy), img)
-        test.save(self.path + "/" + id + "smashtest" + ".png")
+        base.paste(img, (px, py, px + sx, py + sy), img)
+        base.save(self.path + "/" + id + "smashtest" + ".png")
         await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "smashtest" + ".png")
         os.remove(self.path + "/" + id + "smashtest" + ".png")
             
