@@ -92,8 +92,8 @@ class imagefilter:
         id = ctx.message.author.id
         #response = requests.get(link)
         #img = Image.open (BytesIO(response.content))
-        font = ImageFont.truetype(self.path + "/Arial-Custom.ttf", 30)
-        img = Image.new('RGBA', (3000, 800), (0, 0, 0, 0))
+        font = ImageFont.truetype(self.path + "/Arial-Custom.ttf", 80)
+        img = Image.new('RGBA', (1920, 1080), (0, 0, 0, 0))
         draw2 = ImageDraw.Draw(img)
         x, y = 10, 10
         # draw.text((x, y),"Sample Text",(r,g,b))
