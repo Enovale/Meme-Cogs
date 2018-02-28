@@ -115,8 +115,8 @@ class imagefilter:
         xshift = abs(m) * width
         new_width = width + int(round(xshift))
         img = img.transform((new_width, height), Image.AFFINE,
-        (1, m, -xshift if m > 0 else 0, 0, 1, 0), Image.BICUBIC)
-	test.paste(img, (0,0), img)
+        (1, m, -xshift if m > 0 else 0, 0, 1, 0), Image.BICUBIC
+        test.paste(img, (0,0), img)
         test.save(self.path + "/" + id + "smashtest" + ".png")
         await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "smashtest" + ".png")
         os.remove(self.path + "/" + id + "smashtest" + ".png")
