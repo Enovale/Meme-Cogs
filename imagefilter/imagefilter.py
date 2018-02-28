@@ -96,7 +96,7 @@ class imagefilter:
         px, py = 30, 220
         sx, sy = sumi1.size
         base.paste(sumi1, (px, py, px + sx, py + sy), sumi1)
-        px, py = 35, 320
+        px, py = 35, 550
         sx, sy = sumi2.size
         base.paste(sumi2, (px, py, px + sx, py + sy), sumi2)
         font = ImageFont.truetype(self.path + "/Smash.ttc", 200)
