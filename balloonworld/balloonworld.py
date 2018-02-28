@@ -92,7 +92,7 @@ class BalloonWorld:
         global gameChannel
         gameChannel = ctx.message.channel
         await self.bot.send_message(gameChannel, "Hey Bro! Wanna play some Balloon World?")
-        msg = await self.bot.wait_for_message(author=ctx.message.author, check=self.check)
+        #msg = await self.bot.wait_for_message(author=ctx.message.author, check=self.check)
         global rejected
         if rejected == True:
             await self.bot.send_message(gameChannel, "Play again some time!")
