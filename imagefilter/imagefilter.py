@@ -89,6 +89,7 @@ class imagefilter:
     @commands.command(pass_context=True)
     async def smashtest(self, ctx, color, text, subtext):
         """Dont use this yet"""
+        await self.bot.say(str(ctx.message.attachments))
         id = ctx.message.author.id
         base = Image.open(self.path + "/smash/" + color + ".png")
         sumi1 = Image.open(self.path + "/smash/" + "sumi-stroke-3" + ".png")
