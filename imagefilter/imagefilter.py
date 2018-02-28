@@ -87,7 +87,7 @@ class imagefilter:
             os.remove(self.path + "/" + id + ".jpg")
 
     @commands.command(pass_context=True)
-    async def smashtest(self, ctx, color, text, sub):
+    async def smashtest(self, ctx, color, text, subtext):
         """Dont use this yet"""
         id = ctx.message.author.id
         base = Image.open(self.path + "/smash/" + color + ".png")
@@ -119,7 +119,7 @@ class imagefilter:
 
         # now draw the text over it
         draw2.text((x, y), text, font=font, fill='red')
-	draw3.text((x, y), sub, font=font, fill='white')
+	draw3.text((x, y), subtext, font=font, fill='white')
         width, height = img.size
         m = -0.5
         xshift = abs(m) * width
