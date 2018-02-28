@@ -89,6 +89,7 @@ class imagefilter:
     @commands.command(pass_context=True)
     async def smashtest(self, ctx):
         """Dont use this yet"""
+        id = ctx.message.author.id
         img = Image.open(self.path + "/" + "drake.png")
         width, height = img.size
         m = -0.5
