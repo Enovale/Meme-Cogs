@@ -87,7 +87,7 @@ class imagefilter:
             os.remove(self.path + "/" + id + ".jpg")
 
     @commands.command(pass_context=True)
-    async def smashtest(self, ctx, color, text):
+    async def smashtest(self, ctx, color, text, sub):
         """Dont use this yet"""
         id = ctx.message.author.id
         base = Image.open(self.path + "/smash/" + color + ".png")
@@ -96,12 +96,14 @@ class imagefilter:
         px, py = 30, 220
         sx, sy = sumi1.size
         base.paste(sumi1, (px, py, px + sx, py + sy), sumi1)
-        px, py = 35, 550
+        px, py = 45, 550
         sx, sy = sumi2.size
         base.paste(sumi2, (px, py, px + sx, py + sy), sumi2)
         font = ImageFont.truetype(self.path + "/Smash.ttc", 200)
         img = Image.new('RGBA', (1920, 1080), (0, 0, 0, 0))
+	sub = Image.new('RGBA', (1920, 1080), (0, 0, 0, 0))
         draw2 = ImageDraw.Draw(img)
+	draw3 = ImageDraw.Draw(sub)
         x, y = 10, 10
         # draw.text((x, y),"Sample Text",(r,g,b))
         draw2.text((x-15, y), text, font=font, fill='white')
@@ -117,15 +119,25 @@ class imagefilter:
 
         # now draw the text over it
         draw2.text((x, y), text, font=font, fill='red')
+	draw3.text((x, y), sub, font=font, fill='white')
         width, height = img.size
         m = -0.5
         xshift = abs(m) * width
         new_width = width + int(round(xshift))
         img = img.transform((new_width, height), Image.AFFINE,
         (1, m, -xshift if m > 0 else 0, 0, 1, 0), Image.BICUBIC)
+        width, height = sub.size
+        m = -0.5
+        xshift = abs(m) * width
+        new_width = width + int(round(xshift))
+        sub = sub.transform((new_width, height), Image.AFFINE,
+        (1, m, -xshift if m > 0 else 0, 0, 1, 0), Image.BICUBIC)
         px, py = 40, 250
         sx, sy = img.size
         base.paste(img, (px, py, px + sx, py + sy), img)
+        px, py = 55, 570
+        sx, sy = sub.size
+        base.paste(sub, (px, py, px + sx, py + sy), sub)
         base.save(self.path + "/" + id + "smashtest" + ".png")
         await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "smashtest" + ".png")
         os.remove(self.path + "/" + id + "smashtest" + ".png")
