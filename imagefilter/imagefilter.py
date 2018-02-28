@@ -90,7 +90,6 @@ class imagefilter:
     async def smashtest(self, ctx, color, text):
         """Dont use this yet"""
         id = ctx.message.author.id
-        response = requests.get(link)
         base = Image.open(self.path + "/smash/" + color + ".png")
         sumi1 = Image.open(self.path + "/smash/" + "sumi-stroke-3" + ".png")
         sumi2 = Image.open(self.path + "/smash/" + "sumi-stroke-2" + ".png")
@@ -149,7 +148,6 @@ class imagefilter:
             os.remove(self.path + "/" + id + ".jpg")
 		
     @commands.command(pass_context=True)
-    
     async def drake(self, ctx, TopText, BottomText):
         """Makes a drake meme out of your text."""
         
