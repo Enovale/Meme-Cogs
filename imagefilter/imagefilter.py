@@ -88,7 +88,7 @@ class imagefilter:
 
     @commands.command(pass_context=True)
     async def smashtest(self, ctx, color, text, subtext):
-        """Dont use this yet"""
+        """Creates a Super Smash Bros character intro card"""
         id = ctx.message.author.id
         base = Image.open(self.path + "/smash/" + color + ".png")
         lights = Image.open(self.path + "/smash/Lights.png")
