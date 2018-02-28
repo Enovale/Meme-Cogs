@@ -87,10 +87,11 @@ class imagefilter:
             os.remove(self.path + "/" + id + ".jpg")
 
     @commands.command(pass_context=True)
-    async def smashtest(self, ctx):
+    async def smashtest(self, ctx, link):
         """Dont use this yet"""
         id = ctx.message.author.id
-        img = Image.open(self.path + "/" + "drake.png")
+        response = requests.get(link)
+        img = Image.open (BytesIO(response.content))
         width, height = img.size
         m = -0.5
         xshift = abs(m) * width
