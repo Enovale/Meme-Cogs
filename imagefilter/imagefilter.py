@@ -87,36 +87,37 @@ class imagefilter:
             os.remove(self.path + "/" + id + ".jpg")
 
     @commands.command(pass_context=True)
-    async def smashtest(self, ctx, text):
+    async def smashtest(self, ctx, link, text):
         """Dont use this yet"""
         id = ctx.message.author.id
-        #response = requests.get(link)
-        #img = Image.open (BytesIO(response.content))
+        response = requests.get(link)
+        test = Image.open (BytesIO(response.content))
         font = ImageFont.truetype(self.path + "/Smash.ttc", 190)
         img = Image.new('RGBA', (1920, 1080), (0, 0, 0, 0))
         draw2 = ImageDraw.Draw(img)
         x, y = 10, 10
         # draw.text((x, y),"Sample Text",(r,g,b))
-        draw2.text((x-15, y), text, font=font, fill='black')
-        draw2.text((x+15, y), text, font=font, fill='black')
-        draw2.text((x, y-15), text, font=font, fill='black')
-        draw2.text((x, y+15), text, font=font, fill='black')
+        draw2.text((x-15, y), text, font=font, fill='white')
+        draw2.text((x+15, y), text, font=font, fill='white')
+        draw2.text((x, y-15), text, font=font, fill='white')
+        draw2.text((x, y+15), text, font=font, fill='white')
 
         # thicker border
-        draw2.text((x-15, y-15), text, font=font, fill='black')
-        draw2.text((x+15, y-15), text, font=font, fill='black')
-        draw2.text((x-15, y+15), text, font=font, fill='black')
-        draw2.text((x+15, y+15), text, font=font, fill='black')
+        draw2.text((x-15, y-15), text, font=font, fill='white')
+        draw2.text((x+15, y-15), text, font=font, fill='white')
+        draw2.text((x-15, y+15), text, font=font, fill='white')
+        draw2.text((x+15, y+15), text, font=font, fill='white')
 
         # now draw the text over it
-        draw2.text((x, y), text, font=font, fill='#8ff60f')
+        draw2.text((x, y), text, font=font, fill='red')
         width, height = img.size
         m = -0.5
         xshift = abs(m) * width
         new_width = width + int(round(xshift))
         img = img.transform((new_width, height), Image.AFFINE,
         (1, m, -xshift if m > 0 else 0, 0, 1, 0), Image.BICUBIC)
-        img.save(self.path + "/" + id + "smashtest" + ".png")
+	test.paste(img, (0,0), img)
+        test.save(self.path + "/" + id + "smashtest" + ".png")
         await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "smashtest" + ".png")
         os.remove(self.path + "/" + id + "smashtest" + ".png")
             
