@@ -92,6 +92,7 @@ class imagefilter:
         id = ctx.message.author.id
         #response = requests.get(link)
         #img = Image.open (BytesIO(response.content))
+        font = ImageFont.truetype(self.path + "/Arial-Custom.ttf", 30)
         img = Image.new('RGBA', (3000, 800), (0, 0, 0, 0))
         draw2 = ImageDraw.Draw(img)
         x, y = 10, 10
@@ -137,6 +138,7 @@ class imagefilter:
             os.remove(self.path + "/" + id + ".jpg")
 		
     @commands.command(pass_context=True)
+    
     async def drake(self, ctx, TopText, BottomText):
         """Makes a drake meme out of your text."""
         
