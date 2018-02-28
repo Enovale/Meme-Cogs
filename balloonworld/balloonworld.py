@@ -125,8 +125,10 @@ class BalloonWorld:
         server = ctx.message.server
         await self.bot.say("Hey Bro! Wanna play some Balloon World?")
         msg = await self.bot.wait_for_message(author=ctx.message.author, check=self.check)
+        print("Test")
         global rejected
         if rejected == True:
+            print("Rejected")
             return False
         message = await self.bot.say("Nice! Game starting in 3")
         time.sleep(0.5)
