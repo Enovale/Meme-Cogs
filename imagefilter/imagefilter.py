@@ -93,7 +93,7 @@ class imagefilter:
         #response = requests.get(link)
         #img = Image.open (BytesIO(response.content))
         img = Image.new('RGBA', (3000, 800), (0, 0, 0, 0))
-        draw2 = ImageDraw.Draw(image2)
+        draw2 = ImageDraw.Draw(img)
         x, y = 10, 10
         # draw.text((x, y),"Sample Text",(r,g,b))
         draw2.text((x-15, y), text, font=font, fill='black')
