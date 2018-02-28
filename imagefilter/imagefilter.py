@@ -92,7 +92,7 @@ class imagefilter:
         id = ctx.message.author.id
         response = requests.get(link)
         #img = Image.open (BytesIO(response.content))
-	img = Image.new('RGBA', (3000, 800), (0, 0, 0, 0))
+        img = Image.new('RGBA', (3000, 800), (0, 0, 0, 0))
         draw2 = ImageDraw.Draw(image2)
         x, y = 10, 10
         # draw.text((x, y),"Sample Text",(r,g,b))
