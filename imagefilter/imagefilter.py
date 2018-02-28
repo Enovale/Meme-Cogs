@@ -92,7 +92,7 @@ class imagefilter:
         id = ctx.message.author.id
         response = requests.get(link)
         test = Image.open (BytesIO(response.content))
-        font = ImageFont.truetype(self.path + "/Smash.ttc", 190)
+        font = ImageFont.truetype(self.path + "/Smash.ttc", 200)
         img = Image.new('RGBA', (1920, 1080), (0, 0, 0, 0))
         draw2 = ImageDraw.Draw(img)
         x, y = 10, 10
@@ -116,7 +116,7 @@ class imagefilter:
         new_width = width + int(round(xshift))
         img = img.transform((new_width, height), Image.AFFINE,
         (1, m, -xshift if m > 0 else 0, 0, 1, 0), Image.BICUBIC)
-        px, py = 0, 0
+        px, py = 20, 300
         sx, sy = img.size
         test.paste(img, (px, py, px + sx, py + sy), img)
         test.save(self.path + "/" + id + "smashtest" + ".png")
