@@ -87,10 +87,10 @@ class imagefilter:
             os.remove(self.path + "/" + id + ".jpg")
 
     @commands.command(pass_context=True)
-    async def smashtest(self, ctx, link, text):
+    async def smashtest(self, ctx, text):
         """Dont use this yet"""
         id = ctx.message.author.id
-        response = requests.get(link)
+        #response = requests.get(link)
         #img = Image.open (BytesIO(response.content))
         img = Image.new('RGBA', (3000, 800), (0, 0, 0, 0))
         draw2 = ImageDraw.Draw(image2)
