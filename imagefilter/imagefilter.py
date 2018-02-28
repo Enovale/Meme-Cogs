@@ -116,7 +116,7 @@ class imagefilter:
         new_width = width + int(round(xshift))
         img = img.transform((new_width, height), Image.AFFINE,
         (1, m, -xshift if m > 0 else 0, 0, 1, 0), Image.BICUBIC)
-        px, py = 20, 300
+        px, py = 30, 280
         sx, sy = img.size
         test.paste(img, (px, py, px + sx, py + sy), img)
         test.save(self.path + "/" + id + "smashtest" + ".png")
