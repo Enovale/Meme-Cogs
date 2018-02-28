@@ -108,7 +108,7 @@ class BalloonWorld:
         if msg == None:
             await self.bot.send_message(gameChannel, "You ran out of time, Bro! Tough luck!")
             return
-        if msg.content == balloonText:
+        if msg.content == database[user.id]['text']:
             await self.bot.send_message(gameChannel, "You got it right, Bro! Play again sometime.")
         else:
             await self.bot.send_message(gameChannel, "Tough luck Bro. Play again sometime.")
