@@ -100,7 +100,7 @@ class imagefilter:
         sx, sy = sumi2.size
         base.paste(sumi2, (px, py, px + sx, py + sy), sumi2)
         font = ImageFont.truetype(self.path + "/Smash.ttc", 200)
-        font2 = ImageFont.truetype(self.path + "/Smash.ttc", 165
+        font2 = ImageFont.truetype(self.path + "/Smash.ttc", 165)
         img = Image.new('RGBA', (1920, 1080), (0, 0, 0, 0))
         sub = Image.new('RGBA', (1920, 1080), (0, 0, 0, 0))
         draw2 = ImageDraw.Draw(img)
