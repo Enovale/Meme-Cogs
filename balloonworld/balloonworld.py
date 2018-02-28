@@ -180,7 +180,7 @@ class BalloonWorld:
             server = channel.server.id
             database = await self.loadObj()
             database.update({user.id: {'server': server, 'channel': channel.name, 'text': balloonText}})
-            await self.saveObj(testdict)
+            await self.saveObj(database)
             if reaction.message.embeds != []:
                 print()
             else:
