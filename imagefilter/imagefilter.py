@@ -101,9 +101,9 @@ class imagefilter:
         base.paste(sumi2, (px, py, px + sx, py + sy), sumi2)
         font = ImageFont.truetype(self.path + "/Smash.ttc", 200)
         img = Image.new('RGBA', (1920, 1080), (0, 0, 0, 0))
-	sub = Image.new('RGBA', (1920, 1080), (0, 0, 0, 0))
+        sub = Image.new('RGBA', (1920, 1080), (0, 0, 0, 0))
         draw2 = ImageDraw.Draw(img)
-	draw3 = ImageDraw.Draw(sub)
+        draw3 = ImageDraw.Draw(sub)
         x, y = 10, 10
         # draw.text((x, y),"Sample Text",(r,g,b))
         draw2.text((x-15, y), text, font=font, fill='white')
@@ -119,7 +119,7 @@ class imagefilter:
 
         # now draw the text over it
         draw2.text((x, y), text, font=font, fill='red')
-	draw3.text((x, y), subtext, font=font, fill='white')
+        draw3.text((x, y), subtext, font=font, fill='white')
         width, height = img.size
         m = -0.5
         xshift = abs(m) * width
