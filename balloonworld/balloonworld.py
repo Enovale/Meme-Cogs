@@ -8,6 +8,7 @@ import re
 import time
 import pickle
 import threading
+from interruptingcow import timeout
 
 gameChannel = None
 gameStarted = False
@@ -68,9 +69,15 @@ class BalloonWorld:
             t = threading.Timer(40.0,self.setTimedOut)
         global timedOut
         global balloonHid
-        if (balloonHid == True):
-            t.cancel()
-            timedOut = False
+        try:
+            with timeout(30, exception=RuntimeError):
+            while True:
+                test = 0
+                if test == 5:
+                    break
+                test = test - 1
+        except RuntimeError:
+            pass
                 
     async def startHideSequence(self):
         global gameStarted
