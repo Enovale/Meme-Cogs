@@ -7,6 +7,7 @@ import os
 import re
 import time
 import pickle
+import threading
 
 gameChannel = None
 gameStarted = False
@@ -56,23 +57,19 @@ class BalloonWorld:
         else:
             return False
         
+    async def setTimedOut(self):
+        global timedOut
+        timedOut = True
+        
     async def shouldStop(self, mode):
         if mode == "hide":
-            timeout = time.time() + 30
-            print("Currently hiding")
+            t = threading.Timer(30.0,setTimedOut)
         if mode == "seek":
-            timeout = time.time() + 40
+            t = threading.Timer(40.0,setTimedOut)
         global timedOut
         global balloonHid
-        while True:
-            if balloonHid == True:
-                timedOut = False
-                await self.bot.say("test")
-                return
-            if time.time() > timeout:
-                timedOut = True
-                return
-            time.sleep(0.5)
+        if (balloonHid == True):
+            t.cancel()
                 
     async def startHideSequence(self):
         global gameStarted
