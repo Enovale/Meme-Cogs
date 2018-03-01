@@ -8,7 +8,6 @@ import re
 import time
 import pickle
 import threading
-from interruptingcow import timeout
 
 gameChannel = None
 gameStarted = False
@@ -62,27 +61,26 @@ class BalloonWorld:
         global timedOut
         timedOut = True
         
-    def shouldStop(self, mode):
+    async def shouldStop(self, mode):
         if mode == "hide":
-            t = threading.Timer(30.0,self.setTimedOut)
+            timeout = 30.0
         if mode == "seek":
-            t = threading.Timer(40.0,self.setTimedOut)
+            timeout = 40.0
         global timedOut
         global balloonHid
-        try:
-            with timeout(30, exception=RuntimeError):
-            while True:
-                test = 0
-                if test == 5:
-                    break
-                test = test - 1
-        except RuntimeError:
-            pass
+        while True:
+            if balloonHid == True:
+                timedOut = False
+                return
+            if time.time() > timeout:
+                timedOut = True
+                return
+            asyncio.sleep(1)
                 
     async def startHideSequence(self):
         global gameStarted
         global timedOut
-        self.shouldStop("hide")
+        await self.shouldStop("hide")
         if timedOut == True:
             await self.bot.send_message(gameChannel, "You ran out of time, Bro! I'll stop the game for you.")
         if timedOut == False:
