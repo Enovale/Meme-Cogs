@@ -89,6 +89,11 @@ class imagefilter:
     @commands.command(pass_context=True)
     async def smash(self, ctx, color, text, subtext):
         """Creates a Super Smash Bros character intro card"""
+        try:
+            ctx.message.attachments[0]['url']
+        except NameError:
+            await self.bot.say("Homeboi u didn't give an image dingus. Attach an image next time.")
+            return
         id = ctx.message.author.id
         base = Image.open(self.path + "/smash/" + color + ".png")
         base = base.convert("RGB")
