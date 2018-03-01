@@ -91,7 +91,7 @@ class imagefilter:
         """Creates a Super Smash Bros character intro card"""
         try:
             ctx.message.attachments[0]['url']
-        except NameError:
+        except IndexError:
             await self.bot.say("Homeboi u didn't give an image dingus. Attach an image next time.")
             return
         id = ctx.message.author.id
