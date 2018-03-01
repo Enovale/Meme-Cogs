@@ -794,7 +794,6 @@ class imagefilter:
             draw.multiline_text((80, 2520),"Tag your friends to\ntotally " + MinorText + " them!",(0,0,0),font=font2, align='center')
             img2.putalpha(50)
             img2 = img2.resize((400, 700))
-            #bean.paste(img2, (math.floor(width-100), 0))
             bean.save(self.path + "/" + id + "beaned" + ".png")
             await self.bot.send_file(ctx.message.channel, self.path + "/" + id + "beaned" + ".png")
             os.remove(self.path + "/" + id + "beaned" + ".png")
