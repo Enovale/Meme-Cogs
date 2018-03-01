@@ -95,12 +95,10 @@ class imagefilter:
             await self.bot.say("Homeboi u didn't give an image dingus. Attach an image next time.")
             return
         id = ctx.message.author.id
-        base = Image.open(self.path + "/smash/" + color + ".png")
-        base = base.convert("RGB")
-        lights = Image.open(self.path + "/smash/Lights.png")
-        lights = lights.convert("RGBA")
-        sumi1 = Image.open(self.path + "/smash/sumi-stroke-3" + ".png")
-        sumi2 = Image.open(self.path + "/smash/sumi-stroke-2" + ".png")
+        base = Image.open(self.path + "/smash/" + color + ".png").convert("RGBA")
+        lights = Image.open(self.path + "/smash/Lights.png").convert("RGBA")
+        sumi1 = Image.open(self.path + "/smash/sumi-stroke-3" + ".png").convert("RGBA")
+        sumi2 = Image.open(self.path + "/smash/sumi-stroke-2" + ".png").convert("RGBA")
         px, py = 30, 220
         sx, sy = sumi1.size
         base.paste(sumi1, (px, py, px + sx, py + sy), sumi1)
@@ -112,7 +110,7 @@ class imagefilter:
         img = Image.new('RGBA', (1920, 1080), (0, 0, 0, 0))
         sub = Image.new('RGBA', (1920, 1080), (0, 0, 0, 0))
         response = requests.get(ctx.message.attachments[0]['url'])
-        char = Image.open (BytesIO(response.content))
+        char = Image.open (BytesIO(response.content)).convert("RGBA")
         charx, chary = char.size
         newchary = 1190
         newcharx = int(round(charx * (newchary / chary)))
