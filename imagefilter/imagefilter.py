@@ -87,7 +87,7 @@ class imagefilter:
             os.remove(self.path + "/" + id + ".jpg")
 
     @commands.command(pass_context=True)
-    async def smashtest(self, ctx, color, text, subtext):
+    async def smash(self, ctx, color, text, subtext):
         """Creates a Super Smash Bros character intro card"""
         id = ctx.message.author.id
         base = Image.open(self.path + "/smash/" + color + ".png")
