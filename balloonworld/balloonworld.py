@@ -63,9 +63,9 @@ class BalloonWorld:
         
     async def shouldStop(self, mode):
         if mode == "hide":
-            t = threading.Timer(30.0,setTimedOut)
+            t = threading.Timer(30.0,self.setTimedOut)
         if mode == "seek":
-            t = threading.Timer(40.0,setTimedOut)
+            t = threading.Timer(40.0,self.setTimedOut)
         global timedOut
         global balloonHid
         if (balloonHid == True):
