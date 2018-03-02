@@ -96,7 +96,7 @@ class imagefilter:
             return
         id = ctx.message.author.id
         base = Image.open(self.path + "/smash/" + color + ".png").convert("RGBA")
-        lights = Image.open(self.path + "/smash/Lights.png").convert("RGBA")
+        lights = Image.open(self.path + "/smash/Lights" + random.randint(1, 4) + ".png").convert("RGBA")
         sumi1 = Image.open(self.path + "/smash/sumi-stroke-3" + ".png").convert("RGBA")
         sumi2 = Image.open(self.path + "/smash/sumi-stroke-2" + ".png").convert("RGBA")
         px, py = 30, 220
