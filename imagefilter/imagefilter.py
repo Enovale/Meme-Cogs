@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import os
 import math
+import random
 import asyncio
 from cogs.utils.dataIO import dataIO
 import PIL
